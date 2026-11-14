@@ -1,7 +1,861 @@
 {
   "schema_version": 1,
-  "status": "pending",
-  "area": "Recortes A e B (não representam o estado do Amazonas)",
-  "months": [],
-  "alerts": ["Séries mensais ainda não foram extraídas dos CSVs anuais NASA FIRMS. Os resultados estatísticos existentes estão em data/validacao.json."]
+  "status": "ready",
+  "area": "Recortes retangulares experimentais A e B (não equivalem ao Amazonas)",
+  "source": "NASA FIRMS country yearly Brazil, arquivo histórico consolidado",
+  "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/",
+  "years": [
+    2022,
+    2023,
+    2024
+  ],
+  "time_basis": "mês solar local (UTC + longitude/15 horas)",
+  "filters": "type=0 when available; Aqua confidence>=30; NOAA20 n/h; somente diurno D",
+  "aggregation": "Contagens de pixels em células de 1° por mês; NÃO incêndios individuais",
+  "method": "Fator global NOAA20->MODIS Aqua treinado em anos anteriores; nunca no ano de teste",
+  "regions": {
+    "A": [
+      -65,
+      -9,
+      -58,
+      -2
+    ],
+    "B": [
+      -58,
+      -9,
+      -51,
+      -2
+    ]
+  },
+  "files": [
+    {
+      "year": 2022,
+      "satellite": "modis",
+      "retained": 42877
+    },
+    {
+      "year": 2022,
+      "satellite": "viirs-jpss1",
+      "retained": 259634
+    },
+    {
+      "year": 2023,
+      "satellite": "modis",
+      "retained": 39101
+    },
+    {
+      "year": 2023,
+      "satellite": "viirs-jpss1",
+      "retained": 238970
+    },
+    {
+      "year": 2024,
+      "satellite": "modis",
+      "retained": 57526
+    },
+    {
+      "year": 2024,
+      "satellite": "viirs-jpss1",
+      "retained": 391517
+    }
+  ],
+  "months": [
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 1,
+      "modis_aqua": 39,
+      "viirs_noaa20": 228,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 2,
+      "modis_aqua": 5,
+      "viirs_noaa20": 23,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 3,
+      "modis_aqua": 10,
+      "viirs_noaa20": 35,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 4,
+      "modis_aqua": 4,
+      "viirs_noaa20": 44,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 5,
+      "modis_aqua": 73,
+      "viirs_noaa20": 393,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 6,
+      "modis_aqua": 60,
+      "viirs_noaa20": 328,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 7,
+      "modis_aqua": 1409,
+      "viirs_noaa20": 6129,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 8,
+      "modis_aqua": 6691,
+      "viirs_noaa20": 24556,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 9,
+      "modis_aqua": 5313,
+      "viirs_noaa20": 19578,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 10,
+      "modis_aqua": 873,
+      "viirs_noaa20": 3456,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 11,
+      "modis_aqua": 476,
+      "viirs_noaa20": 2165,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2022,
+      "month": 12,
+      "modis_aqua": 61,
+      "viirs_noaa20": 266,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": false,
+      "caveat": "Dezembro potencialmente incompleto: faltam observações UTC do ano seguinte"
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 1,
+      "modis_aqua": 23,
+      "viirs_noaa20": 46,
+      "viirs_in_modis_scale": 12.07,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 2,
+      "modis_aqua": 12,
+      "viirs_noaa20": 15,
+      "viirs_in_modis_scale": 3.94,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 3,
+      "modis_aqua": 11,
+      "viirs_noaa20": 44,
+      "viirs_in_modis_scale": 11.55,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 4,
+      "modis_aqua": 7,
+      "viirs_noaa20": 54,
+      "viirs_in_modis_scale": 14.17,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 5,
+      "modis_aqua": 19,
+      "viirs_noaa20": 152,
+      "viirs_in_modis_scale": 39.9,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 6,
+      "modis_aqua": 162,
+      "viirs_noaa20": 604,
+      "viirs_in_modis_scale": 158.54,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 7,
+      "modis_aqua": 1641,
+      "viirs_noaa20": 5103,
+      "viirs_in_modis_scale": 1339.42,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 8,
+      "modis_aqua": 4061,
+      "viirs_noaa20": 15416,
+      "viirs_in_modis_scale": 4046.36,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 9,
+      "modis_aqua": 4962,
+      "viirs_noaa20": 18948,
+      "viirs_in_modis_scale": 4973.43,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 10,
+      "modis_aqua": 2240,
+      "viirs_noaa20": 11413,
+      "viirs_in_modis_scale": 2995.66,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 11,
+      "modis_aqua": 406,
+      "viirs_noaa20": 1856,
+      "viirs_in_modis_scale": 487.16,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2023,
+      "month": 12,
+      "modis_aqua": 83,
+      "viirs_noaa20": 221,
+      "viirs_in_modis_scale": 58.01,
+      "global_factor": 0.2624779,
+      "complete_local_solar_month": false,
+      "caveat": "Dezembro potencialmente incompleto: faltam observações UTC do ano seguinte"
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 1,
+      "modis_aqua": 55,
+      "viirs_noaa20": 186,
+      "viirs_in_modis_scale": 47.96,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 2,
+      "modis_aqua": 56,
+      "viirs_noaa20": 116,
+      "viirs_in_modis_scale": 29.91,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 3,
+      "modis_aqua": 22,
+      "viirs_noaa20": 72,
+      "viirs_in_modis_scale": 18.57,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 4,
+      "modis_aqua": 24,
+      "viirs_noaa20": 54,
+      "viirs_in_modis_scale": 13.92,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 5,
+      "modis_aqua": 24,
+      "viirs_noaa20": 152,
+      "viirs_in_modis_scale": 39.19,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 6,
+      "modis_aqua": 168,
+      "viirs_noaa20": 799,
+      "viirs_in_modis_scale": 206.03,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 7,
+      "modis_aqua": 3561,
+      "viirs_noaa20": 12995,
+      "viirs_in_modis_scale": 3350.86,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 8,
+      "modis_aqua": 7763,
+      "viirs_noaa20": 32224,
+      "viirs_in_modis_scale": 8309.2,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 9,
+      "modis_aqua": 4539,
+      "viirs_noaa20": 17091,
+      "viirs_in_modis_scale": 4407.04,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 10,
+      "modis_aqua": 1368,
+      "viirs_noaa20": 5624,
+      "viirs_in_modis_scale": 1450.19,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 11,
+      "modis_aqua": 249,
+      "viirs_noaa20": 984,
+      "viirs_in_modis_scale": 253.73,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "A",
+      "year": 2024,
+      "month": 12,
+      "modis_aqua": 95,
+      "viirs_noaa20": 252,
+      "viirs_in_modis_scale": 64.98,
+      "global_factor": 0.2578574,
+      "complete_local_solar_month": false,
+      "caveat": "Dezembro potencialmente incompleto: faltam observações UTC do ano seguinte"
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 1,
+      "modis_aqua": 60,
+      "viirs_noaa20": 253,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 2,
+      "modis_aqua": 17,
+      "viirs_noaa20": 63,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 3,
+      "modis_aqua": 4,
+      "viirs_noaa20": 48,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 4,
+      "modis_aqua": 5,
+      "viirs_noaa20": 50,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 5,
+      "modis_aqua": 31,
+      "viirs_noaa20": 221,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 6,
+      "modis_aqua": 100,
+      "viirs_noaa20": 432,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 7,
+      "modis_aqua": 897,
+      "viirs_noaa20": 3858,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 8,
+      "modis_aqua": 10013,
+      "viirs_noaa20": 42794,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 9,
+      "modis_aqua": 7737,
+      "viirs_noaa20": 32897,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 10,
+      "modis_aqua": 2780,
+      "viirs_noaa20": 12848,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 11,
+      "modis_aqua": 1093,
+      "viirs_noaa20": 4905,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2022,
+      "month": 12,
+      "modis_aqua": 470,
+      "viirs_noaa20": 2401,
+      "viirs_in_modis_scale": null,
+      "global_factor": null,
+      "complete_local_solar_month": false,
+      "caveat": "Dezembro potencialmente incompleto: faltam observações UTC do ano seguinte"
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 1,
+      "modis_aqua": 37,
+      "viirs_noaa20": 229,
+      "viirs_in_modis_scale": 52.74,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 2,
+      "modis_aqua": 20,
+      "viirs_noaa20": 59,
+      "viirs_in_modis_scale": 13.59,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 3,
+      "modis_aqua": 19,
+      "viirs_noaa20": 73,
+      "viirs_in_modis_scale": 16.81,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 4,
+      "modis_aqua": 18,
+      "viirs_noaa20": 66,
+      "viirs_in_modis_scale": 15.2,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 5,
+      "modis_aqua": 17,
+      "viirs_noaa20": 151,
+      "viirs_in_modis_scale": 34.77,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 6,
+      "modis_aqua": 94,
+      "viirs_noaa20": 533,
+      "viirs_in_modis_scale": 122.75,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 7,
+      "modis_aqua": 981,
+      "viirs_noaa20": 2500,
+      "viirs_in_modis_scale": 575.74,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 8,
+      "modis_aqua": 4914,
+      "viirs_noaa20": 21361,
+      "viirs_in_modis_scale": 4919.37,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 9,
+      "modis_aqua": 5754,
+      "viirs_noaa20": 23244,
+      "viirs_in_modis_scale": 5353.02,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 10,
+      "modis_aqua": 4996,
+      "viirs_noaa20": 21387,
+      "viirs_in_modis_scale": 4925.36,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 11,
+      "modis_aqua": 3196,
+      "viirs_noaa20": 12583,
+      "viirs_in_modis_scale": 2897.82,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2023,
+      "month": 12,
+      "modis_aqua": 817,
+      "viirs_noaa20": 2990,
+      "viirs_in_modis_scale": 688.59,
+      "global_factor": 0.2302967,
+      "complete_local_solar_month": false,
+      "caveat": "Dezembro potencialmente incompleto: faltam observações UTC do ano seguinte"
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 1,
+      "modis_aqua": 194,
+      "viirs_noaa20": 929,
+      "viirs_in_modis_scale": 220.18,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 2,
+      "modis_aqua": 123,
+      "viirs_noaa20": 318,
+      "viirs_in_modis_scale": 75.37,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 3,
+      "modis_aqua": 41,
+      "viirs_noaa20": 97,
+      "viirs_in_modis_scale": 22.99,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 4,
+      "modis_aqua": 9,
+      "viirs_noaa20": 47,
+      "viirs_in_modis_scale": 11.14,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 5,
+      "modis_aqua": 46,
+      "viirs_noaa20": 196,
+      "viirs_in_modis_scale": 46.45,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 6,
+      "modis_aqua": 146,
+      "viirs_noaa20": 663,
+      "viirs_in_modis_scale": 157.13,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 7,
+      "modis_aqua": 1915,
+      "viirs_noaa20": 7108,
+      "viirs_in_modis_scale": 1684.63,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 8,
+      "modis_aqua": 9400,
+      "viirs_noaa20": 43852,
+      "viirs_in_modis_scale": 10393.11,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 9,
+      "modis_aqua": 11431,
+      "viirs_noaa20": 45025,
+      "viirs_in_modis_scale": 10671.12,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 10,
+      "modis_aqua": 2934,
+      "viirs_noaa20": 10057,
+      "viirs_in_modis_scale": 2383.55,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 11,
+      "modis_aqua": 2743,
+      "viirs_noaa20": 9454,
+      "viirs_in_modis_scale": 2240.64,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": true,
+      "caveat": null
+    },
+    {
+      "region": "B",
+      "year": 2024,
+      "month": 12,
+      "modis_aqua": 883,
+      "viirs_noaa20": 3088,
+      "viirs_in_modis_scale": 731.87,
+      "global_factor": 0.2370043,
+      "complete_local_solar_month": false,
+      "caveat": "Dezembro potencialmente incompleto: faltam observações UTC do ano seguinte"
+    }
+  ],
+  "warnings": [
+    "O período 2022-2024 não representa a série histórica 2000-2026.",
+    "Dezembro pode estar incompleto por cruzamento de ano UTC/solar; não utilizar sem ressalva.",
+    "WAPE original é calculado em células mensais 1°, NÃO pelo gráfico de totais mensais."
+  ]
 }
