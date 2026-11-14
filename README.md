@@ -14,7 +14,7 @@ O arquivo versionado `data/amazonas_ibge.geojson` é **uma geometria estadual si
 - Interface translations include scientific caveats, live-data status, time/date formatting, WAPE labels, and calendar month detail.
 - **English seven-slide presentation:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf
 - **Presentation landing page:** https://emds96.github.io/firelens-stack-manauara/demo/
-- The demo was prepared with AI assistance; the team remains responsible for its accuracy and final approval.
+- The demo was prepared with AI assistance and its seven-slide PDF and bilingual UI were browser-tested on 14/11/2026; the team remains responsible for review and final approval.
 
 ## Rodar localmente
 
