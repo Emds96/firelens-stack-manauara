@@ -30,7 +30,7 @@
 - Série histórica desde o início dos anos 2000 não implementada; o MVP tem **2022–2024**.
 - Dezembro pode estar incompleto na normalização do mês por hora solar local; o site sinaliza.
 - Não existe validação de qualidade do ar de Manaus, previsão de incêndios, correção de nuvens, intervalos de incerteza calibrados, nem auditoria formal de acessibilidade/múltiplos dispositivos.
-- **Projeto de demo:** foi criada apresentação em inglês com sete slides, a ser verificada no endereço https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf antes do preenchimento. Não confundir o app com a demonstração.
+- **Demo verificada e pública:** apresentação em inglês com sete slides em https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf (teste de abertura sem login e contagem de 7 slides em 14/11/2026). Não confundir o app com a demonstração.
 
 ## 2. Inventário da submissão oficial (guia publicado em 13/11/2026)
 
@@ -77,7 +77,7 @@ Both URLs were verified as public. Recheck them in an incognito/private session 
 
 **https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf**
 
-A apresentação foi criada com 7 slides em inglês, com dados reais e avisos científicos. Confirmar URL pública, contagem de 7 páginas e revisão humana final; não submeter antes dessa revisão.
+A apresentação foi criada com 7 slides em inglês, com números verificados e avisos científicos. **URL pública e 7 páginas confirmadas** por navegador sem login. A revisão humana final e declaração de uso de IA seguem necessárias antes da submissão definitiva.
 
 ### 3.5 Detailed Project Description (draft)
 **The problem.** MODIS and VIIRS active-fire products differ in spatial resolution, acquisition characteristics, sensitivity and observation opportunities. Directly comparing their raw counts can be misleading. Moreover, a thermal detection is an observed pixel-level signal, not a confirmed individual fire event.
@@ -131,10 +131,19 @@ A apresentação foi criada com 7 slides em inglês, com dados reais e avisos ci
 
 **Evidências:** links do GitHub, Pages, Actions, arquivos JSON, teste de navegador e guia NASA 2026 citados aqui.
 
-**Riscos e restrições:** desatualização do NRT, geometria simplificada, cron ainda não validado, demo em revisão, campos/limites dependentes de formulário autenticado.
+**Riscos e restrições:** desatualização do NRT, geometria simplificada, cron ainda não validado, demo pública disponível mas aguardando revisão humana, campos/limites dependentes de formulário autenticado.
 
 **Critério de validação:** sessão de submissão conferir formulário, salvar rascunhos com confirmação, referenciar dados atuais, comprovar demo/links públicos e obter aprovação humana do envio.
 
 **Responsável:** engenharia prepara a transferência; sessão de submissão preenche e revisa; fundador/sessão principal aprova. **Data:** 14/11/2026.
 
 > **Próxima missão da submissão:** abrir a página Project da equipe via TinyFish, preencher e salvar somente os campos respaldados por este pacote; levantar os bloqueios. Não enviar definitivamente.
+
+## 6. Atualização de engenharia ENG-04 — 14/11/2026
+
+- **Idiomas implementados e testados:** https://emds96.github.io/firelens-stack-manauara/?lang=en e https://emds96.github.io/firelens-stack-manauara/?lang=pt-BR. English é padrão; PT-BR é selecionável no cabeçalho; formatação de datas, métricas, gráficos e calendário foi testada.
+- **Demonstração exigida, entregue e verificada publicamente:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf — **7 slides em inglês, acesso sem login**. Não enviar sem revisão e aprovação humanas.
+- **Evidência de QA no navegador:** https://agent.tinyfish.ai/runs/1c6d33da-b39b-4150-9461-4d192ef130ae ; poderá exigir login para ver o histórico do agente, mas a demo e o app são públicos.
+- **GitHub Pages build:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43637716718 — sucesso.
+- **Disclosure de IA:** o PDF possui rodapé visível de assistência por IA; incluir declaração completa na submissão, conferir alterações feitas por outras ferramentas/sessões e atribuir dados NASA FIRMS.
+- **Não alegar:** cron hourly independentemente validado, previsão, validação NRT NOAA-21 do ajuste histórico, precisão cartográfica IBGE oficial ou incêndios físicos individuais.
