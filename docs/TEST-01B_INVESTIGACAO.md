@@ -132,6 +132,15 @@ Séries históricas foram recortadas em 1º de janeiro–14 de novembro, mesmos 
 
 **Conclusão sobre comparação 2026:** PARCIALMENTE, como contagens descritivas por mesmos dias. Diferenças SP/NRT e passagens não aferidas impedem afirmações de anomalias ou de tendência.
 
+## Verificação adicional de proveniência e limites (14/11/2026)
+
+- **Disponibilidade efetivamente retornada pela NASA Area API:** MODIS SP até **31/08/2026** e NRT desde **01/09/2026**; NOAA-20 SP até **31/07/2026** e NRT desde **01/08/2026**. Essas datas se referem ao estado de disponibilidade da consulta, não a garantia de observação sem nuvens.
+- **Evidência de execução:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43649496639 — **27 testes Python aprovados**, arquivos históricos com os mesmos hashes/contagens de TEST-01, 129 janelas NASA Area API concluídas e publicação separada de resultados.
+- **Esquema:** nos arquivos SP consultados, a coluna `type` estava presente; nos NRT consultados, **não estava presente**. Portanto, o filtro de `type=0` do histórico **não pôde ser reproduzido integralmente nos trechos NRT de 2026**, e isso deve ser sinalizado em qualquer comparação.
+- **Recortes iguais de calendário:** o histórico e 2026 foram resumidos de 1º de janeiro a **14 de novembro UTC**. Mesmo assim, o dia 14/11/2026 estava em andamento no momento da consulta; comparar o dia integral de anos anteriores não é prova de condições equivalentes. Recomenda-se comparação conservadora até **13/11** ou janelas totalmente fechadas antes de análises mais fortes.
+- **Classificação científica de 2026:** contagens **descritivas preliminares**, não ajuste harmonizado nem métrica de incêndios reais. Status de consulta em todos os dias não equivale a cobertura orbital completa.
+- **Próxima checagem sugerida:** reproduzir apenas períodos fechados (por exemplo, janeiro a outubro completos, ou 1º/01 a 13/11), separar SP e NRT, examinar diferenças dos campos e a malha oficial IBGE.
+
 ## Fatos, hipóteses e limites
 **Fato matemático:** os erros brutos, ajustados e assinados são reproduzidos sobre as mesmas células e anos de avaliação.
 **Hipóteses não demonstradas:** causas climáticas, mudança da ocorrência real de incêndios, nuvens, horários de passagem e características instrumentais específicas de 2025.
