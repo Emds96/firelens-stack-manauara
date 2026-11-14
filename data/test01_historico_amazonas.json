@@ -1,0 +1,836 @@
+{
+  "id": "TEST-01",
+  "created_utc": "2026-11-14T22:09:52.151665+00:00",
+  "status": "historical_evaluated_2026_unverified",
+  "period_requested": "2023-01-01 through 2026-11-14 inclusive",
+  "source": "NASA FIRMS annual Brazil country CSV",
+  "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/",
+  "region": "Amazonas, Brazil",
+  "geometry": {
+    "source": "data/amazonas_ibge.geojson",
+    "label": "simplified third-party IBGE-based outline; NOT official verified precision",
+    "boundary_sha256": "e357e40a24547f0d58198cfa4ef4313b53d3cc448c1d4225078e91968583a767",
+    "bbox": [
+      -73.7981,
+      -9.818,
+      -56.0954,
+      2.2185
+    ],
+    "official_attempt": {
+      "url": "https://servicodados.ibge.gov.br/api/v3/malhas/estados/13?formato=application/vnd.geo%2Bjson",
+      "status": "failed",
+      "error_type": "URLError"
+    }
+  },
+  "sensors": [
+    "MODIS Aqua",
+    "VIIRS NOAA-20"
+  ],
+  "filters": {
+    "type": "0 when available",
+    "MODIS_Aqua_confidence": ">=30",
+    "NOAA20_confidence": "n/h",
+    "daynight": "D only",
+    "spatial": "point-in-polygon after bounding box",
+    "time": "UTC calendar month",
+    "time_note": "Departed from VAL-TRAD-02 local solar month to prevent incomplete cross-year local months. Near UTC midnight, month assignments may differ; no direct metric comparison to A/B."
+  },
+  "file_inventory": [
+    {
+      "year": 2023,
+      "sensor": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2023_Brazil.csv",
+      "status": "processed",
+      "bytes": 28810183,
+      "sha256": "659ce5160d96fb2f82491efe4464eb30a0fc8fbbaa373f2962187b7069ae48b2",
+      "last_modified": "Mon, 03 Jun 2024 18:11:34 GMT",
+      "http_content_length": 28810183,
+      "rows": {
+        "csv_has_type": 1,
+        "raw_rows": 357737,
+        "filtered_sensor_or_quality": 177875,
+        "outside_bbox": 148124,
+        "retained_pixels": 18246,
+        "outside_polygon": 13492
+      },
+      "first_retained_utc": "2023-01-01T18:10:00+00:00",
+      "last_retained_utc": "2023-12-30T18:19:00+00:00",
+      "cells_nonempty": 586
+    },
+    {
+      "year": 2023,
+      "sensor": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1_2023_Brazil.csv",
+      "status": "processed",
+      "bytes": 107204252,
+      "sha256": "aa1344aaeedf4fd1475baddb2f505f9a902c7f976b38af5ee1144fcdd3ad95c6",
+      "last_modified": "Tue, 24 Jun 2025 20:16:07 GMT",
+      "http_content_length": 107204252,
+      "rows": {
+        "csv_has_type": 1,
+        "raw_rows": 1312648,
+        "filtered_sensor_or_quality": 542255,
+        "outside_bbox": 639765,
+        "outside_polygon": 55888,
+        "retained_pixels": 74740
+      },
+      "first_retained_utc": "2023-01-01T16:58:00+00:00",
+      "last_retained_utc": "2023-12-31T18:12:00+00:00",
+      "cells_nonempty": 879
+    },
+    {
+      "year": 2024,
+      "sensor": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2024_Brazil.csv",
+      "status": "processed",
+      "bytes": 42592737,
+      "sha256": "b617f757e2b1279802412e71cd457f26a3714e21045fce2aaf25fee908a0c305",
+      "last_modified": "Tue, 24 Jun 2025 16:49:24 GMT",
+      "http_content_length": 42592737,
+      "rows": {
+        "csv_has_type": 1,
+        "raw_rows": 527894,
+        "filtered_sensor_or_quality": 269651,
+        "outside_bbox": 212909,
+        "retained_pixels": 23009,
+        "outside_polygon": 22325
+      },
+      "first_retained_utc": "2024-01-01T18:05:00+00:00",
+      "last_retained_utc": "2024-12-30T18:50:00+00:00",
+      "cells_nonempty": 641
+    },
+    {
+      "year": 2024,
+      "sensor": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1_2024_Brazil.csv",
+      "status": "processed",
+      "bytes": 162517975,
+      "sha256": "219e933850ceef91452f0d7722b6a0595edd52730674815a6c3fd695d03ebb46",
+      "last_modified": "Tue, 24 Jun 2025 20:23:00 GMT",
+      "http_content_length": 162517975,
+      "rows": {
+        "csv_has_type": 1,
+        "raw_rows": 1988404,
+        "filtered_sensor_or_quality": 969237,
+        "outside_bbox": 849262,
+        "retained_pixels": 90746,
+        "outside_polygon": 79159
+      },
+      "first_retained_utc": "2024-01-01T17:55:00+00:00",
+      "last_retained_utc": "2024-12-31T18:23:00+00:00",
+      "cells_nonempty": 952
+    },
+    {
+      "year": 2025,
+      "sensor": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2025_Brazil.csv",
+      "status": "processed",
+      "bytes": 19063013,
+      "sha256": "1da12d96d12dc23d72026f638b9e09085a5a61d174def0e9899385af45d67b62",
+      "last_modified": "Sat, 10 Oct 2026 13:17:06 GMT",
+      "http_content_length": 19063013,
+      "rows": {
+        "csv_has_type": 1,
+        "raw_rows": 236731,
+        "filtered_sensor_or_quality": 106898,
+        "outside_bbox": 120419,
+        "retained_pixels": 4306,
+        "outside_polygon": 5108
+      },
+      "first_retained_utc": "2025-01-01T18:32:00+00:00",
+      "last_retained_utc": "2025-12-30T19:34:00+00:00",
+      "cells_nonempty": 399
+    },
+    {
+      "year": 2025,
+      "sensor": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1_2025_Brazil.csv",
+      "status": "processed",
+      "bytes": 69822157,
+      "sha256": "01a4ea954a97ea85ac43450682a87a3de4dbbcb5dff54b997d9da57370f3d8d9",
+      "last_modified": "Sat, 10 Oct 2026 13:25:58 GMT",
+      "http_content_length": 69822157,
+      "rows": {
+        "csv_has_type": 1,
+        "raw_rows": 853909,
+        "filtered_sensor_or_quality": 356311,
+        "outside_bbox": 453943,
+        "outside_polygon": 22273,
+        "retained_pixels": 21382
+      },
+      "first_retained_utc": "2025-01-01T18:05:00+00:00",
+      "last_retained_utc": "2025-12-30T18:01:00+00:00",
+      "cells_nonempty": 785
+    },
+    {
+      "year": 2026,
+      "sensor": "modis",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2026_Brazil.csv",
+      "status": "not_found",
+      "error_type": "HTTPError",
+      "http_code": 404
+    },
+    {
+      "year": 2026,
+      "sensor": "viirs-jpss1",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-jpss1_2026_Brazil.csv",
+      "status": "not_found",
+      "error_type": "HTTPError",
+      "http_code": 404
+    }
+  ],
+  "monthly": [
+    {
+      "year": 2023,
+      "month": 1,
+      "modis_aqua": 51,
+      "viirs_noaa20": 140,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 2,
+      "modis_aqua": 18,
+      "viirs_noaa20": 46,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 3,
+      "modis_aqua": 19,
+      "viirs_noaa20": 137,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 4,
+      "modis_aqua": 11,
+      "viirs_noaa20": 94,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 5,
+      "modis_aqua": 24,
+      "viirs_noaa20": 197,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 6,
+      "modis_aqua": 193,
+      "viirs_noaa20": 786,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 7,
+      "modis_aqua": 1861,
+      "viirs_noaa20": 5707,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 8,
+      "modis_aqua": 5161,
+      "viirs_noaa20": 20035,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 9,
+      "modis_aqua": 6599,
+      "viirs_noaa20": 25364,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 10,
+      "modis_aqua": 3531,
+      "viirs_noaa20": 17770,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 11,
+      "modis_aqua": 663,
+      "viirs_noaa20": 4041,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2023,
+      "month": 12,
+      "modis_aqua": 115,
+      "viirs_noaa20": 423,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "modis_aqua": 134,
+      "viirs_noaa20": 598,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "modis_aqua": 120,
+      "viirs_noaa20": 416,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 3,
+      "modis_aqua": 35,
+      "viirs_noaa20": 171,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "modis_aqua": 25,
+      "viirs_noaa20": 100,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 5,
+      "modis_aqua": 30,
+      "viirs_noaa20": 184,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 6,
+      "modis_aqua": 229,
+      "viirs_noaa20": 1109,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 7,
+      "modis_aqua": 3927,
+      "viirs_noaa20": 15117,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 8,
+      "modis_aqua": 9120,
+      "viirs_noaa20": 35942,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 9,
+      "modis_aqua": 6406,
+      "viirs_noaa20": 24300,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 10,
+      "modis_aqua": 2274,
+      "viirs_noaa20": 9839,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "modis_aqua": 550,
+      "viirs_noaa20": 2442,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2024,
+      "month": 12,
+      "modis_aqua": 159,
+      "viirs_noaa20": 528,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "modis_aqua": 50,
+      "viirs_noaa20": 287,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "modis_aqua": 8,
+      "viirs_noaa20": 45,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "modis_aqua": 15,
+      "viirs_noaa20": 155,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 4,
+      "modis_aqua": 10,
+      "viirs_noaa20": 84,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 5,
+      "modis_aqua": 22,
+      "viirs_noaa20": 139,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 6,
+      "modis_aqua": 87,
+      "viirs_noaa20": 341,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 7,
+      "modis_aqua": 268,
+      "viirs_noaa20": 1219,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "modis_aqua": 1765,
+      "viirs_noaa20": 7534,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 9,
+      "modis_aqua": 891,
+      "viirs_noaa20": 4401,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 10,
+      "modis_aqua": 825,
+      "viirs_noaa20": 4812,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 11,
+      "modis_aqua": 255,
+      "viirs_noaa20": 1508,
+      "period_status": "archive_month"
+    },
+    {
+      "year": 2025,
+      "month": 12,
+      "modis_aqua": 110,
+      "viirs_noaa20": 857,
+      "period_status": "archive_month"
+    }
+  ],
+  "holdouts": [
+    {
+      "status": "evaluated",
+      "training_years": [
+        2023
+      ],
+      "holdout_year": 2024,
+      "factor_from_training_only": 0.2441263,
+      "training_modis": 18246,
+      "training_noaa20": 74740,
+      "holdout_modis": 23009,
+      "holdout_noaa20": 90746,
+      "raw_wape": 2.95532,
+      "scaled_wape": 0.23109,
+      "active_cells_month": 1003,
+      "metric": "WAPE over union of active 1-degree UTC-month cells; denominator=MODIS Aqua detections, NOT fires"
+    },
+    {
+      "status": "evaluated",
+      "training_years": [
+        2023,
+        2024
+      ],
+      "holdout_year": 2025,
+      "factor_from_training_only": 0.24929601,
+      "training_modis": 41255,
+      "training_noaa20": 165486,
+      "holdout_modis": 4306,
+      "holdout_noaa20": 21382,
+      "raw_wape": 3.98792,
+      "scaled_wape": 0.50731,
+      "active_cells_month": 814,
+      "metric": "WAPE over union of active 1-degree UTC-month cells; denominator=MODIS Aqua detections, NOT fires"
+    }
+  ],
+  "recurring_cells": [
+    {
+      "cell_south_lat": -7,
+      "cell_west_lon": -60,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 15896
+    },
+    {
+      "cell_south_lat": -10,
+      "cell_west_lon": -66,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 11148
+    },
+    {
+      "cell_south_lat": -8,
+      "cell_west_lon": -62,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 8784
+    },
+    {
+      "cell_south_lat": -4,
+      "cell_west_lon": -60,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 8580
+    },
+    {
+      "cell_south_lat": -8,
+      "cell_west_lon": -64,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 7296
+    },
+    {
+      "cell_south_lat": -7,
+      "cell_west_lon": -59,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 7006
+    },
+    {
+      "cell_south_lat": -8,
+      "cell_west_lon": -61,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 6973
+    },
+    {
+      "cell_south_lat": -10,
+      "cell_west_lon": -68,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 6881
+    },
+    {
+      "cell_south_lat": -8,
+      "cell_west_lon": -60,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 6524
+    },
+    {
+      "cell_south_lat": -9,
+      "cell_west_lon": -67,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 6164
+    },
+    {
+      "cell_south_lat": -10,
+      "cell_west_lon": -67,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 5541
+    },
+    {
+      "cell_south_lat": -4,
+      "cell_west_lon": -59,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 5389
+    },
+    {
+      "cell_south_lat": -9,
+      "cell_west_lon": -68,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 5347
+    },
+    {
+      "cell_south_lat": -4,
+      "cell_west_lon": -61,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 4474
+    },
+    {
+      "cell_south_lat": -7,
+      "cell_west_lon": -63,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 4300
+    },
+    {
+      "cell_south_lat": -4,
+      "cell_west_lon": -58,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 4232
+    },
+    {
+      "cell_south_lat": -3,
+      "cell_west_lon": -58,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 4095
+    },
+    {
+      "cell_south_lat": -4,
+      "cell_west_lon": -65,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 4051
+    },
+    {
+      "cell_south_lat": -6,
+      "cell_west_lon": -61,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 4016
+    },
+    {
+      "cell_south_lat": -9,
+      "cell_west_lon": -62,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 3974
+    },
+    {
+      "cell_south_lat": -4,
+      "cell_west_lon": -62,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 3698
+    },
+    {
+      "cell_south_lat": -3,
+      "cell_west_lon": -57,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 2986
+    },
+    {
+      "cell_south_lat": -7,
+      "cell_west_lon": -61,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 2749
+    },
+    {
+      "cell_south_lat": -8,
+      "cell_west_lon": -65,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 2737
+    },
+    {
+      "cell_south_lat": -5,
+      "cell_west_lon": -60,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 2276
+    },
+    {
+      "cell_south_lat": -7,
+      "cell_west_lon": -64,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 2020
+    },
+    {
+      "cell_south_lat": -8,
+      "cell_west_lon": -73,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 1824
+    },
+    {
+      "cell_south_lat": -8,
+      "cell_west_lon": -63,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 1665
+    },
+    {
+      "cell_south_lat": -4,
+      "cell_west_lon": -66,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 1662
+    },
+    {
+      "cell_south_lat": -10,
+      "cell_west_lon": -69,
+      "active_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "number_of_years": 3,
+      "noaa20_pixels": 1543
+    }
+  ],
+  "limitations": [
+    "pixel detections != individual fires or burned area",
+    "different sensor resolutions, sensitivities, orbit timing and cloud effects",
+    "hotspot CSV has no clear-sky denominator or uncertainty intervals",
+    "three years do not constitute long-term climatology",
+    "historical A/B calibration is NOT applied to Amazonas",
+    "2026 files, when present, are not automatically science-quality consolidated"
+  ],
+  "observations": [
+    "2023–2025 independent historical holdouts computed for Amazonas with source-year audit.",
+    "Maximum observed NOAA-20 monthly pixel count in complete-source years: 2024-08 (35942).",
+    "Minimum observed NOAA-20 monthly pixel count in complete-source years: 2025-02 (45)."
+  ],
+  "inferences": [
+    "Repeated observations within 1-degree cells warrant closer investigation; they cannot establish repeated individual fires or underlying causes."
+  ],
+  "hypotheses": [],
+  "complete_sensor_years": [
+    2023,
+    2024,
+    2025
+  ],
+  "historical_comparable_years": [
+    2023,
+    2024,
+    2025
+  ],
+  "comparison_2026": {
+    "status": "not_comparable",
+    "reason": "2026 annual snapshot missing for MODIS Aqua or NOAA-20",
+    "noaa21_is_not_substituted": true
+  },
+  "result_interpretation": "No region should be labelled safe/dangerous or intentionally burned from these observations."
+}
