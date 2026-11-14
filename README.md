@@ -1,0 +1,90 @@
+# FireLens — Dois Tradutores | Stack Manauara
+
+NASA Space Apps Challenge 2026 · **Harmonization of MODIS and VIIRS Hot Spots**.
+
+**Status atual:** protótipo estático local, código de ingestão NRT preparado e testes unitários locais. **Ainda não há consulta autenticada validada nem site publicado**, enquanto não houver MAP_KEY configurada e código publicado no repositório. Dados NRT aparecem como indisponíveis até execução verdadeira.
+
+## Rodar localmente
+
+Requisitos: **Python 3.11+**, sem dependências externas.
+
+```bash
+cd dois-tradutores
+python -m http.server 8000
+```
+
+Acesse `http://localhost:8000/`. Abrir `index.html` diretamente por `file://` pode bloquear a leitura dos arquivos JSON.
+
+### Testar a engenharia
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+### Dados recentes NOAA-20 e NOAA-21
+
+A [Area API NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/api/area/) usa fonte `VIIRS_NOAA20_NRT` / `VIIRS_NOAA21_NRT`, `MAP_KEY` e bbox oeste,sul,leste,norte. A [MAP_KEY gratuita](https://firms.modaps.eosdis.nasa.gov/api/map_key/) é enviada ao email cadastrado.
+
+**Segurança:** configure a variável de ambiente `FIRMS_MAP_KEY` localmente ou o segredo GitHub Actions `FIRMS_MAP_KEY`. **Não cole a chave em conversa, frontend ou commits.**
+
+```bash
+# Linux/macOS, em ambiente local autorizado:
+read -s FIRMS_MAP_KEY && export FIRMS_MAP_KEY
+python scripts/firms_nrt.py
+```
+
+No Windows PowerShell, forneça a variável via mecanismo seguro de segredo/ambiente disponível; não registre a chave em scripts versionados.
+
+O script baixa a geometria oficial **IBGE/UF 13** quando não estiver salva; usa-a para recortar os pixels ao estado do Amazonas (a API só filtra por caixa envolvente). Consulta os dois sensores para os dois dias mais recentes, aplica confiança `n/h`, preserva dia/noite, registra hora UTC da observação e da consulta e grava `data/recente.json`. A interface exibe em Manaus (UTC−4). Não há aplicação do fator histórico a NOAA-21 ou ao NRT.
+
+Se um sensor falhar, **todo o lote é marcado indisponível** e a última captura bem-sucedida é preservada com aviso; não se inventa um zero de ocorrências. A atualização agendada do GitHub Actions é proposta para `:23` de cada hora; horários reais podem variar. A definição do cron por si só não comprova uma atualização automática executada.
+
+### Dados históricos e calendário
+
+Os experimentos independentes disponíveis estão em `data/validacao.json` e `docs/research/` (artefatos fornecidos pela pesquisa).
+
+Para gerar as séries mensais reais, obtenha os 6 CSVs anuais do Brasil de 2022–24 da [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/data/country/) e armazene em `firms_cache/` com os nomes exatos utilizados pelo script científico original. Depois:
+
+```bash
+python -m scripts.build_historical --cache firms_cache
+```
+
+Esse exportador usa os **mesmos filtros, células e método** do arquivo científico original e compara os 4 resultados de WAPE (global diurno) com `data/validacao.json`, abortando se divergirem. Até isso ocorrer, `data/historico.json` permanece `pending`; o calendário não exibe dados fabricados.
+
+**Limite:** por usar arquivos por ano UTC sem os dados de 2025, dezembro do calendário solar local pode estar incompleto. Ele é identificado como incompleto, e a versão não alega série 2000–2026 nem limites oficiais do Amazonas para as regiões de validação A/B.
+
+## Organização do repositório
+
+- `index.html`, `style.css`, `app.js`: frontend estático, dois tradutores, camada NRT e calendário.
+- `scripts/firms_nrt.py`: API NASA + geometria IBGE + estado de falha e fallback.
+- `scripts/build_historical.py`: gerador de séries históricas, validado contra WAPE original.
+- `data/recente.json`: somente resultados NRT verdadeiros ou estado indisponível.
+- `data/historico.json`: séries mensais após importação; `pending` até então.
+- `data/validacao.json`: resultados experimentais fornecidos pela pesquisa.
+- `.github/workflows/atualizar-firms.yml`: rotina horária e publicação de JSON.
+- `tests/`: testes sintéticos para lógica, não testes de integração NASA.
+- `ESTADO_PROJETO.md`: transferência e status para submissão.
+
+## Fontes e limites científicos
+
+- [NASA FIRMS](https://www.earthdata.nasa.gov/data/tools/firms)
+- [NASA FIRMS Area API](https://firms.modaps.eosdis.nasa.gov/api/area/)
+- [NASA FIRMS atributos de dados](https://www.earthdata.nasa.gov/data/tools/firms/active-fire-data-attributes-modis-viirs)
+- [IBGE Malhas](https://servicodados.ibge.gov.br/api/docs/malhas?versao=3)
+
+Contagens são **detecções de pixels de anomalia térmica**, não incêndios confirmados, área queimada ou concentração de poluentes. O modelo histórico ajusta escala de contagens de NOAA-20 para MODIS Aqua; não corrige nuvens nem garante comparabilidade física. Não é um produto oficial da NASA nem tem seu endosso.
+
+## Publicação (repositório já criado)
+
+1. Repositório público confirmado: https://github.com/Emds96/firelens-stack-manauara — **publicação em andamento; confirmar no GitHub**.
+2. Enviar **todos os arquivos** desta pasta mantendo diretórios ocultos (`.github`), sem `__pycache__` nem diretórios de cache.
+3. Settings → Secrets and variables → Actions → New repository secret: `FIRMS_MAP_KEY`.
+4. Actions → "Atualizar dados NASA FIRMS" → **Run workflow**. Conferir se a execução realmente consultou NOAA-20 e NOAA-21, e revisar `data/recente.json` e logs.
+5. Settings → Pages → Deploy from a branch → `main` / root. Verificar que o site público carrega.
+6. Se o Actions não conseguir enviar commits, verificar Settings → Actions → General → Workflow permissions: Read and write.
+
+Para a sessão de submissão: usar somente URLs realmente criadas e verificadas; não copiar endereços hipotéticos.
+
+## Uso de IA
+
+O ChatGPT auxiliou na revisão de arquitetura e na criação inicial do código, testes e interface. Os testes locais não constituem validação de dados NRT. Registrar também outras ferramentas usadas de fato antes da submissão.
