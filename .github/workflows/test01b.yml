@@ -1,0 +1,71 @@
+name: TEST-01B - 2025 diagnostics and 2026 NASA retrieval
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/test01b.yml'
+permissions:
+  contents: write
+jobs:
+  diagnose-2025:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Scientific regression and TEST-01B tests
+        run: python -m unittest discover -s tests -v
+      - name: Re-download NASA annual CSVs, audit SHA and decompose WAPE
+        run: python -m scripts.test01b_diagnose --output /tmp/test01b-a.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test01b-a
+          path: /tmp/test01b-a.json
+          retention-days: 30
+  retrieve-2026:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check API data availability and retrieve nonoverlapping SP/NRT windows
+        env:
+          FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
+        run: python -m scripts.test01b_2026 --output /tmp/test01b-b.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test01b-b
+          path: /tmp/test01b-b.json
+          retention-days: 30
+  publish-scientific-results:
+    runs-on: ubuntu-latest
+    needs: [diagnose-2025, retrieve-2026]
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: test01b-a
+          path: /tmp
+      - uses: actions/download-artifact@v4
+        with:
+          name: test01b-b
+          path: /tmp
+      - name: Generate immutable-baseline-referenced JSON and scientific report
+        run: python -m scripts.test01b_report --a /tmp/test01b-a.json --b /tmp/test01b-b.json
+      - name: Commit ONLY separated TEST-01B files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/TEST-01B_INVESTIGACAO.md data/test01b_resultados.json
+          if ! git diff --cached --quiet; then
+            git commit -m "research(TEST-01B): publish audited diagnostic and 2026 data availability"
+            git push
+          fi
