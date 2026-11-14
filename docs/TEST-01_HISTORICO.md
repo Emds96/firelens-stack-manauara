@@ -97,3 +97,22 @@ python -m unittest discover -s tests -v
 python -m scripts.test01_historico --output data/test01_historico_amazonas.json
 python -m scripts.test01_report --input data/test01_historico_amazonas.json --output docs/TEST-01_HISTORICO.md
 Arquivos do site e data/historico.json permanecem inalterados.
+
+
+## Revisão científica suplementar — 14/11/2026
+
+**Evidência de execução:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43646531478
+— **20 testes Python aprovados** e seis arquivos anuais reais de 2023–2025 processados. Os dois endereços anuais exatos de 2026 (modis_2026_Brazil.csv e viirs-jpss1_2026_Brazil.csv) retornaram HTTP 404 na consulta. Isso **não** é ausência geral de observações FIRMS em 2026; apenas os CSVs anuais testados não estavam publicados.
+
+**Interpretação crítica da harmonização:** WAPE ajustado de 23,109% na avaliação de 2024 e **50,731%** na avaliação de 2025. Embora o ajuste global reduza o WAPE em relação às contagens VIIRS brutas, a diferença entre os dois anos de teste indica que **não se deve representar o fator como uma conversão suficientemente estável ou calibrada para decisões operacionais**, nem aplicá-lo automaticamente aos dados NRT NOAA-21. Não foram testados intervalos de confiança nem uma validação em campo. Recomendação: apresentar as **contagens originais e a incerteza metodológica**, usando resultados ajustados apenas na camada científica exploratória.
+
+**Diferenças instrumentais e de observação:** a resolução de detecção do MODIS é cerca de **1 km** e a do VIIRS cerca de **375 m**, com sensibilidades distintas a alvos térmicos menores. Ambos estão em plataformas de órbita polar com horários de passagem e cobertura diferentes; intervalos de céu encoberto e oportunidades desiguais de observação impedem interpretar razões de contagens como variação proporcional no número real de incêndios. Fontes NASA:
+- https://www.earthdata.nasa.gov/data/tools/firms
+- https://wiki.earthdata.nasa.gov/spaces/FIRMS/blog/2022/09/29/266967967/Characteristics%2Bof%2BVIIRS%2BMODIS%2Band%2BOLI%2BSensors%2Band%2BTheir%2BEffects%2Bon%2Bthe%2BSpatial%2BExtent%2Bof%2BDaily%2BActive%2BFire%2BData
+- https://firms.modaps.eosdis.nasa.gov/download/
+
+**Controle temporal:** o estudo utiliza meses UTC para evitar meses solares truncados ao mudar de ano; não se confundem esses valores com a série A/B de calendário solar. Não há interpretação causal para diferenças entre 2023, 2024 e 2025. Os primeiros/últimos registros elegíveis por arquivo **não** medem a disponibilidade efetiva de todas as passagens orbitais.
+
+**Viabilidade do calendário estadual:** tecnicamente **viável como exploração observacional 2023–2025**, com legenda e metodologia próprias, filtros e período explicitados; **não aprovado para comparação histórica de 2026**, anomalias/alertas ou afirmações de perigosidade. O contorno estadual simplificado foi usado porque a tentativa de baixar o oficial do IBGE falhou com URLError. Antes de incorporar o calendário à interface, a sessão principal deve validar se aceita um mapa com contorno provisório e investigar obtenção oficial.
+
+**Próximo teste prioritário para possível TEST-02:** obter dados diários 2026 cobrindo a mesma janela dos anos anteriores, preferencialmente com processamento de ciência padrão quando disponível; comparar presença de detecções na mesma célula e período, sem interpretar falta de registros históricos como ausência prévia de fogo. TEST-02 não foi iniciado.
