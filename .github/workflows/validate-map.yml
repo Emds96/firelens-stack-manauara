@@ -9,13 +9,14 @@ on:
       - 'map-ui.js'
       - 'map-data.js'
       - 'tests/test_map.cjs'
+      - 'tests/test_map_browser.cjs'
       - '.github/workflows/validate-map.yml'
 permissions:
   contents: read
 jobs:
   map-checks:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 14
     steps:
       - uses: actions/checkout@v4
       - name: JavaScript syntax and source compatibility
@@ -27,3 +28,14 @@ jobs:
         run: node --test tests/test_map.cjs
       - name: Existing Python regression tests
         run: python -m unittest discover -s tests -v
+
+      - name: Browser acceptance (real Leaflet, filters, selected points, EN/PT-BR, mobile, outage)
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          npm install --no-save --ignore-scripts puppeteer-core@24.26.1
+          python -m http.server 8123 --bind 127.0.0.1 > /tmp/firelens-map-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          sleep 2
+          node tests/test_map_browser.cjs
