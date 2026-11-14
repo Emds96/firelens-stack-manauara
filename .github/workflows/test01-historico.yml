@@ -11,7 +11,7 @@ permissions:
   contents: write
 concurrency:
   group: test01-historico
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   analyze:
     runs-on: ubuntu-latest
