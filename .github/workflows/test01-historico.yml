@@ -1,0 +1,38 @@
+name: TEST-01 - Historical Amazonas science audit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/test01_historico.py'
+      - 'tests/test_test01_historico.py'
+      - 'scripts/test01_report.py'
+      - '.github/workflows/test01-historico.yml'
+permissions:
+  contents: write
+concurrency:
+  group: test01-historico
+  cancel-in-progress: false
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run TEST-01 and existing scientific regression tests
+        run: python -m unittest discover -s tests -v
+      - name: Download and audit NASA FIRMS yearly Brazil files, process Amazonas
+        run: python -m scripts.test01_historico --output data/test01_historico_amazonas.json
+      - name: Generate factual report from actual JSON
+        run: python -m scripts.test01_report --input data/test01_historico_amazonas.json --output docs/TEST-01_HISTORICO.md
+      - name: Publish TEST-01 JSON and scientific report only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/test01_historico_amazonas.json docs/TEST-01_HISTORICO.md
+          if ! git diff --staged --quiet; then
+            git commit -m "research(TEST-01): publish verified Amazonas archive inventory and exploratory results"
+            git push
+          fi
