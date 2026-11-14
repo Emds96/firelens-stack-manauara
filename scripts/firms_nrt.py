@@ -183,7 +183,7 @@ def summarize(rows):
 
 def empty_result():
     return {
-       'schema_version':1,'area':'Estado do Amazonas, Brasil (malha IBGE, código 13)',
+       'schema_version':1,'area':'Estado do Amazonas, Brasil (contorno estadual simplificado de fonte secundária, baseado em IBGE)',
        'source':'NASA FIRMS Area API', 'source_url':'https://firms.modaps.eosdis.nasa.gov/api/area/',
        'status':'unavailable', 'last_attempt_utc':None, 'last_success_utc':None,
        'last_observation_utc':None, 'query_days':2, 'filters':'VIIRS confidence n/h; dia e noite separados; geometria IBGE',

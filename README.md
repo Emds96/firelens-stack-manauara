@@ -2,7 +2,7 @@
 
 NASA Space Apps Challenge 2026 · **Harmonization of MODIS and VIIRS Hot Spots**.
 
-**Status atual:** protótipo estático com código e testes publicados no GitHub; ainda não implantado no GitHub Pages. **Ainda não há consulta autenticada validada nem site publicado**, enquanto não houver MAP_KEY configurada e integração NRT comprovada. Dados NRT aparecem como indisponíveis até execução verdadeira.
+**Status atual:** protótipo estático com código e testes publicados no GitHub, ainda sem GitHub Pages comprovado. **Ingestão NASA NRT NOAA-20/NOAA-21 comprovada em 14/11/2026 na execução #2**, por consulta real autenticada e JSON publicado. Agendamento horário automático ainda não foi observado em execução por cron.
 
 ## Limites do recorte geográfico
 
@@ -39,9 +39,9 @@ python scripts/firms_nrt.py
 
 No Windows PowerShell, forneça a variável via mecanismo seguro de segredo/ambiente disponível; não registre a chave em scripts versionados.
 
-O script baixa a geometria oficial **IBGE/UF 13** quando não estiver salva; usa-a para recortar os pixels ao estado do Amazonas (a API só filtra por caixa envolvente). Consulta os dois sensores para os dois dias mais recentes, aplica confiança `n/h`, preserva dia/noite, registra hora UTC da observação e da consulta e grava `data/recente.json`. A interface exibe em Manaus (UTC−4). Não há aplicação do fator histórico a NOAA-21 ou ao NRT.
+O script usa a geometria versionada (simplificada, compilada a partir de dados IBGE); se o arquivo local não existir, tenta baixar a malha oficial do IBGE; usa a geometria para recortar os pixels no estado do Amazonas (a API só filtra por caixa envolvente). Consulta os dois sensores para os dois dias mais recentes, aplica confiança `n/h`, preserva dia/noite, registra hora UTC da observação e da consulta e grava `data/recente.json`. A interface exibe em Manaus (UTC−4). Não há aplicação do fator histórico a NOAA-21 ou ao NRT.
 
-Se um sensor falhar, **todo o lote é marcado indisponível** e a última captura bem-sucedida é preservada com aviso; não se inventa um zero de ocorrências. A atualização agendada do GitHub Actions é proposta para `:23` de cada hora; horários reais podem variar. A definição do cron por si só não comprova uma atualização automática executada.
+Se um sensor falhar, **todo o lote é marcado indisponível** e a última captura bem-sucedida é preservada com aviso; não se inventa um zero de ocorrências. A atualização agendada do GitHub Actions é proposta para `:23` de cada hora; horários reais podem variar. A execução manual #1 falhou por indisponibilidade na obtenção da malha; a execução automática por push #2 comprovou a API e o JSON, mas **o agendamento horário por cron ainda precisa ser observado**.
 
 ### Dados históricos e calendário
 
@@ -80,10 +80,10 @@ Contagens são **detecções de pixels de anomalia térmica**, não incêndios c
 
 ## Publicação (repositório já criado)
 
-1. Repositório público confirmado: https://github.com/Emds96/firelens-stack-manauara — **publicação em andamento; confirmar no GitHub**.
+1. Repositório público confirmado: https://github.com/Emds96/firelens-stack-manauara — **código publicado e verificado no GitHub**.
 2. Código, testes, documentação e workflow já enviados; confira o commit do protótipo `943d897beec55d9d6b6d1d379ddafd3fce5beeae`.
-3. Settings → Secrets and variables → Actions → New repository secret: `FIRMS_MAP_KEY`.
-4. Actions → "Atualizar dados NASA FIRMS" → **Run workflow**. Conferir se a execução realmente consultou NOAA-20 e NOAA-21, e revisar `data/recente.json` e logs.
+3. Segredo `FIRMS_MAP_KEY` já configurado e verificado pela execução #2; não expor o valor.
+4. Execução #2 comprovada: https://github.com/Emds96/firelens-stack-manauara/actions/runs/43632228781 ; NOAA-20=145, NOAA-21=243 detecções elegíveis em janela de 2 dias, 388 no total (contagens de pixels, não incêndios).
 5. Settings → Pages → Deploy from a branch → `main` / root. Verificar que o site público carrega.
 6. Se o Actions não conseguir enviar commits, verificar Settings → Actions → General → Workflow permissions: Read and write.
 

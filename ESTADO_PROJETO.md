@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.1.3 (código e testes publicados; integração NASA NRT e site público ainda pendentes)
+**Versão:** engenharia 0.1.4 (integração NRT autenticada comprovada; site público e calendário histórico ainda pendentes)
 
 ## Decisões e requisitos
 
@@ -14,27 +14,27 @@
 ## Artefatos realmente criados nesta entrega
 
 - Código frontend estático: `index.html`, `style.css`, `app.js`.
-- Código NRT: `scripts/firms_nrt.py` (não consultou NASA com MAP_KEY real nesta execução).
+- Código NRT: `scripts/firms_nrt.py` (NASA NOAA-20 e NOAA-21 consultados com MAP_KEY protegida na execução Actions #2).
 - Exportador histórico: `scripts/build_historical.py` (ainda sem os CSVs necessários para a extração real).
-- Arquivo de agendamento GitHub Actions: `.github/workflows/atualizar-firms.yml` (não executado na plataforma).
+- Arquivo de agendamento GitHub Actions: `.github/workflows/atualizar-firms.yml` (execução manual #1 e disparo por push #2 comprovados; cron horário ainda não observado).
 - Scripts de testes: `tests/` (detalhes abaixo).
 - Dados científicos anteriores, fornecidos pela pesquisa, preservados em `data/validacao.json` e `docs/research/`.
-- Estado NRT `data/recente.json` indica indisponibilidade; **não inclui dados fictícios**.
+- Estado NRT `data/recente.json` agora contém resposta NASA real com status=ok e 388 detecções elegíveis em 2 dias; dados gerados por execução Actions #2.
 - Estado calendário `data/historico.json` indica extração pendente; **não inclui contagens inventadas**.
 
 ## Pendências prioritárias
 
 1. **Repositório criado e verificado:** https://github.com/Emds96/firelens-stack-manauara (público, branch `main`). README, código da aplicação, scripts, dados não sensíveis e testes enviados e verificados no GitHub em 14/11/2026 (commit `943d897beec55d9d6b6d1d379ddafd3fce5beeae`).
-2. Criar e configurar segredo `FIRMS_MAP_KEY` com o titular, sem compartilhar a chave em chat.
-3. Executar consulta NASA NRT autenticada NOAA-20 e NOAA-21; conferir esquema e recorte IBGE Amazonas.
-4. Executar manualmente o workflow e depois verificar disparo automático e atualização verdadeira do JSON.
+2. Segredo `FIRMS_MAP_KEY` configurado e teste de consulta real concluído em execução #2.
+3. Revisar cientificamente a geometria simplificada vs. IBGE oficial e o comportamento do estado de desatualização no navegador.
+4. Acompanhar uma execução automática por cron para validar periodicidade real; já houve execução manual e disparo por push.
 5. Obter CSVs anuais oficiais de 2022-24, rodar exportador, verificar WAPE e gerar calendário real.
 6. Publicar site e verificar a experiência em navegador sem autenticação.
 7. Testar Tradutor 2 com pessoas, inclusive linguagem sobre zero detecções.
 
 ## Limitações e alertas
 
-- Não há integração externa autenticada demonstrada nesta sessão.
+- Integração NASA NRT autenticada demonstrada pela execução #2, mas o recorte geográfico simplificado ainda exige validação científica de precisão.
 - Não existe série 2000–2026, mapa nacional nem avaliação física de incêndios.
 - NASA FIRMS NRT depende de latência de publicação, órbitas, nuvens e qualidade dos sensores.
 - As regiões A/B científicas não correspondem às fronteiras do Amazonas.
@@ -46,12 +46,22 @@
 - O segredo `FIRMS_MAP_KEY` estava presente no ambiente (mas seu valor não foi exposto).
 - Correção técnica publicada: geometria simplificada do Amazonas versionada (`data/amazonas_ibge.geojson`, fonte secundária baseada no IBGE), permitindo não requisitar a geometria a cada execução; limitações em `docs/GEOMETRIA_AMAZONAS.md`.
 - O workflow foi ajustado para **falhar de fato** se a ingestão não concluir, ainda preservando o JSON de estado e executando testes antes da consulta. Incluiu gatilho de push limitado ao código/configuração, sem laço para commits de dados.
-- **Situação:** correção aguardando execução e comprovação NRT; não há dados NASA recuperados comprovados neste registro.
+- **Situação:** correção validada na execução #2 de 14/11/2026; sensores NOAA-20/21 retornaram dados elegíveis reais. O teste não comprova ciclo horário cron nem precisão oficial dos limites.
+
+## Resultado verificável NASA FIRMS NRT — execução #2
+
+- Execução: https://github.com/Emds96/firelens-stack-manauara/actions/runs/43632228781 — `status=completed`, `conclusion=success`.
+- 12 testes unitários passaram; consulta a ambos sensores concluída, segredos protegidos.
+- `data/recente.json`: `status=ok`, `last_success_utc=2026-11-14T19:28:03Z`, `last_observation_utc=2026-11-14T05:48:00Z`, `count=388`.
+- NOAA-20: **145** (128 dia, 17 noite); NOAA-21: **243** (139 dia, 104 noite); janela dois dias, confiança n/h, contorno simplificado do Amazonas.
+- Erros de fronteira ainda possíveis; são detecções de pixels, não incêndios individuais. Última observação retornada precede a consulta por mais de 13 horas.
+- Próximos marcos: testar visualização em navegador, publicação GitHub Pages, cron e séries mensais históricas.
+
 
 ## Evidência e testes
 
-**Executado nesta sessão (14/11/2026):** `python -m unittest discover -s tests -v` → **9 testes aprovados, 0 falhas**. Incluem testes locais de geometria, filtragem, resposta simulada por sensor, contingência e cálculos. **Não são testes com API NASA real, não validam o site em navegador nem uma execução GitHub Actions.** Execução autenticada e teste de publicação continuam pendentes.
+**Local inicial: 9 testes aprovados. GitHub Actions #2 (14/11/2026):** `python -m unittest discover -s tests -v` → **12 testes aprovados, 0 falhas**. Incluem testes locais de geometria, filtragem, resposta simulada por sensor, contingência e cálculos. **Os testes unitários usam dados sintéticos; a consulta NASA real foi comprovada separadamente no mesmo workflow.** Teste no navegador, cron e publicação GitHub Pages ainda pendentes.
 
 ## Mensagem para a sessão de submissão
 
-> Há um protótipo local estático e código de ingestão programada preparado, e o repositório público https://github.com/Emds96/firelens-stack-manauara contém protótipo e testes publicados, mas ainda não há site público verificado, sem consulta NOAA-20/NOAA-21 autenticada e sem atualização automática comprovada. Os quatro WAPEs da pesquisa foram mantidos; as séries mensais reais ainda precisam ser geradas. Não descrever NRT ou calendário como operacionais até evidência atualizada.
+> Código, testes e execução NOAA-20/NOAA-21 NRT estão publicados e comprovados, com 388 detecções elegíveis no JSON da execução #2. O site público ainda não foi confirmado, o cron horário não foi observado e o calendário mensal histórico não está pronto. O contorno do Amazonas é simplificado e requer validação contra geometria oficial. Não afirmar que 388 detecções correspondem a 388 incêndios, nem que a harmonização foi validada para NOAA-21.

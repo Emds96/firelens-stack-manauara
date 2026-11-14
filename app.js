@@ -17,14 +17,20 @@ function tabs(){
 async function getJSON(url){const response=await fetch(url,{cache:'no-store'});if(!response.ok) throw Error('Arquivo indisponível');return await response.json()}
 function recent(data){
   const active = data.status === 'ok' && data.last_success_utc;
+  const queriedAt = Date.parse(data.last_success_utc || '');
+  const observedAt = Date.parse(data.last_observation_utc || '');
+  const staleQuery = active && Number.isFinite(queriedAt) && (Date.now() - queriedAt > 4*60*60*1000);
+  const oldObservation = active && Number.isFinite(observedAt) && (Date.now() - observedAt > 12*60*60*1000);
   const pill=q('#status-pill');
-  pill.className='pill '+(active?'verified':'error');
-  pill.textContent=active?'● Fonte consultada':'● Dados não disponíveis';
+  pill.className='pill '+(active && !staleQuery ? 'verified' : 'error');
+  pill.textContent=!active ? '● Dados não disponíveis' : staleQuery ? '● Atualização desatualizada' : '● Fonte consultada';
   q('#recent-count').textContent=active?moneyless(data.count??data.detections?.length??0):'—';
   q('#last-success').textContent=dateText(data.last_success_utc);
   q('#last-obs').textContent=dateText(data.last_observation_utc);
-  const warning = Array.isArray(data.alerts)?data.alerts.join(' '):'';
-  q('#recent-alert').textContent=warning||(active?'Dados obtidos pela NASA FIRMS; contagens de pixels, não incêndios individuais.':'Não há captura validada.');
+  const alerts=Array.isArray(data.alerts)?[...data.alerts]:[];
+  if (staleQuery) alerts.push('A última consulta bem-sucedida ocorreu há mais de 4 horas.');
+  if (oldObservation) alerts.push('A observação mais recente retornada tem mais de 12 horas; isso pode refletir a passagem do satélite e a latência da fonte.');
+  q('#recent-alert').textContent=alerts.join(' ')||(active?'Dados NASA FIRMS consultados; contagens de pixels, não incêndios individuais.':'Não há captura NRT validada.');
   let sources = Object.entries(data.sensors||{});
   if(!active){q('#sensors-graph').innerHTML='<div class="empty">Sem contagens atuais verificadas. Não confunda indisponibilidade com zero ocorrências.</div>'}
   else{
@@ -39,7 +45,7 @@ function recent(data){
   }
   q('#human-nrt').textContent=active
     ? `As ${moneyless(data.count??data.detections?.length??0)} detecções elegíveis na janela consultada são pixels observados pelos sensores, não incêndios individuais. A última detecção retornada é de ${dateText(data.last_observation_utc)}. A ausência de novos registros não prova ausência de fogo.`
-    : 'Nenhuma atualização NRT funcional foi comprovada nesta versão. Os dados históricos verificados continuam disponíveis no Tradutor científico. A falta de dados recentes não significa ausência de fogo.';
+    : 'A última consulta NRT não está disponível. Se houver captura anterior, ela não representa dados atualizados. As validações científicas históricas continuam disponíveis no Tradutor científico; isso não comprova ausência de fogo.';
 }
 function validation(data){
   let arr=data.daytime_holdouts||[];
