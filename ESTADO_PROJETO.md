@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.2.1 (TEST-01 histórico Amazonas 2023–2025 avaliado; 2026 sem arquivos anuais; interface preservada)
+**Versão:** engenharia 0.2.2 (TEST-01B 2025 diagnosticado e 2026 recuperado por API FIRMS SP/NRT; site preservado)
 
 ## Decisões e requisitos
 
@@ -127,3 +127,18 @@
 - **Alternativas consideradas:** transferir coeficientes A/B (rejeitado), método mais complexo sem evidência (não adotado), fator global basal testado (adotado experimentalmente), NRT de 48 h em lugar de série anual (não comparável).
 - **Riscos e validação futura:** nuvens, diferenças de resolução/horário de passagem, contorno, período curto e erro alto em 2025; testar geometria IBGE oficial, ampliar anos, conferir janelas 2026 equivalentes e revalidar qualquer ajuste antes de uso na interface.
 - **Responsável/data:** engenharia Stack Manauara, 14/11/2026. **Aprovação científica final:** sessão principal, pendente.
+
+
+## TEST-01B — Investigação 2025 / Recuperação 2026 (14/11/2026)
+
+- **ID / decisão / status:** TEST-01B, execução técnica concluída; validação científica final **pendente da sessão principal**. Não substituir TEST-01. Não iniciar TEST-02.
+- **Motivo:** esclarecer WAPE elevado em 2025 e recuperar 2026 sem presumir CSVs anuais. Alternativas: aceitar coeficiente global sem revisão (rejeitada), solicitar arquivo histórico por formulário autenticado (identificado, não realizado), consultar SP/NRT por intervalo e auditar cada resposta (adotado).
+- **Evidência real:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43649496639 — jobs diagnóstico 2025, coleta NASA 2026 e publicação concluídos com sucesso; os testes existentes e os sete testes TEST-01B passaram. `docs/TEST-01B_INVESTIGACAO.md`, `data/test01b_resultados.json`, `scripts/test01b_diagnose.py`, `scripts/test01b_2026.py`, `scripts/test01b_report.py`, `tests/test_test01b.py`.
+- **TEST-01 preservado / conferido:** os seis arquivos anuais 2023–2025 foram novamente baixados; seus hashes SHA-256 e contagens foram comparados aos originais do TEST-01 e os WAPEs foram reproduzidos.
+- **2025:** 2024 teve WAPE ajustado 23,109% e 2025 teve 50,731%. Os pixels MODIS diminuíram 81,29%; erro absoluto ajustado diminuiu 58,92%. O ajuste **superestimou o MODIS em 1.024,447 pixels** em 2025 (viés positivo de 23,79% da referência), contra viés negativo de 855,514 em 2024. **Outubro, agosto e setembro de 2025 somaram 68,983% do erro absoluto**. Os dez locais em células de 1° com maior erro responderam por 36,993%. São associações matemáticas, **não explicações físicas causais**.
+- **2026 recuperado:** 1º/01–14/11/2026, 318 dias de calendário consultados para cada sensor pela NASA FIRMS Area API: MODIS Aqua 8.356 pixels elegíveis diurnos (**2.417 SP + 5.939 NRT**, 64 janelas); NOAA-20 44.243 (**2.098 SP + 42.145 NRT**, 65 janelas). Todas as 129 janelas responderam com sucesso; nenhum dia careceu de fonte reportada na disponibilidade da API. Status de consulta completa **não comprova cada passagem orbital ou céu sem nuvens**.
+- **Fontes e cortes de processamento verificados:** MODIS SP até 31/08/2026 e NRT a partir 01/09; NOAA-20 SP até 31/07 e NRT a partir 01/08, conforme disponibilidade recuperada em 14/11. NRT não traz o campo `type` nos CSVs consultados; SP o traz. Não equiparar classes de processamento nem deduzir tendência física.
+- **Comparação exploratória com mesmas datas:** 2023 Aqua 17.809 / NOAA-20 72.042; 2024 22.644 / 89.207; 2025 4.128 / 20.049; 2026 8.356 / 44.243. Todos até 14 de novembro UTC. **Comparação apenas descritiva e provisória:** fontes históricas consolidadas e SP/NRT 2026 não têm cobertura/qualidade instrumental perfeitamente equivalente, e 14/11 pode estar incompleto. Não aplicar fator histórico a NOAA-21; nem afirmar anomalias, risco ou tendências de incêndios.
+- **Fonte e limites:** https://firms.modaps.eosdis.nasa.gov/api/area/ ; https://firms.modaps.eosdis.nasa.gov/api/data_availability/ . A FIRMS Archive Download oficial foi identificada, mas exige Earthdata/e-mail para solicitar período; não foi falsamente registrada como solicitação feita. Arquivo direto nrt3 também requer token Earthdata próprio. A chave FIRMS_MAP_KEY já protegida foi usada apenas no runner; manifests públicos não a contêm.
+- **Riscos:** geometria Amazonense simplificada ainda não confrontada com IBGE oficial, amostragem por órbita/nuvem, atraso e eventual substituição NRT, diferença de esquema (`type`), curva de validação instável, último dia parcial.
+- **Validação futura:** revisar SP/NRT por sensor, ausência de passagens, polígono IBGE oficial, comparabilidade temporal/espacial e reavaliar qualquer calibração em período independente. **Responsável/data:** engenharia Stack Manauara, 14/11/2026; aprovação final: sessão principal.
