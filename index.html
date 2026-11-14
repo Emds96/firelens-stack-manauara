@@ -5,6 +5,9 @@
   <meta name="description" content="FireLens — Two Translators: MODIS/VIIRS historical comparisons and recent NOAA-20/NOAA-21 NASA FIRMS detections for Amazonas. NASA Space Apps 2026.">
   <title>FireLens · Two Translators | Stack Manauara</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
 </head>
 <body>
   <div class="ambient-glow" aria-hidden="true"></div>
@@ -33,6 +36,43 @@
           <article class="stat-card"><div class="stat-name" data-i18n="recent.stat.obs">Most recent observation</div><div class="stat-value small" id="last-obs">—</div><div class="stat-foot" data-i18n="recent.stat.obsfoot">Satellite observation time</div></article>
         </div>
         <div class="info-alert" id="recent-alert" role="status" data-i18n="recent.alert.loading">Loading retrieval status...</div>
+        
+        <section id="map-explorer" class="map-explorer" aria-labelledby="map-section-title">
+          <div class="map-top">
+            <div>
+              <span class="section-n">MAP-01 · NASA FIRMS</span>
+              <h3 id="map-section-title" data-map-t="heading">Explore recent satellite detections</h3>
+              <p data-map-t="explain">Click a marker to inspect a real NASA FIRMS detection. A point is not a confirmed individual fire or a burned-area polygon.</p>
+            </div>
+            <span id="map-status" class="map-status map-status-old" role="status">Loading…</span>
+          </div>
+          <div id="map-timestamps" class="map-timestamps" aria-live="polite">—</div>
+          <div class="map-toolbar">
+            <span data-map-t="filter">Filter satellites</span>
+            <div class="map-filter" role="group" aria-label="Satellite filter">
+              <button type="button" data-map-filter="all" aria-pressed="true">Both satellites</button>
+              <button type="button" data-map-filter="NOAA20" aria-pressed="false">NOAA-20</button>
+              <button type="button" data-map-filter="NOAA21" aria-pressed="false">NOAA-21</button>
+            </div>
+            <span id="map-count" aria-live="polite">—</span>
+          </div>
+          <div class="map-legend"><span><i class="map-key sensor20"></i>NOAA-20</span><span><i class="map-key sensor21"></i>NOAA-21</span></div>
+          <div class="map-columns">
+            <div class="map-canvas-wrap">
+              <div id="fire-map" tabindex="0" role="region" aria-label="Map of NASA FIRMS detections in Amazonas"></div>
+              <div id="map-no-data" class="map-no-data" hidden></div>
+              <div id="map-tile-warning" class="map-tile-warning" role="status"></div>
+              <p id="map-cluster-hint" class="map-cluster-hint"></p>
+            </div>
+            <aside class="map-inspector" aria-label="Selected thermal detection details">
+              <div id="map-inspector-details" class="map-inspector-details map-placeholder" tabindex="-1">Select a satellite marker for its scientific and human explanations.</div>
+              <a class="map-nasa-link" href="https://firms.modaps.eosdis.nasa.gov/api/area/" target="_blank" rel="noopener noreferrer">NASA FIRMS Area API ↗</a>
+            </aside>
+          </div>
+          <p id="map-notes" class="map-notes"></p>
+          <p class="map-disclaimer" data-map-t="footer">Map background: © OpenStreetMap contributors. NASA FIRMS provides observation points, not burned-area shapes.</p>
+        </section>
+
         <div class="two-col">
           <article class="panel"><div class="panel-head"><h3 data-i18n="recent.chart.title">Breakdown by satellite</h3><span data-i18n="recent.chart.raw">ORIGINAL COUNTS</span></div><div id="sensors-graph" class="bars"><div class="empty" data-i18n="recent.chart.empty">No verified NRT detections available yet.</div></div></article>
           <article class="panel reading"><span class="overline" data-i18n="human.label">HUMAN TRANSLATOR / IN PLAIN LANGUAGE</span><h3 data-i18n="recent.human.title">What do these numbers actually mean?</h3><p id="human-nrt" data-i18n="recent.human.loading">We are checking recent observations. A zero on screen does not prove there was no fire: clouds, satellite orbits, and observation timing affect what is detected.</p><p class="fine" data-i18n="recent.human.note">Scheduled retrievals query the source periodically. This does not mean there is a new satellite overpass every hour.</p></article>
@@ -51,6 +91,10 @@
       <footer><div><strong data-i18n="footer.brand">FIRELENS · TWO TRANSLATORS</strong><span>Stack Manauara · NASA Space Apps Challenge 2026</span></div><div><a href="https://www.earthdata.nasa.gov/data/tools/firms" target="_blank" rel="noopener noreferrer"><span data-i18n="footer.source">NASA FIRMS data source ↗</span></a><span data-i18n="footer.disclaimer">Independent project · not endorsed by NASA</span></div></footer>
     </main>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
+  <script src="map-data.js" defer></script>
+  <script src="map-ui.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>
