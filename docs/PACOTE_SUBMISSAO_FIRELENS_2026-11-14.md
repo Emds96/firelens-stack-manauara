@@ -30,7 +30,7 @@
 - Série histórica desde o início dos anos 2000 não implementada; o MVP tem **2022–2024**.
 - Dezembro pode estar incompleto na normalização do mês por hora solar local; o site sinaliza.
 - Não existe validação de qualidade do ar de Manaus, previsão de incêndios, correção de nuvens, intervalos de incerteza calibrados, nem auditoria formal de acessibilidade/múltiplos dispositivos.
-- **Link obrigatório de DEMO (vídeo de até 30 segundos ou apresentação de até 7 slides): AINDA NÃO FORNECIDO.** Não usar o site como substituto automático da demo.
+- **Projeto de demo:** foi criada apresentação em inglês com sete slides, a ser verificada no endereço https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf antes do preenchimento. Não confundir o app com a demonstração.
 
 ## 2. Inventário da submissão oficial (guia publicado em 13/11/2026)
 
@@ -73,10 +73,11 @@ Nome público também pode aparecer como **FireLens | Dois Tradutores**, desde q
 
 Both URLs were verified as public. Recheck them in an incognito/private session immediately before final submission.
 
-### 3.4 Link to Project Demo (BLOCKED)
-**PENDENTE — NÃO INSERIR LINK INVENTADO.**
+### 3.4 Link to Project Demo (7 slides, English)
 
-Criar material de demonstração público: vídeo ≤30 segundos ou slides ≤7, usando o site real e explicações corretas. Verificar acessibilidade sem login. Não substituir este campo pelo endereço do aplicativo sem confirmar que o formulário aceita essa interpretação (o guia pede link de demo separado do link do projeto).
+**https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf**
+
+A apresentação foi criada com 7 slides em inglês, com dados reais e avisos científicos. Confirmar URL pública, contagem de 7 páginas e revisão humana final; não submeter antes dessa revisão.
 
 ### 3.5 Detailed Project Description (draft)
 **The problem.** MODIS and VIIRS active-fire products differ in spatial resolution, acquisition characteristics, sensitivity and observation opportunities. Directly comparing their raw counts can be misleading. Moreover, a thermal detection is an observed pixel-level signal, not a confirmed individual fire event.
@@ -94,7 +95,7 @@ Criar material de demonstração público: vídeo ≤30 segundos ou slides ≤7,
 ### 3.6 AI / Super Intelligence declaration (draft — confirm with team)
 **We used ChatGPT (OpenAI) to assist with architecture comparison, code and test generation, debugging, documentation and communication drafts. TinyFish was used to perform read-only browser testing of the publicly deployed prototype. Team members reviewed and approved major decisions and are responsible for scientific claims, code, presentation and final submission. The project does not rely on generative AI to invent scientific observations. We have not represented AI-generated content as NASA-approved material. This disclosure will be updated to include every additional AI/SI tool actually used by the team.**
 
-**Atenção:** o guia exige identificação nos materiais em que IA foi usada (incluindo código/dados, imagens/vídeos/áudio conforme o caso). A sessão de submissão deve verificar autoria humana da ideia e TODOS os serviços de IA empregados nas demais sessões.
+**Atenção:** o guia exige identificação nos materiais em que IA foi usada (incluindo código/dados, imagens/vídeos/áudio conforme o caso). A sessão de submissão deve verificar autoria humana da ideia e TODOS os serviços de IA empregados nas demais sessões, inclusive geração do layout e conteúdo do PDF de demonstração.
 
 ### 3.7 NASA Data and Resources (draft)
 - NASA FIRMS (Fire Information for Resource Management System): https://www.earthdata.nasa.gov/data/tools/firms
@@ -116,7 +117,7 @@ Criar material de demonstração público: vídeo ≤30 segundos ou slides ≤7,
 1. Confirmar equipe, evento local, proprietário da equipe, data/hora do encerramento segundo o evento e os **campos realmente visíveis** na aba Project.
 2. Conferir comprimento máximo de cada campo antes de colar texto. Encurtar sem perder ressalvas.
 3. Preencher em inglês título, resumo, descrição, link público do aplicativo, fontes NASA e recursos adicionais. Salvar com **Save Progress**. Usar Lock durante edição.
-4. Marcar link de demo como **bloqueado**; pedir à sessão principal ou à equipe material final público e revisar se vídeo/slide cumpre prazo, idioma e requisitos de IA.
+4. Conferir o PDF com 7 slides em inglês no link da seção 3.4, revisar com a equipe e registrar o aceite humano antes de enviá-lo; aplicar declaração de IA conforme guia.
 5. Confirmar lista de ferramentas de IA com os membros e aplicar identificação/atribuições exigidas para conteúdos realmente gerados.
 6. Conferir links externos sem login e consistência com `ESTADO_PROJETO.md`; atualizar estatísticas NRT se o snapshot mudar.
 7. **Não clicar em Submit final, aceitar termos legais ou afirmar submissão concluída sem autorização expressa do fundador.**
@@ -130,7 +131,7 @@ Criar material de demonstração público: vídeo ≤30 segundos ou slides ≤7,
 
 **Evidências:** links do GitHub, Pages, Actions, arquivos JSON, teste de navegador e guia NASA 2026 citados aqui.
 
-**Riscos e restrições:** desatualização do NRT, geometria simplificada, cron ainda não validado, demo inexistente, campos/limites dependentes de formulário autenticado.
+**Riscos e restrições:** desatualização do NRT, geometria simplificada, cron ainda não validado, demo em revisão, campos/limites dependentes de formulário autenticado.
 
 **Critério de validação:** sessão de submissão conferir formulário, salvar rascunhos com confirmação, referenciar dados atuais, comprovar demo/links públicos e obter aprovação humana do envio.
 

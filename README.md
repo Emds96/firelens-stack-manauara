@@ -8,6 +8,14 @@ NASA Space Apps Challenge 2026 · **Harmonization of MODIS and VIIRS Hot Spots**
 
 O arquivo versionado `data/amazonas_ibge.geojson` é **uma geometria estadual simplificada de fonte secundária baseada em IBGE**, e não uma verificação direta de malha oficial atualizada. Veja `docs/GEOMETRIA_AMAZONAS.md`. O contorno pode produzir erros junto às fronteiras.
 
+## Languages and public project demo (ENG-04)
+
+- **English is the default** for judging, with a prominent **EN / PT-BR** toggle. Selection is remembered in the browser and shareable via `?lang=en` or `?lang=pt-BR`.
+- Interface translations include scientific caveats, live-data status, time/date formatting, WAPE labels, and calendar month detail.
+- **English seven-slide presentation:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf
+- **Presentation landing page:** https://emds96.github.io/firelens-stack-manauara/demo/
+- The demo was prepared with AI assistance; the team remains responsible for its accuracy and final approval.
+
 ## Rodar localmente
 
 Requisitos: **Python 3.11+**, sem dependências externas.

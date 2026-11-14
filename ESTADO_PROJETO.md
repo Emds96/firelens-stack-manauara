@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.1.6 (site público e navegação funcional verificados; cron e validação geográfica ainda pendentes)
+**Versão:** engenharia 0.1.7 (EN/PT-BR e demo de 7 slides publicados; teste pós-implantação pendente)
 
 ## Decisões e requisitos
 
@@ -76,6 +76,16 @@
 - **Ressalva:** o teste não constituiu auditoria formal de acessibilidade, teste multirresolução ou análise de performance; não prova que o agendamento por cron ocorreu.
 - **Limites científicos preservados:** recortes A/B não correspondem a Amazonas inteiro; contorno NRT simplificado; observações NRT não são incêndios individuais e não validam a calibração NOAA-21.
 - **Decisão operacional ENG-03 / implementada:** manter publicação estática GitHub Pages, sem dependência de autenticação do visitante. Motivo: demonstração rápida, ampla acessibilidade e independência de servidor próprio. Alternativas: Streamlit/servidor de aplicação (mais custo operacional). Evidência: execução de Pages e teste funcional em navegador. Risco: cache ou atualizações NRT com latência e dependência de Actions, proteção da chave no backend. Validação: inspeção de site público, arquivos JSON disponíveis, navegação de dados. Responsável: engenharia Stack Manauara, data 14/11/2026.
+
+## ENG-04 — Idiomas EN/PT-BR e demonstração pública
+
+- **Decisão implementada (pedido do fundador):** interface bilingue com apenas English (padrão para jurados) e Português (Brasil), com troca rápida no cabeçalho, preferência local e links com idioma na URL.
+- **Motivo:** atender a exigência da submissão em inglês preservando usabilidade em português. Alternativas: traduzir só documentação (insuficiente para jurados), serviço de tradução externo (dependência e risco de terminologia).
+- **Evidência de publicação do código:** arquivos `index.html`, `app.js`, `style.css` versionados; apresentação de 7 páginas PDF inglês em `demo/FireLens_7_Slide_Demo_2026.pdf`; landing page `demo/index.html`.
+- **Demo pública:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf (conferir HTTP e visualização após publicação do Pages).
+- **Riscos:** descompasso entre termos PT/EN, troca de língua com dados em memória, tela menor, status NRT envelhecido; apresentar como snapshot datado.
+- **Validação:** testes em navegador de ambas línguas, calendário, abas e PDF público; revisar precisão com equipe humana. Status: código preparado e publicado; testes pós-implantação ainda pendentes no momento deste registro.
+- **Responsável/data:** Engenharia Stack Manauara, 14/11/2026.
 
 ## Evidência e testes
 
