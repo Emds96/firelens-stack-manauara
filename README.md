@@ -2,7 +2,7 @@
 
 NASA Space Apps Challenge 2026 · **Harmonization of MODIS and VIIRS Hot Spots**.
 
-**Status atual:** código e dados no GitHub, site GitHub Pages ainda não comprovado. **NASA NRT NOAA-20/NOAA-21 comprovado em 14/11/2026 nas execuções #2 e #3**. **Calendário 2022–2024 publicado com 72 registros mensais e quatro métricas WAPE reproduzidas** no workflow histórico. Execução automática por cron ainda não foi observada.
+**Status atual:** código e dados no GitHub e **GitHub Pages publicado e testado** em https://emds96.github.io/firelens-stack-manauara/. **NASA NRT NOAA-20/NOAA-21 comprovado em 14/11/2026 nas execuções #2 e #3**. **Calendário 2022–2024 publicado com 72 registros mensais e quatro métricas WAPE reproduzidas** no workflow histórico. Execução automática por cron ainda não foi observada.
 
 ## Limites do recorte geográfico
 
@@ -85,7 +85,7 @@ Contagens são **detecções de pixels de anomalia térmica**, não incêndios c
 2. Código, testes, documentação e workflow já enviados; confira o commit do protótipo `943d897beec55d9d6b6d1d379ddafd3fce5beeae`.
 3. Segredo `FIRMS_MAP_KEY` já configurado e verificado pela execução #2; não expor o valor.
 4. Execução #2 comprovada: https://github.com/Emds96/firelens-stack-manauara/actions/runs/43632228781 ; NOAA-20=145, NOAA-21=243 detecções elegíveis em janela de 2 dias, 388 no total (contagens de pixels, não incêndios).
-5. Settings → Pages → Deploy from a branch → `main` / root. Verificar que o site público carrega.
+5. **GitHub Pages publicado e testado** em https://emds96.github.io/firelens-stack-manauara/ ; ver registro ENG-03 em `ESTADO_PROJETO.md`.
 6. Se o Actions não conseguir enviar commits, verificar Settings → Actions → General → Workflow permissions: Read and write.
 
 Para a sessão de submissão: usar somente URLs realmente criadas e verificadas; não copiar endereços hipotéticos.
