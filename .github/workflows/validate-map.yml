@@ -1,0 +1,29 @@
+name: Validate FireLens 2D map
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'index.html'
+      - 'style.css'
+      - 'app.js'
+      - 'map-ui.js'
+      - 'map-data.js'
+      - 'tests/test_map.cjs'
+      - '.github/workflows/validate-map.yml'
+permissions:
+  contents: read
+jobs:
+  map-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: JavaScript syntax and source compatibility
+        run: |
+          node --check app.js
+          node --check map-data.js
+          node --check map-ui.js
+      - name: Map data tests (real JSON plus synthetic failure cases)
+        run: node --test tests/test_map.cjs
+      - name: Existing Python regression tests
+        run: python -m unittest discover -s tests -v
