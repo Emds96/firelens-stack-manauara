@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.2.2 (TEST-01B 2025 diagnosticado e 2026 recuperado por API FIRMS SP/NRT; site preservado)
+**Versão:** engenharia 0.2.3 (SCI-03 padrões relativos 2023–2026 testados, resultados separados e interface preservada)
 
 ## Decisões e requisitos
 
@@ -142,3 +142,17 @@
 - **Fonte e limites:** https://firms.modaps.eosdis.nasa.gov/api/area/ ; https://firms.modaps.eosdis.nasa.gov/api/data_availability/ . A FIRMS Archive Download oficial foi identificada, mas exige Earthdata/e-mail para solicitar período; não foi falsamente registrada como solicitação feita. Arquivo direto nrt3 também requer token Earthdata próprio. A chave FIRMS_MAP_KEY já protegida foi usada apenas no runner; manifests públicos não a contêm.
 - **Riscos:** geometria Amazonense simplificada ainda não confrontada com IBGE oficial, amostragem por órbita/nuvem, atraso e eventual substituição NRT, diferença de esquema (`type`), curva de validação instável, último dia parcial.
 - **Validação futura:** revisar SP/NRT por sensor, ausência de passagens, polígono IBGE oficial, comparabilidade temporal/espacial e reavaliar qualquer calibração em período independente. **Responsável/data:** engenharia Stack Manauara, 14/11/2026; aprovação final: sessão principal.
+
+
+## SCI-03 — Harmonização por padrões de atividade relativa (14/11/2026)
+
+- **ID e decisão / status:** SCI-03 — **experimento executado e documentado; proposta de aplicação pendente de aprovação científica pela sessão principal**. Não substituir harmonização TEST-01 ou aplicar ao site sem nova decisão. TEST-02 não iniciado.
+- **Motivo e alternativas:** comparar se sensores concordam sobre meses e células mais ativos usando porcentagens por sensor, sem depender de escala absoluta; alternativas: apenas contagens globais, fator global (controle já testado) e modelos mais complexos (não justificados pelo prazo/evidência).
+- **Evidência:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43653164498 — **35 testes Python aprovados**, seis arquivos anuais oficiais 2023–2025 novamente confrontados por SHA-256 e contagens contra TEST-01; **124 janelas** NASA FIRMS 2026 (jan-out UTC) consultadas com sucesso. Análise calculada por células de 1° e meses UTC: `scripts/sci03_sources.py`, `scripts/sci03_compare.py`, `scripts/sci03_report.py`, `tests/test_sci03.py`. Relatório: `docs/SCI-03_HARMONIZACAO_PADROES.md`. Dados não operacionais: `data/sci03_resultados.json` (métricas, esquema, janelas/hashes) e `data/sci03_agregados.json` (4.434 registros agregados e contagens originais de pixels).
+- **Resultado de 2026 (janeiro–outubro completo):** MODIS Aqua **8.002**, NOAA-20 **42.636** pixels elegíveis; correlação Spearman mensal **0,948** e espacial **0,925**; distância TV mensal **0,0768** e espacial **0,1131**; **8 das 10 células** mais ativas em comum. Setembro é o mês com mais registros em ambos os sensores. **Dados combinam SP/NRT e não provam equivalência física ou incêndios individuais.**
+- **SP/NRT estratificado (2026):** janeiro–julho ambos SP, 264 MODIS / 2.098 NOAA20; concordância espacial Spearman **0,628**, TV **0,333**, 6/10 células mais ativas em comum; agosto MODIS SP/NOAA20 NRT; setembro–outubro ambos NRT (Spearman espacial **0,921**). Diferença por faixa pode resultar de muitos fatores não isolados; a menor contagem de pixels MODIS no primeiro período é limitação da estabilidade das métricas.
+- **2025:** Spearman mensal **0,976** e espacial **0,918**, TV espacial **0,139**, 8/10 células mais ativas em comum. Isso não elimina WAPE absoluto de 50,73% obtido no TEST-01 (ano inteiro). Controle absoluto para jan-out teve WAPE de **22,09%** em 2024 (treino 2023) e **47,49%** em 2025 (treino 2023–2024); períodos diferentes dos resultados anuais originais.
+- **Fato matemático:** normalizar contagens para participação (%) não muda rankings nem distribuição de um sensor em relação à simples multiplicação por fator global positivo; por si só **não melhora o método de harmonização física**. É útil para explicar concentração temporal e geográfica observada, mas deve manter ambos sensores, informações originais e ressalvas.
+- **Restrições e riscos:** sensibilidade, resolução, nuvens e órbitas diferentes; sem denominador de oportunidades observacionais; geometria estadual simplificada não validada oficialmente; 2026 SP/NRT, NRT sem `type` e sujeito a revisões; 1° pode esconder padrões locais; desempenho em períodos de poucos registros pode variar.
+- **Validação e próximo passo:** revisar métricas e fontes por produto/período, testar com malha IBGE oficial, considerar cobertura orbital e qualidade; nenhum uso operacional antes de aprovação da sessão principal.
+- **Responsável/data:** Engenharia Stack Manauara, 14/11/2026.
