@@ -65,6 +65,14 @@
               <p id="map-cluster-hint" class="map-cluster-hint"></p>
             </div>
             <aside class="map-inspector" aria-label="Selected thermal detection details">
+              <div class="map-list-area">
+                <div class="map-list-head"><strong data-map-t="listTitle">Select a detection</strong><span id="map-list-range"></span></div>
+                <div id="map-point-list" class="map-point-list" role="list"></div>
+                <div class="map-list-pager">
+                  <button id="map-list-prev" type="button" data-map-t="listPrev">Previous</button>
+                  <button id="map-list-next" type="button" data-map-t="listNext">Next</button>
+                </div>
+              </div>
               <div id="map-inspector-details" class="map-inspector-details map-placeholder" tabindex="-1">Select a satellite marker for its scientific and human explanations.</div>
               <a class="map-nasa-link" href="https://firms.modaps.eosdis.nasa.gov/api/area/" target="_blank" rel="noopener noreferrer">NASA FIRMS Area API ↗</a>
             </aside>
