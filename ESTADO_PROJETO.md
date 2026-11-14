@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.1.8 (EN/PT-BR e demo de 7 slides publicados e testados em navegador; cron e validação geográfica pendentes)
+**Versão:** engenharia 0.2.0 (MAP-01 com mapa 2D, filtros e tradutores por ponto; testes Chrome concluídos; cron e validação geográfica pendentes)
 
 ## Decisões e requisitos
 
@@ -102,3 +102,15 @@
 ## Mensagem para a sessão de submissão
 
 > Código, dados NOAA-20/NOAA-21 e séries históricas estão publicados; site público https://emds96.github.io/firelens-stack-manauara/ e navegação das três seções confirmados por teste em navegador. Foram 388 detecções elegíveis na captura de 14/11/2026 (dois dias, contorno simplificado). Histórico tem 72 registros mensais nos recortes A/B e métricas reproduzidas. Cron horário, precisão de fronteira e testes mais completos de acessibilidade/responsividade seguem pendentes. Não confundir pixels detectados com incêndios nem atribuir harmonização validada a NOAA-21.
+## MAP-01 — Mapa interativo 2D entregue e validado em navegador
+
+**Status:** implementado e testado por automação Chrome; globo 3D **não autorizado**.
+
+- **Decisão/ID:** MAP-01. Adotar Leaflet 1.9.4 e Leaflet.markercluster 1.5.3 sobre arquitetura estática ARQ-01, com agrupamento opcional e lista paginada acessível de 8 detecções reais. Alternativas: MapLibre GL, SVG Canvas próprio, globo 3D (rejeitado para esta fase).
+- **Motivo:** facilidade de explorar localização e atributos por ponto com pouco custo técnico; a lista mantém acesso aos dados mesmo quando os marcadores estão agrupados.
+- **Evidências:** workflow Chrome https://github.com/Emds96/firelens-stack-manauara/actions/runs/43641760032 ; 5 testes Node de coordenadas/filtros/falhas, 12 testes Python históricos/NRT e teste Chrome com selecionador de pontos, filtros NOAA-20/21, idioma EN/PT-BR, celular virtual de 390x844 e falha simulada da fonte. Nenhum erro JavaScript não capturado na execução aprovada. Código em map-data.js, map-ui.js, tests/test_map_browser.cjs, tests/test_map.cjs e docs/MAP-01.md.
+- **Publicação:** integração no website público https://emds96.github.io/firelens-stack-manauara/ (seção Observações Recentes); build GitHub Pages atual mais recente deve ser conferido antes de alegar revisão visual de cada dispositivo.
+- **Riscos/limites:** geometria do Amazonas simplificada, OSM tiles e bibliotecas via CDN dependem de terceiros; o teste móvel Chrome não substitui inspeção manual em vários aparelhos. Detecções não são incêndios, áreas queimadas ou estimativa do MODIS. Capturas >4 h são sinalizadas como desatualizadas; sem dados não se inventa zero.
+- **Validação:** cobertura das interações principais e de estados indisponíveis confirmada em Chrome; revisão visual humana do mapa e de telas móveis ainda recomendável.
+- **Responsável/data:** engenharia Stack Manauara, 14/11/2026.
+- **Pendências fora da missão:** cron horário real, malha IBGE oficial e qualquer globo 3D. Demonstração PDF de sete slides criada antes do MAP-01; a sessão principal pode pedir atualização dela para incluir mapa, se houver prazo.
