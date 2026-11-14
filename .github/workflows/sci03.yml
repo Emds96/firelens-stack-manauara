@@ -1,0 +1,93 @@
+name: SCI-03 - Compare NASA FIRMS relative activity patterns
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/sci03.yml'
+permissions:
+  contents: write
+concurrency:
+  group: sci03
+  cancel-in-progress: false
+jobs:
+  historical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify scientific regression and SCI-03 math tests
+        run: python -m unittest discover -s tests -v
+      - name: Redownload and SHA-verify NASA FIRMS 2023-2025 historical CSVs
+        run: python -m scripts.sci03_sources historical --out /tmp/sci03_historical.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sci03_historical
+          path: /tmp/sci03_historical.json
+          retention-days: 30
+  recent-2026:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Requery NASA FIRMS SP/NRT 2026 Jan-Oct with protected credential
+        env:
+          FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
+        run: python -m scripts.sci03_sources recent --out /tmp/sci03_recent.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sci03_recent
+          path: /tmp/sci03_recent.json
+          retention-days: 30
+  analyze-and-publish:
+    needs: [historical, recent-2026]
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: sci03_historical
+          path: /tmp
+      - uses: actions/download-artifact@v4
+        with:
+          name: sci03_recent
+          path: /tmp
+      - name: Reproduce relative metrics and independent absolute-count control
+        run: python -m scripts.sci03_compare --historical /tmp/sci03_historical.json --recent /tmp/sci03_recent.json --out data/sci03_resultados.json
+      - name: Generate scientific evidence report
+        run: python -m scripts.sci03_report --results data/sci03_resultados.json --historical /tmp/sci03_historical.json --recent /tmp/sci03_recent.json --out docs/SCI-03_HARMONIZACAO_PADROES.md
+      - name: Export sanitized aggregated observations, not raw individual detections
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          h=json.loads(Path('/tmp/sci03_historical.json').read_text())
+          r=json.loads(Path('/tmp/sci03_recent.json').read_text())
+          rows=h['data']+r['data']
+          export={'id':'SCI-03','unit':'1° latitude/longitude grid × UTC month',
+                  'sensor_counts':'NASA FIRMS pixels (not unique physical fires)',
+                  'historical_source':'Annual Brazil country files, SHA-verified',
+                  'recent_source':'Area API SP/NRT, headers and SHA recorded in sci03_resultados.json',
+                  'geometry_sha256':h['geometry_sha256'],
+                  'columns':['year','month','sensor','cell_south_lat','cell_west_lon','pixels'],'rows':rows}
+          Path('data/sci03_agregados.json').write_text(json.dumps(export,ensure_ascii=False,separators=(',',':'))+'\n')
+          print('SCI03 aggregated records',len(rows),'pixels',sum(x[-1] for x in rows))
+          PY
+      - name: Commit only SCI-03 report and nonoperational data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/sci03_resultados.json data/sci03_agregados.json docs/SCI-03_HARMONIZACAO_PADROES.md
+          if ! git diff --cached --quiet; then
+            git commit -m "research(SCI-03): publish observed relative-pattern comparisons and provenance"
+            git push
+          fi
