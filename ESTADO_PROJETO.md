@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.1.5 (integração NRT e 72 meses históricos comprovados; site público ainda pendente)
+**Versão:** engenharia 0.1.6 (site público e navegação funcional verificados; cron e validação geográfica ainda pendentes)
 
 ## Decisões e requisitos
 
@@ -29,7 +29,7 @@
 3. Revisar cientificamente a geometria simplificada vs. IBGE oficial e o comportamento do estado de desatualização no navegador.
 4. Acompanhar uma execução automática por cron para validar periodicidade real; já houve execução manual e disparo por push.
 5. Geração histórica concluída em Actions #1 do workflow histórico; conferir experiência do calendário no site e investigar expansão temporal futura.
-6. Publicar site e verificar a experiência em navegador sem autenticação.
+6. **Concluído parcialmente:** site publicado no GitHub Pages e navegação principal verificada sem login; ainda faltam verificação específica em dispositivos pequenos e auditoria de acessibilidade.
 7. Testar Tradutor 2 com pessoas, inclusive linguagem sobre zero detecções.
 
 ## Limitações e alertas
@@ -66,10 +66,21 @@
 - `data/historico.json` status `ready`, preserva métodos, contagens de pixels, fonte e limitações. Fator é treinado com anos anteriores, sem vazamento no ano de teste.
 - Contagens mensais não são incêndios distintos nem representam cobertura histórica de 2000–2026; dezembro tem alerta de incompletude local solar.
 
+## Publicação e teste público do aplicativo — ENG-03
+
+- **Status:** publicação GitHub Pages verificada e teste funcional em navegador **aprovado para o percurso principal**, não equivalente a validação científica completa.
+- **URL pública:** https://emds96.github.io/firelens-stack-manauara/
+- **GitHub Pages build:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43632979882 — execução concluída com sucesso em 14/11/2026.
+- **Teste de navegador TinyFish (somente leitura):** https://agent.tinyfish.ai/runs/b3f9aecf-ee8e-4601-be45-e9d2ca268f75 ; a ferramenta pode exigir conta para abrir o histórico de execução.
+- **Verificações realizadas no navegador:** navegação entre as três abas; NOAA-20=145, NOAA-21=243, total=388; horário da última captura e última observação exibidos; quatro resultados de validação; calendário 2022–2024 (36 células por região); seleção A/B; clique em mês e detalhe textual; nenhuma mensagem de erro ou travamento relatado no percurso.
+- **Ressalva:** o teste não constituiu auditoria formal de acessibilidade, teste multirresolução ou análise de performance; não prova que o agendamento por cron ocorreu.
+- **Limites científicos preservados:** recortes A/B não correspondem a Amazonas inteiro; contorno NRT simplificado; observações NRT não são incêndios individuais e não validam a calibração NOAA-21.
+- **Decisão operacional ENG-03 / implementada:** manter publicação estática GitHub Pages, sem dependência de autenticação do visitante. Motivo: demonstração rápida, ampla acessibilidade e independência de servidor próprio. Alternativas: Streamlit/servidor de aplicação (mais custo operacional). Evidência: execução de Pages e teste funcional em navegador. Risco: cache ou atualizações NRT com latência e dependência de Actions, proteção da chave no backend. Validação: inspeção de site público, arquivos JSON disponíveis, navegação de dados. Responsável: engenharia Stack Manauara, data 14/11/2026.
+
 ## Evidência e testes
 
 **Local inicial: 9 testes aprovados. GitHub Actions #2 (14/11/2026):** `python -m unittest discover -s tests -v` → **12 testes aprovados, 0 falhas**. Incluem testes locais de geometria, filtragem, resposta simulada por sensor, contingência e cálculos. **Os testes unitários usam dados sintéticos; a consulta NASA real foi comprovada separadamente no mesmo workflow.** Teste no navegador, cron e publicação GitHub Pages ainda pendentes.
 
 ## Mensagem para a sessão de submissão
 
-> Código, testes e execução NOAA-20/NOAA-21 NRT estão publicados e comprovados; houve 388 detecções elegíveis na consulta de 14/11/2026 (2 dias, recorte geográfico simplificado). O calendário histórico 2022–2024 está gerado, com 72 registros e métricas reproduzidas. Site público e cron horário ainda não foram confirmados. Não afirmar que detecções são incêndios, nem harmonização validada NOAA-21.
+> Código, dados NOAA-20/NOAA-21 e séries históricas estão publicados; site público https://emds96.github.io/firelens-stack-manauara/ e navegação das três seções confirmados por teste em navegador. Foram 388 detecções elegíveis na captura de 14/11/2026 (dois dias, contorno simplificado). Histórico tem 72 registros mensais nos recortes A/B e métricas reproduzidas. Cron horário, precisão de fronteira e testes mais completos de acessibilidade/responsividade seguem pendentes. Não confundir pixels detectados com incêndios nem atribuir harmonização validada a NOAA-21.
