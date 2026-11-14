@@ -1,0 +1,24 @@
+name: SCI-03 - Offline reproducibility verification
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/sci03-verify.yml'
+      - 'scripts/sci03_verify.py'
+      - 'data/sci03_agregados.json'
+      - 'data/sci03_resultados.json'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rerun all 35+ scientific unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Recalculate published SCI-03 metrics offline and compare exact results
+        run: python -m scripts.sci03_verify
