@@ -31,6 +31,7 @@ function setLanguage(next, save=true){
   try{const url=new URL(location.href);url.searchParams.set('lang',language);history.replaceState(null,'',url.toString());}catch(_){}
  }
  renderRecent();renderValidation();renderCalendar();
+ document.dispatchEvent(new CustomEvent('firelens:language',{detail:language}));
 }
 function tabs(){
  for(const tab of document.querySelectorAll('.tabs button'))tab.addEventListener('click',()=>{
@@ -154,6 +155,7 @@ async function start(){
  setLanguage(chooseInitialLanguage(),false);
  try{recentData=await getJSON('data/recente.json')}catch(_){recentData={status:'unavailable',last_success_utc:null,alerts:[]}}
  renderRecent();
+ document.dispatchEvent(new CustomEvent('firelens:recent-data',{detail:recentData}));
  try{validationData=await getJSON('data/validacao.json')}catch(_){const el=document.createElement('div');el.className='empty';el.textContent=tr('dynamic.validation.unavailable');q('#validation-chart').replaceChildren(el)}
  renderValidation();
  try{historyData=await getJSON('data/historico.json')}catch(_){historyData=null}
