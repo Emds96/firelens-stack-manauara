@@ -2,14 +2,14 @@
 
 NASA Space Apps Challenge 2026 · **Harmonization of MODIS and VIIRS Hot Spots**.
 
-**Status atual:** protótipo estático local, código de ingestão NRT preparado e testes unitários locais. **Ainda não há consulta autenticada validada nem site publicado**, enquanto não houver MAP_KEY configurada e código publicado no repositório. Dados NRT aparecem como indisponíveis até execução verdadeira.
+**Status atual:** protótipo estático com código e testes publicados no GitHub; ainda não implantado no GitHub Pages. **Ainda não há consulta autenticada validada nem site publicado**, enquanto não houver MAP_KEY configurada e integração NRT comprovada. Dados NRT aparecem como indisponíveis até execução verdadeira.
 
 ## Rodar localmente
 
 Requisitos: **Python 3.11+**, sem dependências externas.
 
 ```bash
-cd dois-tradutores
+cd firelens-stack-manauara
 python -m http.server 8000
 ```
 
@@ -77,7 +77,7 @@ Contagens são **detecções de pixels de anomalia térmica**, não incêndios c
 ## Publicação (repositório já criado)
 
 1. Repositório público confirmado: https://github.com/Emds96/firelens-stack-manauara — **publicação em andamento; confirmar no GitHub**.
-2. Enviar **todos os arquivos** desta pasta mantendo diretórios ocultos (`.github`), sem `__pycache__` nem diretórios de cache.
+2. Código, testes, documentação e workflow já enviados; confira o commit do protótipo `943d897beec55d9d6b6d1d379ddafd3fce5beeae`.
 3. Settings → Secrets and variables → Actions → New repository secret: `FIRMS_MAP_KEY`.
 4. Actions → "Atualizar dados NASA FIRMS" → **Run workflow**. Conferir se a execução realmente consultou NOAA-20 e NOAA-21, e revisar `data/recente.json` e logs.
 5. Settings → Pages → Deploy from a branch → `main` / root. Verificar que o site público carrega.
