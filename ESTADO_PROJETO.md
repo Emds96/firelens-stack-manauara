@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.1.7 (EN/PT-BR e demo de 7 slides publicados; teste pós-implantação pendente)
+**Versão:** engenharia 0.1.8 (EN/PT-BR e demo de 7 slides publicados e testados em navegador; cron e validação geográfica pendentes)
 
 ## Decisões e requisitos
 
@@ -82,10 +82,18 @@
 - **Decisão implementada (pedido do fundador):** interface bilingue com apenas English (padrão para jurados) e Português (Brasil), com troca rápida no cabeçalho, preferência local e links com idioma na URL.
 - **Motivo:** atender a exigência da submissão em inglês preservando usabilidade em português. Alternativas: traduzir só documentação (insuficiente para jurados), serviço de tradução externo (dependência e risco de terminologia).
 - **Evidência de publicação do código:** arquivos `index.html`, `app.js`, `style.css` versionados; apresentação de 7 páginas PDF inglês em `demo/FireLens_7_Slide_Demo_2026.pdf`; landing page `demo/index.html`.
-- **Demo pública:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf (conferir HTTP e visualização após publicação do Pages).
+- **Demo pública:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf (**verificada sem login, 7 slides**).
 - **Riscos:** descompasso entre termos PT/EN, troca de língua com dados em memória, tela menor, status NRT envelhecido; apresentar como snapshot datado.
-- **Validação:** testes em navegador de ambas línguas, calendário, abas e PDF público; revisar precisão com equipe humana. Status: código preparado e publicado; testes pós-implantação ainda pendentes no momento deste registro.
+- **Validação:** testes em navegador de ambas línguas, calendário, abas e PDF público; revisar precisão com equipe humana. Status: **testes pós-implantação aprovados** no navegador; precisão cartográfica e cron ainda pendentes.
 - **Responsável/data:** Engenharia Stack Manauara, 14/11/2026.
+
+## ENG-04 — Confirmação de publicação e QA bilíngue
+
+- **GitHub Pages:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43637716718 — concluído com sucesso em 14/11/2026, head `dc6c7e6f05c98ba62e1cbe8f4254a41cc0265528`.
+- **QA navegador (TinyFish, somente leitura):** https://agent.tinyfish.ai/runs/1c6d33da-b39b-4150-9461-4d192ef130ae — execução concluída, sem autenticação e sem alterações em dados.
+- **Verificados:** modo inglês inicial; troca EN → PT-BR → EN; navegação entre três abas; datas AMT; painel NOAA-20/NOAA-21; quatro WAPEs; 36 meses por região A/B; mês SET/2024 em português e inglês, com formatação de números; mês selecionado preservado após trocar idioma; documento PDF público aberto com 7 slides sem login.
+- **Demonstração pública (link para submissão):** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf ; alternativa de visualização: https://emds96.github.io/firelens-stack-manauara/demo/
+- **Limites:** a apresentação inclui um calendário esquemático explicitamente identificado como ilustrativo; os números reais constam no site. A revisão humana final da apresentação continua necessária antes do envio oficial. Não houve auditoria formal de acessibilidade completa nem testes em todas as resoluções.
 
 ## Evidência e testes
 
