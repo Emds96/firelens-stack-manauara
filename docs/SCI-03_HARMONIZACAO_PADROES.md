@@ -2,6 +2,18 @@
 
 Stack Manauara · FireLens · 14/11/2026 · **Scientific decision pending main session**
 
+## Resumo executivo — Português (Brasil)
+
+**Conclusão:** a normalização relativa dos focos por mês/célula ajuda a comparar a distribuição de detecções MODIS/VIIRS, mas **não é uma harmonização física validada nem comprovadamente superior ao fator global**.
+
+Em **2026 (janeiro–outubro completo)**: 8.002 pixels MODIS Aqua e 42.636 NOAA-20; Spearman mensal 0,948 e espacial 0,925; as dez células mais ativas compartilharam oito posições geográficas. Setembro foi o mês mais ativo dos dois sensores. Entretanto, entre janeiro e julho, apesar de ambos serem SP, Spearman espacial caiu para 0,628 (264 pixels MODIS), revelando concordância não uniforme.
+
+Em **2025**: Spearman mensal 0,976 e espacial 0,918; 8/10 células em comum. Isso **não contradiz** o WAPE anual absoluto de 50,73% — as métricas respondem a perguntas distintas. No controle de contagem absoluta apenas janeiro–outubro, WAPE foi 22,09% em 2024 e 47,49% em 2025, com treinamento em anos anteriores.
+
+**Ressalvas:** novembro 2026 foi excluído por incompletude; agosto 2026 mistura MODIS SP/NOAA-20 NRT e setembro–outubro usa NRT/NRT; falta `type` no NRT consultado. Não inferir incêndios individuais, risco, tendências, causas ou cobertura contínua. Os resultados são exploratórios, não devem aparecer no site sem revisão da sessão principal.
+
+**Evidência:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43653164498 — 35 testes automatizados e fontes oficiais reconsultadas, com hashes por arquivo/janela em `data/sci03_resultados.json`.
+
 ## Conclusion first
 
 **Relative normalization is defensible as DESCRIPTIVE pattern comparison, not yet a validated harmonization or demonstrated improvement in physical fire estimates.** A global positive multiplicative adjustment leaves shares, ranks and top-k unchanged by algebra. Thus identical relative pattern scores after global scaling cannot establish superiority of a new correction method.
