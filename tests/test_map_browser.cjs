@@ -44,7 +44,7 @@ async function run(){
   assert.match(await page.$eval("#map-inspector-details",e=>e.textContent),/Scientific translator/);
   console.log("MAP-01: complete EN/PT-BR toggle with selected point");
   await page.setViewport({width:390,height:844});
-  await page.waitForTimeout(300);
+  await new Promise(resolve=>setTimeout(resolve,300));
   const geo=await page.evaluate(()=>({map:document.querySelector("#fire-map").getBoundingClientRect().width,
    wrap:document.querySelector(".map-explorer").getBoundingClientRect().width,
    list:document.querySelector(".map-point-list").getBoundingClientRect().width,
