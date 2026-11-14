@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.2.0 (MAP-01 com mapa 2D, filtros e tradutores por ponto; testes Chrome concluídos; cron e validação geográfica pendentes)
+**Versão:** engenharia 0.2.1 (TEST-01 histórico Amazonas 2023–2025 avaliado; 2026 sem arquivos anuais; interface preservada)
 
 ## Decisões e requisitos
 
@@ -114,3 +114,16 @@
 - **Validação:** cobertura das interações principais e de estados indisponíveis confirmada em Chrome; revisão visual humana do mapa e de telas móveis ainda recomendável.
 - **Responsável/data:** engenharia Stack Manauara, 14/11/2026.
 - **Pendências fora da missão:** cron horário real, malha IBGE oficial e qualquer globo 3D. Demonstração PDF de sete slides criada antes do MAP-01; a sessão principal pode pedir atualização dela para incluir mapa, se houver prazo.
+
+
+## TEST-01 — História de atividade do fogo no Amazonas (14/11/2026)
+
+- **Decisão e status:** TEST-01, **parcialmente aprovado como análise exploratória histórica**, sob revisão científica da sessão principal. Nenhuma interface alterada; TEST-02 não iniciado.
+- **Evidência:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43646531478 — **20 testes Python passaram**. Six CSVs oficiais NASA FIRMS Brasil (MODIS Aqua e VIIRS NOAA-20, 2023–2025) recuperados, auditados por hash e filtrados por contorno simplificado Amazonas.
+- **Relatório auditável:** `docs/TEST-01_HISTORICO.md`. **Dados separados:** `data/test01_historico_amazonas.json`. **Código:** `scripts/test01_historico.py`, `scripts/test01_report.py`. **Testes:** `tests/test_test01_historico.py`.
+- **Resultados observados:** MODIS Aqua 18.246/23.009/4.306 e NOAA-20 74.740/90.746/21.382 pixels elegíveis diurnos em 2023/2024/2025. Pico mensal NOAA-20: setembro 2023, agosto 2024, agosto 2025. Células espaciais de 1° recorrentes identificadas e listadas no relatório.
+- **Validação independente:** fator global treinado 2023→2024 gerou WAPE 23,109%; fator treinado 2023–2024→2025 gerou WAPE **50,731%**. **Não assumir coeficiente estável** nem equivalência física.
+- **Bloqueios:** CSVs anuais 2026 dos dois sensores retornaram HTTP 404; a API do IBGE retornou URLError e foi utilizada geometria secundária simplificada. Sem comparação 2026 equivalente; não interpretar registros ausentes como ausência de fogo.
+- **Alternativas consideradas:** transferir coeficientes A/B (rejeitado), método mais complexo sem evidência (não adotado), fator global basal testado (adotado experimentalmente), NRT de 48 h em lugar de série anual (não comparável).
+- **Riscos e validação futura:** nuvens, diferenças de resolução/horário de passagem, contorno, período curto e erro alto em 2025; testar geometria IBGE oficial, ampliar anos, conferir janelas 2026 equivalentes e revalidar qualquer ajuste antes de uso na interface.
+- **Responsável/data:** engenharia Stack Manauara, 14/11/2026. **Aprovação científica final:** sessão principal, pendente.
