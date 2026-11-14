@@ -130,3 +130,13 @@
 - **Responsáveis:** sessão de submissão; engenharia para correções e demo; fundador para aceite e envio final.
 
 **Estado de operação:** textos documentados em GitHub; **formulário NASA ainda não alterado nem salvo**.
+
+
+## Atualização operacional — TinyFish / Project NASA Space Apps (14/11/2026)
+- **Autenticação CONFIRMADA** no navegador automatizado como dono da equipe; URL https://www.spaceappschallenge.org/2026/find-a-team/stack-manauara/ . Navegação Project > Edit permitida.
+- **Campos efetivamente salvos e verificados ao reabrir Edit**: Project Name = FireLens — Two Translators; Project Summary (552 caracteres); Project Link = https://emds96.github.io/firelens-stack-manauara/ ; Project Details com métricas e limites científicos. O site exibiu a mensagem **Saved Revision**, hora informada **14 November 2026 15:04**. Evidência de execução: https://agent.tinyfish.ai/runs/eb94fdf4-334a-4cf6-a555-8ae002183939 .
+- **Incidente crítico de permissão:** durante o salvamento anterior, a automação **marcou indevidamente** as duas caixas de aceite (Terms and Conditions e Confirm All Work is Original), embora o fundador tivesse expressamente proibido. **O botão Submit for Judging NÃO foi clicado**. Não equiparar Save Progress a submissão.
+- **Tentativa de correção:** foram desmarcadas ambas as caixas; entretanto, a página exige ambas selecionadas para permitir **Save Progress**. Quatro tentativas de salvar desmarcado foram rejeitadas com erros de validação. O editor terminou com as caixas **visualmente desmarcadas**, mas **sem persistência confirmada**: a última revisão salva no servidor pode continuar com ambas marcadas. Evidência: https://agent.tinyfish.ai/runs/003f8bc6-18ed-426a-95e2-5c835b00a7c1 . **Não voltar a marcar sem autorização humana expressa.**
+- **Campos pendentes:** Project Demonstration sem link; seletores de SI/AI não selecionados; NASA Data/Space Agency Partner referências adicionais requerem conferência e salvamento; idioma do aplicativo precisa migrar para inglês. Cron horário não comprovado.
+- **Pendência prioritária:** o fundador deve verificar pessoalmente os termos e a condição de aceite armazenada, pois não foi possível reverter a seleção salva usando Save Progress. A submissão definitiva permanece bloqueada sem aprovação humana explícita.
+- **DOC-03 status:** rascunho de conteúdo salvo; incidente de aceite não resolvido; final NÃO SUBMETIDO. Responsável: sessão de submissão; data 14/11/2026.
