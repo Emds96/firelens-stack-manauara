@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "status": "pending",
+  "area": "Recortes A e B (não representam o estado do Amazonas)",
+  "months": [],
+  "alerts": ["Séries mensais ainda não foram extraídas dos CSVs anuais NASA FIRMS. Os resultados estatísticos existentes estão em data/validacao.json."]
+}

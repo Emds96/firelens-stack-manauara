@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "area": "Estado do Amazonas, Brasil (malha IBGE, código 13)",
+  "source": "NASA FIRMS Area API",
+  "source_url": "https://firms.modaps.eosdis.nasa.gov/api/area/",
+  "status": "unavailable",
+  "last_attempt_utc": null,
+  "last_success_utc": null,
+  "last_observation_utc": null,
+  "query_days": 2,
+  "filters": "VIIRS confidence n/h; dia e noite separados; geometria IBGE",
+  "sensors": {},
+  "detections": [],
+  "alerts": ["A ingestão NRT ainda não foi executada com chave real."],
+  "disclaimer": "Detecções de pixels, não incêndios individuais. NRT não significa observação instantânea."
+}

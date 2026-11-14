@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dois Tradutores — investigação de comparabilidade entre sensores NASA MODIS e VIIRS. Projeto Stack Manauara, NASA Space Apps 2026.">
+  <title>Dois Tradutores · Stack Manauara</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top"><span class="brand-mark">Ⅱ<span class="ember">.</span></span><span><strong>dois tradutores</strong><small>STACK MANAUARA / SPACE APPS 2026</small></span></a>
+      <div class="topright"><span class="top-pulse"></span><span>CIÊNCIA DE DADOS DA TERRA</span><a class="source-link" href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noopener noreferrer">NASA FIRMS ↗</a></div>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <div class="eyebrow"><span class="beacon">●</span> UMA MESMA PAISAGEM. DIFERENTES OLHARES.</div>
+        <h1>Os satélites veem o fogo.<br><em>Nós traduzimos os dados.</em></h1>
+        <p class="intro">Sensores distintos não medem a atividade do fogo da mesma forma. Compare as observações, explore as evidências e compreenda os limites — sem confundir detecção com incêndio.</p>
+        <div class="tagbar"><span>MODIS / AQUA</span><span class="connector">↔</span><span>VIIRS / NOAA-20</span><span class="connector">+</span><span>NOAA-21 NRT</span></div>
+      </section>
+      <nav class="tabs" aria-label="Seções">
+        <button type="button" role="tab" aria-selected="true" data-view="agora">01 <span>Observações recentes</span></button>
+        <button type="button" role="tab" aria-selected="false" data-view="ciencia">02 <span>Tradutor científico</span></button>
+        <button type="button" role="tab" aria-selected="false" data-view="calendario">03 <span>Calendário histórico</span></button>
+      </nav>
+      <section class="page-section" id="agora" aria-label="Observações recentes">
+        <div class="section-lead"><div><span class="section-n">01 / CAMADA RECENTE</span><h2>O que está sendo observado?</h2><p>Registros de pixels com anomalia térmica identificados por satélites. Não são eventos de incêndio confirmados.</p></div><div id="status-pill" class="pill muted">● Verificando fonte</div></div>
+        <div class="stat-grid">
+          <article class="stat-card"><div class="stat-name">Detecções elegíveis · 48h</div><div class="stat-value" id="recent-count">—</div><div class="stat-foot">NOAA-20 + NOAA-21 · confiança nominal/alta</div></article>
+          <article class="stat-card"><div class="stat-name">Última captura bem-sucedida</div><div class="stat-value small" id="last-success">—</div><div class="stat-foot">Horário da atualização do sistema</div></article>
+          <article class="stat-card"><div class="stat-name">Última observação disponível</div><div class="stat-value small" id="last-obs">—</div><div class="stat-foot">Horário da detecção pelo satélite</div></article>
+        </div>
+        <div class="info-alert" id="recent-alert" role="status">Carregando estado da ingestão...</div>
+        <div class="two-col">
+          <article class="panel"><div class="panel-head"><h3>Distribuição por satélite</h3><span>CONTAGENS BRUTAS</span></div><div id="sensors-graph" class="bars"><div class="empty">Nenhum dado NRT validado disponível ainda.</div></div></article>
+          <article class="panel reading"><span class="overline">TRADUTOR HUMANO / EM LINGUAGEM SIMPLES</span><h3>O que esses números realmente dizem?</h3><p id="human-nrt">Estamos verificando as observações recentes. Um zero na tela não comprova que não houve fogo: nuvens, órbitas e intervalos de aquisição influenciam o que é observado.</p><p class="fine">Atualizações automáticas consultam a fonte periodicamente; isso não significa uma nova passagem de satélite a cada hora.</p></article>
+        </div>
+      </section>
+      <section class="page-section hidden" id="ciencia" aria-label="Tradutor científico">
+        <div class="section-lead"><div><span class="section-n">02 / EVIDÊNCIA CIENTÍFICA</span><h2>Dois sensores. Uma escala comparável.</h2><p>Validamos uma transformação estatística simples para aproximar contagens VIIRS das contagens observadas pelo MODIS Aqua em regiões-piloto.</p></div><span class="pill verified">● VAL-TRAD-02 / TESTES HISTÓRICOS</span></div>
+        <div class="method-strip"><div><span>1 / OBSERVAR</span><strong>VIIRS NOAA-20</strong><small>Contagens originais de pixels</small></div><span class="method-arrow">→</span><div><span>2 / AJUSTAR</span><strong>Fator global diurno</strong><small>Calculado só com anos de treino</small></div><span class="method-arrow">→</span><div><span>3 / COMPARAR</span><strong>Escala MODIS Aqua</strong><small>Referência observacional, não verdade do fogo</small></div></div>
+        <article class="panel wide-panel"><div class="panel-head"><h3>Quanto o método errou em testes posteriores?</h3><span>WAPE (%) · MENOR É MELHOR</span></div><p class="fine">WAPE avalia a diferença na soma de erros absolutos por célula de 1° × mês, dividida pela soma das contagens MODIS. Não é taxa de erro em incêndios reais.</p><div id="validation-chart" class="validation-chart"><div class="empty">Carregando os resultados verificados...</div></div><div class="legend"><span><i class="dot cyan"></i> Global diurno</span><span><i class="dot amber"></i> Sazonal regularizado</span></div></article>
+        <div class="two-col"><article class="panel reading"><span class="overline">TRADUTOR CIENTÍFICO</span><h3>O que foi demonstrado</h3><p>Nos quatro testes diurnos de 2023/2024, o fator global teve desempenho competitivo; o método sazonal não foi consistentemente superior.</p><p class="fine">Recortes A/B experimentais; 2022–2024; MODIS Aqua e NOAA-20. A transformação não foi validada para NOAA-21, incêndios físicos nem todo o Amazonas.</p></article><article class="panel reading"><span class="overline">TRADUTOR HUMANO</span><h3>Uma comparação justa</h3><p>Imagine duas câmeras com sensibilidades diferentes: contar o que cada uma enxerga pode produzir números muito distintos. O ajuste tenta tornar <em>contagens observadas</em> mais comparáveis — não consegue mostrar o fogo que nenhum sensor detectou.</p><p class="fine">Nuvens, órbitas, resolução e horário de passagem ainda importam.</p></article></div>
+      </section>
+      <section class="page-section hidden" id="calendario" aria-label="Calendário histórico">
+        <div class="section-lead"><div><span class="section-n">03 / EXPLORAR O TEMPO</span><h2>Um calendário de observações.</h2><p>Padrões mensais de detecções registradas, com séries históricas originais e ajuste quando validado.</p></div><div class="select-wrap"><label for="region">REGIÃO EXPERIMENTAL</label><select id="region"><option value="A">Recorte A</option><option value="B">Recorte B</option></select></div></div>
+        <article class="panel wide-panel"><div class="panel-head"><h3>Atividade do fogo · 2022–2024</h3><span>MODIS AQUA / CONTAGEM MENSAL</span></div><div id="calendar" class="calendar"><div class="empty">As séries mensais ainda não foram geradas. Os testes científicos já estão disponíveis na seção 02.</div></div><div class="calendar-foot"><span class="heat-legend">MENOS <i></i><i></i><i></i><i></i><i></i> MAIS</span><span>Observações locais solares · Dezembro pode estar incompleto</span></div><div id="calendar-detail" class="calendar-detail">Selecione um mês com dados verificados para ver o comparativo.</div></article>
+      </section>
+      <footer><div><strong>DOIS TRADUTORES</strong><span>Stack Manauara · NASA Space Apps Challenge 2026</span></div><div><a href="https://www.earthdata.nasa.gov/data/tools/firms" target="_blank" rel="noopener noreferrer">Fonte NASA FIRMS ↗</a><span>Projeto independente · sem endosso da NASA</span></div></footer>
+    </main>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>

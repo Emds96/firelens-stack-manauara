@@ -1,0 +1,29 @@
+{
+  "id": "VAL-TRAD-02",
+  "date": "2026-11-14",
+  "source": "NASA FIRMS annual country CSV Brazil 2022-2024",
+  "url_template": "https://firms.modaps.eosdis.nasa.gov/data/country/{sensor}_{year}_Brazil.csv",
+  "sensors": ["modis Aqua", "viirs-jpss1 NOAA-20"],
+  "filters": {
+    "both": "type 0, daynight D (night evaluated separately)",
+    "MODIS": "satellite Aqua, confidence >=30",
+    "NOAA20": "confidence n/h",
+    "aggregation": "1-degree spatial cells x local solar month, count of pixel detections",
+    "important": "Files are per UTC year; observations falling into an adjacent local-solar year were excluded, and boundary-year completeness has not been proven."
+  },
+  "regions": {"A": [-65,-9,-58,-2], "B": [-58,-9,-51,-2]},
+  "metric": "WAPE = sum(abs(MODIS - predicted))/sum(MODIS); reference is MODIS detections not ground truth fires",
+  "daytime_holdouts": [
+    {"region":"A","train":[2022],"test":2023,"global":{"WAPE":0.2216,"active_RMSE":18.75},"regularized":{"WAPE":0.2272,"active_RMSE":19.19},"modis_count":13627,"noaa20_count":53872},
+    {"region":"A","train":[2022,2023],"test":2024,"global":{"WAPE":0.2,"active_RMSE":25.77},"regularized":{"WAPE":0.2042,"active_RMSE":28.66},"modis_count":17924,"noaa20_count":70549},
+    {"region":"B","train":[2022],"test":2023,"global":{"WAPE":0.2085,"active_RMSE":21.91},"regularized":{"WAPE":0.2123,"active_RMSE":23.08},"modis_count":20863,"noaa20_count":85176},
+    {"region":"B","train":[2022,2023],"test":2024,"global":{"WAPE":0.2015,"active_RMSE":34.19},"regularized":{"WAPE":0.1931,"active_RMSE":32.74},"modis_count":29865,"noaa20_count":120834}
+  ],
+  "nighttime_holdouts": [
+    {"region":"A","train":[2022],"test":2023,"global_WAPE":0.3947,"regularized_WAPE":0.3493},
+    {"region":"A","train":[2022,2023],"test":2024,"global_WAPE":0.2347,"regularized_WAPE":0.2431},
+    {"region":"B","train":[2022],"test":2023,"global_WAPE":0.3427,"regularized_WAPE":0.3072},
+    {"region":"B","train":[2022,2023],"test":2024,"global_WAPE":0.2416,"regularized_WAPE":0.2394}
+  ],
+  "scientific_status": "Demonstrates count-scale comparability against Aqua for limited regions and years only. No validation of true fire counts, cloud coverage, NOAA-21 operational ingestion, Terra historical bridging, physical hotspot harmonization, calibrated uncertainty intervals, or entire 2000-2026 calendar."
+}

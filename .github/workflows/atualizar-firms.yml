@@ -1,0 +1,35 @@
+name: Atualizar dados NASA FIRMS
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 * * * *"
+permissions:
+  contents: write
+concurrency:
+  group: atualiza-firms
+  cancel-in-progress: false
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Consultar NOAA-20 / NOAA-21 NRT e preservar último snapshot se falhar
+        env:
+          FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
+        run: |
+          python scripts/firms_nrt.py || echo "Falha de ingestão registrada no JSON; verifique logs sem credenciais."
+      - name: Publicar JSON gerado e geometria IBGE, se disponível
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/recente.json data/amazonas_ibge.geojson 2>/dev/null || git add data/recente.json
+          if ! git diff --staged --quiet; then
+            git commit -m "dados: atualizar situação FIRMS"
+            git push
+          fi
