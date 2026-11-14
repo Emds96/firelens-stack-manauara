@@ -12,6 +12,8 @@ Em **2025**: Spearman mensal 0,976 e espacial 0,918; 8/10 células em comum. Iss
 
 **Ressalvas:** novembro 2026 foi excluído por incompletude; agosto 2026 mistura MODIS SP/NOAA-20 NRT e setembro–outubro usa NRT/NRT; falta `type` no NRT consultado. Não inferir incêndios individuais, risco, tendências, causas ou cobertura contínua. Os resultados são exploratórios, não devem aparecer no site sem revisão da sessão principal.
 
+**Teste offline independente:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43653579596 — 35 testes Python e reprodução exata das métricas dos quatro anos com 4.434 registros agregados versionados; não foi necessário consultar a NASA novamente, nem usar chave de API. Execute `python -m scripts.sci03_verify` para conferir o JSON publicado.
+
 **Evidência:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43653164498 — 35 testes automatizados e fontes oficiais reconsultadas, com hashes por arquivo/janela em `data/sci03_resultados.json`.
 
 ## Conclusion first
