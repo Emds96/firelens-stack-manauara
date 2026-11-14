@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/sci03.yml'
+      - 'scripts/sci03_sources.py'
 permissions:
   contents: write
 concurrency:
