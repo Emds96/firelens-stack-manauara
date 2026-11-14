@@ -5,7 +5,7 @@ Read-only to FireLens and TEST-01/TEST-01B. Python standard library.
   python -m scripts.sci03_sources recent --out /tmp/sci03_recent.json
 """
 from __future__ import annotations
-import argparse, datetime as dt, hashlib, json, math, os, tempfile
+import argparse, datetime as dt, hashlib, json, math, os, tempfile, time
 from collections import Counter
 from pathlib import Path
 from scripts.test01_historico import BASE, download, process_archive
@@ -37,7 +37,28 @@ def historical():
             name=f"{source}_{year}_Brazil.csv"
             file=Path(tempfile.gettempdir())/("sci03_"+name)
             try:
-                provenance=download(BASE+name,file)
+                # Retry transient GitHub runner egress errors without mislabelling
+                # them as absent data; verify exact original SHA after download.
+                last_error=None
+                provenance=None
+                source_url=BASE+name
+                for attempt in range(1,4):
+                    try:
+                        file.unlink(missing_ok=True)
+                        candidate=source_url if attempt<3 else source_url.replace(
+                            "firms.modaps.eosdis.nasa.gov","firms2.modaps.eosdis.nasa.gov")
+                        provenance=download(candidate,file)
+                        source_url=candidate
+                        break
+                    except (OSError,TimeoutError) as exc:
+                        last_error=exc
+                        print("SCI03 RETRY",year,source,"attempt",attempt,
+                              "error_class",type(exc).__name__,flush=True)
+                        if attempt<3:time.sleep(attempt*3)
+                if provenance is None:
+                    raise RuntimeError(
+                        "SCI-03 source download failed after retries: "+
+                        type(last_error).__name__) from None
                 prior=checks[(year,source)]
                 if provenance["sha256"]!=prior["sha256"]:
                     raise ValueError("SCI-03 historical source hash differs from archived TEST-01; do not silently combine")
@@ -45,7 +66,7 @@ def historical():
                 if info["rows"]["retained_pixels"]!=prior["rows"]["retained_pixels"]:
                     raise ValueError("SCI-03 original eligible count differs from TEST-01")
                 cells.update({k:v for k,v in counts.items() if k[1]<=10})
-                out["file_provenance"].append({"year":year,"source":source,"url":BASE+name,
+                out["file_provenance"].append({"year":year,"source":source,"url":source_url,
                     "processing":"FIRMS country archive","sha256":provenance["sha256"],
                     "bytes":provenance["bytes"],"first_retained_utc":info["first_retained_utc"],
                     "last_retained_utc":info["last_retained_utc"],
