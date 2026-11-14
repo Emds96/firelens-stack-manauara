@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.1.4 (integração NRT autenticada comprovada; site público e calendário histórico ainda pendentes)
+**Versão:** engenharia 0.1.5 (integração NRT e 72 meses históricos comprovados; site público ainda pendente)
 
 ## Decisões e requisitos
 
@@ -15,12 +15,12 @@
 
 - Código frontend estático: `index.html`, `style.css`, `app.js`.
 - Código NRT: `scripts/firms_nrt.py` (NASA NOAA-20 e NOAA-21 consultados com MAP_KEY protegida na execução Actions #2).
-- Exportador histórico: `scripts/build_historical.py` (ainda sem os CSVs necessários para a extração real).
+- Exportador histórico: `scripts/build_historical.py` (executado em GitHub Actions; seis CSVs NASA FIRMS 2022–2024 processados e métricas WAPE comparadas com a validação).
 - Arquivo de agendamento GitHub Actions: `.github/workflows/atualizar-firms.yml` (execução manual #1 e disparo por push #2 comprovados; cron horário ainda não observado).
 - Scripts de testes: `tests/` (detalhes abaixo).
 - Dados científicos anteriores, fornecidos pela pesquisa, preservados em `data/validacao.json` e `docs/research/`.
 - Estado NRT `data/recente.json` agora contém resposta NASA real com status=ok e 388 detecções elegíveis em 2 dias; dados gerados por execução Actions #2.
-- Estado calendário `data/historico.json` indica extração pendente; **não inclui contagens inventadas**.
+- Estado calendário `data/historico.json` contém **72 registros mensais verificados** (2022–2024, recortes A/B); dezembro sinalizado incompleto para cruzamento UTC/solar.
 
 ## Pendências prioritárias
 
@@ -28,7 +28,7 @@
 2. Segredo `FIRMS_MAP_KEY` configurado e teste de consulta real concluído em execução #2.
 3. Revisar cientificamente a geometria simplificada vs. IBGE oficial e o comportamento do estado de desatualização no navegador.
 4. Acompanhar uma execução automática por cron para validar periodicidade real; já houve execução manual e disparo por push.
-5. Obter CSVs anuais oficiais de 2022-24, rodar exportador, verificar WAPE e gerar calendário real.
+5. Geração histórica concluída em Actions #1 do workflow histórico; conferir experiência do calendário no site e investigar expansão temporal futura.
 6. Publicar site e verificar a experiência em navegador sem autenticação.
 7. Testar Tradutor 2 com pessoas, inclusive linguagem sobre zero detecções.
 
@@ -58,10 +58,18 @@
 - Próximos marcos: testar visualização em navegador, publicação GitHub Pages, cron e séries mensais históricas.
 
 
+## Resultado histórico reproduzido — calendário 2022–2024
+
+- Execução: https://github.com/Emds96/firelens-stack-manauara/actions/runs/43632602795 — concluída com sucesso.
+- Seis CSVs oficiais Brasil, MODIS Aqua e VIIRS NOAA-20 (2022, 2023, 2024), foram ingeridos; 72 registros de região × ano × mês publicados.
+- O código interromperia a publicação se qualquer um dos quatro WAPE globais diurnos divergissem da validação de entrada; execução passou.
+- `data/historico.json` status `ready`, preserva métodos, contagens de pixels, fonte e limitações. Fator é treinado com anos anteriores, sem vazamento no ano de teste.
+- Contagens mensais não são incêndios distintos nem representam cobertura histórica de 2000–2026; dezembro tem alerta de incompletude local solar.
+
 ## Evidência e testes
 
 **Local inicial: 9 testes aprovados. GitHub Actions #2 (14/11/2026):** `python -m unittest discover -s tests -v` → **12 testes aprovados, 0 falhas**. Incluem testes locais de geometria, filtragem, resposta simulada por sensor, contingência e cálculos. **Os testes unitários usam dados sintéticos; a consulta NASA real foi comprovada separadamente no mesmo workflow.** Teste no navegador, cron e publicação GitHub Pages ainda pendentes.
 
 ## Mensagem para a sessão de submissão
 
-> Código, testes e execução NOAA-20/NOAA-21 NRT estão publicados e comprovados, com 388 detecções elegíveis no JSON da execução #2. O site público ainda não foi confirmado, o cron horário não foi observado e o calendário mensal histórico não está pronto. O contorno do Amazonas é simplificado e requer validação contra geometria oficial. Não afirmar que 388 detecções correspondem a 388 incêndios, nem que a harmonização foi validada para NOAA-21.
+> Código, testes e execução NOAA-20/NOAA-21 NRT estão publicados e comprovados; houve 388 detecções elegíveis na consulta de 14/11/2026 (2 dias, recorte geográfico simplificado). O calendário histórico 2022–2024 está gerado, com 72 registros e métricas reproduzidas. Site público e cron horário ainda não foram confirmados. Não afirmar que detecções são incêndios, nem harmonização validada NOAA-21.

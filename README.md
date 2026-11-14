@@ -2,7 +2,7 @@
 
 NASA Space Apps Challenge 2026 · **Harmonization of MODIS and VIIRS Hot Spots**.
 
-**Status atual:** protótipo estático com código e testes publicados no GitHub, ainda sem GitHub Pages comprovado. **Ingestão NASA NRT NOAA-20/NOAA-21 comprovada em 14/11/2026 na execução #2**, por consulta real autenticada e JSON publicado. Agendamento horário automático ainda não foi observado em execução por cron.
+**Status atual:** código e dados no GitHub, site GitHub Pages ainda não comprovado. **NASA NRT NOAA-20/NOAA-21 comprovado em 14/11/2026 nas execuções #2 e #3**. **Calendário 2022–2024 publicado com 72 registros mensais e quatro métricas WAPE reproduzidas** no workflow histórico. Execução automática por cron ainda não foi observada.
 
 ## Limites do recorte geográfico
 
@@ -47,13 +47,13 @@ Se um sensor falhar, **todo o lote é marcado indisponível** e a última captur
 
 Os experimentos independentes disponíveis estão em `data/validacao.json` e `docs/research/` (artefatos fornecidos pela pesquisa).
 
-Para gerar as séries mensais reais, obtenha os 6 CSVs anuais do Brasil de 2022–24 da [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/data/country/) e armazene em `firms_cache/` com os nomes exatos utilizados pelo script científico original. Depois:
+**Séries já geradas e verificadas no GitHub em 14/11/2026** por [workflow histórico](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43632602795). Para reproduzir localmente, obtenha os 6 CSVs anuais do Brasil de 2022–24 da [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/data/country/) e armazene em `firms_cache/` com os nomes exatos utilizados pelo script científico original. Depois:
 
 ```bash
 python -m scripts.build_historical --cache firms_cache
 ```
 
-Esse exportador usa os **mesmos filtros, células e método** do arquivo científico original e compara os 4 resultados de WAPE (global diurno) com `data/validacao.json`, abortando se divergirem. Até isso ocorrer, `data/historico.json` permanece `pending`; o calendário não exibe dados fabricados.
+Esse exportador usa os **mesmos filtros, células e método** do arquivo científico original e compara os 4 resultados de WAPE (global diurno) com `data/validacao.json`, abortando se divergirem. O arquivo `data/historico.json` encontra-se `ready` após conferência dos quatro WAPEs globais diurnos; a interface pode apresentar os 72 registros mensais sem dados fabricados.
 
 **Limite:** por usar arquivos por ano UTC sem os dados de 2025, dezembro do calendário solar local pode estar incompleto. Ele é identificado como incompleto, e a versão não alega série 2000–2026 nem limites oficiais do Amazonas para as regiões de validação A/B.
 
@@ -63,9 +63,10 @@ Esse exportador usa os **mesmos filtros, células e método** do arquivo cientí
 - `scripts/firms_nrt.py`: API NASA + geometria IBGE + estado de falha e fallback.
 - `scripts/build_historical.py`: gerador de séries históricas, validado contra WAPE original.
 - `data/recente.json`: somente resultados NRT verdadeiros ou estado indisponível.
-- `data/historico.json`: séries mensais após importação; `pending` até então.
+- `data/historico.json`: 72 séries mensais de A/B × 2022–2024, geradas com validação WAPE comprovada.
 - `data/validacao.json`: resultados experimentais fornecidos pela pesquisa.
-- `.github/workflows/atualizar-firms.yml`: rotina horária e publicação de JSON.
+- `.github/workflows/atualizar-firms.yml`: rotina NRT horária e publicação de JSON (cron ainda não observado).
+- `.github/workflows/construir-historico.yml`: workflow de extração 2022–2024, com WAPE reproduzido e JSON histórico publicado.
 - `tests/`: testes sintéticos para lógica, não testes de integração NASA.
 - `ESTADO_PROJETO.md`: transferência e status para submissão.
 
