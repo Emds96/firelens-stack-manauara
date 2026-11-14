@@ -147,3 +147,16 @@ A apresentação foi criada com 7 slides em inglês, com números verificados e 
 - **GitHub Pages build:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43637716718 — sucesso.
 - **Disclosure de IA:** o PDF possui rodapé visível de assistência por IA; incluir declaração completa na submissão, conferir alterações feitas por outras ferramentas/sessões e atribuir dados NASA FIRMS.
 - **Não alegar:** cron hourly independentemente validado, previsão, validação NRT NOAA-21 do ajuste histórico, precisão cartográfica IBGE oficial ou incêndios físicos individuais.
+
+
+## 7. Atualização MAP-01 — mapa interativo concluído no MVP 2D
+
+**Nova funcionalidade comprovada em teste Chrome:** o FireLens agora apresenta um mapa interativo 2D com coordenadas reais das detecções recentes NASA FIRMS NOAA-20/NOAA-21, filtros por satélite, agrupamento, lista acessível para seleção de pixels e painel de atributos com dois tradutores em EN/PT-BR.
+
+**Prova técnica:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43641760032 — seleção dos pontos e dois tradutores, filtros, idiomas, layout 390x844 e contingência simulada aprovados. **Documentação:** https://github.com/Emds96/firelens-stack-manauara/blob/main/docs/MAP-01.md
+
+**English paragraph for project description (insert only after checking field limits):**
+
+> Our prototype also includes an interactive 2D map of recent NASA FIRMS NOAA-20 and NOAA-21 thermal-anomaly detections in Amazonas. Visitors can zoom, filter by satellite, select a real coordinate from the map or an accessible list, and inspect observation time, location, confidence class, day/night status, and a scientific and plain-language explanation. An observation represents a detected thermal pixel, not an individual fire or the burned area. The near-real-time layer is separate from our historical MODIS/VIIRS count-scale comparison. Source and observation timestamps, stale-data warnings, and limitations of the simplified state boundary are disclosed.
+
+**Restrições de submissão:** o globo 3D continua **não implementado**. O PDF da demo com sete slides foi criado antes do mapa 2D e ainda não foi atualizado para demonstrá-lo; considerar revisão da apresentação mediante autorização da sessão principal, sem retirar as limitações científicas. Não afirmar cobertura global, incêndios confirmados nem harmonização NRT NOAA-21.
