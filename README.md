@@ -16,6 +16,14 @@ O arquivo versionado `data/amazonas_ibge.geojson` é **uma geometria estadual si
 - **Presentation landing page:** https://emds96.github.io/firelens-stack-manauara/demo/
 - The demo was prepared with AI assistance and its seven-slide PDF and bilingual UI were browser-tested on 14/11/2026; the team remains responsible for review and final approval.
 
+## MAP-01: Interactive geographic hotspot viewer
+
+- The **Recent observations** section includes a 2D Leaflet map, real NASA FIRMS NOAA-20/NOAA-21 pixel coordinates, clustering, satellite filters, and a keyboard-accessible paginated selection list. Selecting a detection displays original scientific attributes and a plain-language translation in EN/PT-BR.
+- The current observation and retrieval timestamps are distinct; stale or failed snapshots are labelled instead of presented as current. Pixel detections are not individual confirmed fires or burned-area outlines.
+- Verified in Chrome CI: [MAP-01 browser test and scientific regressions](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43641760032). Includes mobile viewport 390x844 and unavailable JSON case.
+- Libraries: Leaflet 1.9.4, Leaflet.markercluster 1.5.3. Base map: © OpenStreetMap contributors. Browser network access needed. Details: [docs/MAP-01.md](docs/MAP-01.md).
+- 3D globe is not part of this MVP and is not approved.
+
 ## Rodar localmente
 
 Requisitos: **Python 3.11+**, sem dependências externas.
