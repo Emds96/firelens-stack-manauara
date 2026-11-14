@@ -45,11 +45,11 @@ function detail(p){
 }
 function selectPoint(p,zoomToPoint){
  selected=p;detail(p);renderList();
- if(zoomToPoint&&map&&markerRefs.has(p.id)){
-  const marker=markerRefs.get(p.id);
-  if(canCluster&&typeof layer.zoomToShowLayer==="function"){
-   layer.zoomToShowLayer(marker,()=>map.panTo(marker.getLatLng(),{animate:false}));
-  }else map.setView([p.lat,p.lon],Math.max(9,map.getZoom()),{animate:false});
+ if(zoomToPoint&&map){
+  // Recenter without markercluster.zoomToShowLayer: its async animation can
+  // dereference a layer removed while filters/locale update the marker group.
+  // Explicit setView is deterministic and preserves clickable markers.
+  map.setView([p.lat,p.lon],Math.max(10,map.getZoom()),{animate:false});
  }
  $("#map-inspector-details").focus({preventScroll:true});
 }
