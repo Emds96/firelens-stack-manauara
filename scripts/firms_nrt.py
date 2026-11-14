@@ -255,7 +255,7 @@ def main(argv=None):
         path=Path(args.boundary)
         if path.exists():
             boundary=json.loads(path.read_text(encoding='utf8'))
-            boundary_source='IBGE, malha estadual 13 (arquivo versionado no repositório)'
+            boundary_source=(boundary.get('properties',{}).get('source') or 'Malha estadual, arquivo versionado no repositório')
         else:
             geom,boundary_source=download_ibge_geometry()
             boundary={'type':'Feature','geometry':geom,'properties':{'source':boundary_source}}

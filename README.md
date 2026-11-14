@@ -4,6 +4,10 @@ NASA Space Apps Challenge 2026 · **Harmonization of MODIS and VIIRS Hot Spots**
 
 **Status atual:** protótipo estático com código e testes publicados no GitHub; ainda não implantado no GitHub Pages. **Ainda não há consulta autenticada validada nem site publicado**, enquanto não houver MAP_KEY configurada e integração NRT comprovada. Dados NRT aparecem como indisponíveis até execução verdadeira.
 
+## Limites do recorte geográfico
+
+O arquivo versionado `data/amazonas_ibge.geojson` é **uma geometria estadual simplificada de fonte secundária baseada em IBGE**, e não uma verificação direta de malha oficial atualizada. Veja `docs/GEOMETRIA_AMAZONAS.md`. O contorno pode produzir erros junto às fronteiras.
+
 ## Rodar localmente
 
 Requisitos: **Python 3.11+**, sem dependências externas.

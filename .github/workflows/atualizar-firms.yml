@@ -3,6 +3,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "23 * * * *"
+  push:
+    paths:
+      - ".github/workflows/atualizar-firms.yml"
+      - "scripts/firms_nrt.py"
+      - "data/amazonas_ibge.geojson"
 permissions:
   contents: write
 concurrency:
@@ -14,22 +19,29 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Consultar NOAA-20 / NOAA-21 NRT e preservar último snapshot se falhar
+      - name: Testes unitários de processamento
+        run: python -m unittest discover -s tests -v
+      - name: Consultar NOAA-20 / NOAA-21 NRT
+        id: ingest
+        continue-on-error: true
         env:
           FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
-        run: |
-          python scripts/firms_nrt.py || echo "Falha de ingestão registrada no JSON; verifique logs sem credenciais."
-      - name: Publicar JSON gerado e geometria IBGE, se disponível
+        run: python scripts/firms_nrt.py
+      - name: Preservar e publicar JSON de estado da ingestão
+        if: always() && steps.ingest.outcome != 'skipped'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/recente.json data/amazonas_ibge.geojson 2>/dev/null || git add data/recente.json
+          git add data/recente.json
           if ! git diff --staged --quiet; then
-            git commit -m "dados: atualizar situação FIRMS"
+            git commit -m "dados: registrar atualização FIRMS e estado da fonte"
             git push
           fi
+      - name: Falhar execução se ingestão não funcionou
+        if: steps.ingest.outcome != 'success'
+        run: |
+          echo "::error::Consulta FIRMS não concluída. Verifique data/recente.json; não tratar workflow como sucesso."
+          exit 1

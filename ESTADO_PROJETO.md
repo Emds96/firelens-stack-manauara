@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.1.2 (código e testes publicados; integração NASA NRT e site público ainda pendentes)
+**Versão:** engenharia 0.1.3 (código e testes publicados; integração NASA NRT e site público ainda pendentes)
 
 ## Decisões e requisitos
 
@@ -39,6 +39,14 @@
 - NASA FIRMS NRT depende de latência de publicação, órbitas, nuvens e qualidade dos sensores.
 - As regiões A/B científicas não correspondem às fronteiras do Amazonas.
 - Usar o relatório `data/validacao.json` somente como evidência de exploração; não reivindicar validação de NOAA-21 ou da camada recente.
+
+## Diagnóstico GitHub Actions #1 e correção ENG-02
+
+- Execução oficial do workflow #1: https://github.com/Emds96/firelens-stack-manauara/actions/runs/43631724021 — terminou verde, mas `data/recente.json` registrou `status=unavailable`, `last_success_utc=null`, `detections=[]`, erro `URLError` antes da consulta NASA.
+- O segredo `FIRMS_MAP_KEY` estava presente no ambiente (mas seu valor não foi exposto).
+- Correção técnica publicada: geometria simplificada do Amazonas versionada (`data/amazonas_ibge.geojson`, fonte secundária baseada no IBGE), permitindo não requisitar a geometria a cada execução; limitações em `docs/GEOMETRIA_AMAZONAS.md`.
+- O workflow foi ajustado para **falhar de fato** se a ingestão não concluir, ainda preservando o JSON de estado e executando testes antes da consulta. Incluiu gatilho de push limitado ao código/configuração, sem laço para commits de dados.
+- **Situação:** correção aguardando execução e comprovação NRT; não há dados NASA recuperados comprovados neste registro.
 
 ## Evidência e testes
 
