@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - '.github/workflows/build-final-demo.yml'
+      - 'scripts/capture_demo_map.cjs'
+      - 'scripts/build_final_demo.py'
 permissions:
   contents: write
 concurrency:
