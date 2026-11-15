@@ -34,7 +34,7 @@
 - **Obrigatório/limite:** verificar no formulário.
 - **Resposta proposta (EN):**
 
-> FireLens helps people understand NASA FIRMS thermal detections without treating every detected pixel as an individual fire. Its bilingual, map-first web app displays recent NOAA-20/NOAA-21 observations with plain-language explanations and expandable scientific details. A separate historical Eagle's View case shows three real MODIS Aqua/VIIRS NOAA-20 observations from 10 November 2026, 107 minutes apart, as a candidate association—not a confirmed single fire. The app also preserves a 2022–2024 calendar for two experimental pilot regions and independently evaluated count-scale comparisons. FireLens does not predict fires, estimate burned area or claim validated physical harmonization.
+> FireLens helps people understand NASA FIRMS thermal detections without treating every detected pixel as an individual fire. Its bilingual, map-first web app displays recent NOAA-20/NOAA-21 observations with plain-language explanations and expandable scientific details. A separate historical Eagle's View case shows three real MODIS Aqua/VIIRS NOAA-20 observations from 10 November 2026, 107 minutes apart, as a candidate association—not a confirmed single fire. Its History tab now shows statewide Amazonas January–October 2023–2026 satellite detections for Aqua and NOAA-20 separately, with provisional NRT months identified. The separate 2022–2024 pilot A/B calendar and evaluated count-scale experiments remain accessible. FireLens does not predict fires, estimate burned area or claim validated physical harmonization.
 
 - **Evidência:** `data/historico.json`, `data/validacao.json`, `data/recente.json`, `ESTADO_PROJETO.md`.
 - **Estado:** RASCUNHO sustentado; ajustar ao limite real.
@@ -62,13 +62,13 @@
 >
 > **Scientific translator.** We compare daytime MODIS Aqua and VIIRS NOAA-20 detections from NASA FIRMS. A simple global scaling factor estimated from training years maps VIIRS counts toward the MODIS count scale. Validation uses subsequent held-out years, 1° spatial cells and local-solar-month aggregation in two rectangular pilot regions A and B. For 2023/2024, global daytime WAPE against observed MODIS counts was 22.16%/20.00% in A and 20.85%/20.15% in B. These errors do not measure actual fire events. A more complex seasonal model was not consistently superior.
 >
-> **Human translator and calendar.** A separate explanation layer makes sensor limitations understandable. The interactive historical calendar contains 72 region-month records for 2022–2024 across pilot areas A and B. Original counts remain visible; the project distinguishes training periods from tests.
+> **Human translator and calendar.** A separate explanation layer makes sensor limitations understandable. The primary History calendar aggregates 4,434 NASA-derived SCI-03 1° cell records for January–October 2023–2026 in Amazonas, with separate MODIS Aqua and NOAA-20 series; original pixels and SP/NRT processing are identified, and missing months are unavailable, not zero. A distinct pilot A/B calendar retains 72 region-month records for 2022–2024 and independently tested count-scale methods.
 >
 > **Recent observations.** A separate NOAA-20/NOAA-21 NRT layer reports satellite pixel detections over a simplified, approximate Amazonas boundary with data retrieval and observation times, day/night breakdown and source-status information. In a dated November 14, 2026 snapshot of a two-day window, 145 NOAA-20 and 243 NOAA-21 eligible detections were recorded (388 total). This is not a count of 388 independent fires, nor a permanent/current statistic.
 >
 > **Implementation and testing.** Python scripts process NASA FIRMS datasets into versioned JSON, served by an HTML/CSS/JavaScript application on GitHub Pages. A GitHub Actions regression run passed **47 Python tests** and browser checks for desktop/mobile, the bilingual map, archived Eagle's View case, calendar and failure handling. The TEST-02 research measurements are reproducible offline, but passing tests does not validate identity of physical fires. Hourly scheduling is configured; a schedule-triggered production run requires separate confirmation.
 >
-> **Limitations.** The historical experiment covers 2022–2024, not the early 2000s to present. A/B are not the Amazonas state boundary; the simplified NRT boundary has not been validated against a current official IBGE geometry. Historical NOAA-20 calibration has not been validated for NOAA-21, the entire state or ground-truth fires. Cloud effects, detection differences and orbital sampling are not fully corrected; results are not a fire forecast.
+> **Limitations.** The historical state visualization covers only January–October 2023–2026, with mixed 2026 SP/NRT processing, while the separate pilot A/B experiment covers 2022–2024. A/B are not the Amazonas state boundary; the simplified NRT boundary has not been validated against a current official IBGE geometry. Historical NOAA-20 calibration has not been validated for NOAA-21, the entire state or ground-truth fires. Cloud effects, detection differences and orbital sampling are not fully corrected; results are not a fire forecast.
 
 - **Evidência:** histórico/validação/recente e workflows GitHub indicados acima.
 - **Estado:** RASCUNHO; conferir implementação e limite do campo ao preencher.
@@ -88,7 +88,7 @@
 - **Obrigatório/limite:** verificar no formulário.
 - **Resposta proposta (EN):**
 
-> NASA FIRMS (Fire Information for Resource Management System) supplies the satellite thermal-anomaly observations central to our prototype. Annual Brazil country files (MODIS Aqua and VIIRS NOAA-20, 2022–2024) support its public historical pilot calendar. The Area API supplies the public map's recent NOAA-20/NOAA-21 NRT detections. In separate TEST-02 observation-level research, we retrieved MODIS_NRT (Aqua/Terra) and VIIRS_NOAA20_NRT for 10–14 November 2026, verified original attributes and explored spatial-temporal candidate associations. This does not establish a physical identity match or validated sensor harmonization.
+> NASA FIRMS (Fire Information for Resource Management System) supplies the satellite thermal-anomaly observations central to our prototype. Annual Brazil country files (MODIS Aqua and VIIRS NOAA-20, 2022–2024) support its separate experimental pilot A/B calendar. The primary statewide January–October 2023–2026 history uses the versioned SCI-03 1° monthly aggregates derived from NASA archives and 2026 Area API SP/NRT observation windows. The Area API supplies the public map's recent NOAA-20/NOAA-21 NRT detections. In separate TEST-02 observation-level research, we retrieved MODIS_NRT (Aqua/Terra) and VIIRS_NOAA20_NRT for 10–14 November 2026, verified original attributes and explored spatial-temporal candidate associations. This does not establish a physical identity match or validated sensor harmonization.
 >
 > https://www.earthdata.nasa.gov/data/tools/firms
 > https://firms.modaps.eosdis.nasa.gov/data/country/
@@ -154,3 +154,12 @@
 - **Limites:** nenhum pareamento comprova incêndio único, fogo de sub-bosque, fumaça de Manaus, área queimada, recuperação de detecções ocultas ou previsão. `scan × track` aproxima dimensões sem representar footprint orbital exato; T31/TI5 vêm de canais distintos; FRP é potência e não energia conservada.
 - **Não foi feito:** nenhuma edição do formulário real da NASA Space Apps, dos aceites de termos/originalidade ou do botão Submit for Judging por esta missão. Persistência dos aceites anteriores continua pendente de verificação humana.
 - **Responsável:** engenharia Stack Manauara. **Status:** texto atualizado em GitHub, **não submetido**. Ainda exige conferência humana de links, créditos, conteúdo final e estado dos campos reais na NASA.
+
+
+## HIST-02 — atualização do calendário estadual (14/11/2026)
+
+O campo **History** agora começa com **Amazonas, janeiro–outubro de 2023–2026**, por satélite MODIS Aqua ou VIIRS NOAA-20, diretamente dos agregados NASA FIRMS SCI-03 (`data/sci03_agregados.json`, **4.434 linhas de células de 1°**). Os arquivos anuais Brasil 2023–2025 são identificados como arquivo; em 2026 o aplicativo distingue janeiro–julho SP/SP, agosto Aqua SP/NOAA-20 NRT e setembro–outubro NRT/NRT. Os produtos NRT são provisórios e não são automaticamente comparáveis aos SP. Novembro e dezembro constam como **indisponíveis na série**, não como ausência de fogo; 2026 é parcial.
+
+A visualização do experimento A/B 2022–2024 permanece acessível por um **controle separado** e preserva `data/historico.json` e a metodologia original. **Não houve ajuste de calibração, alteração de arquivos científicos, login em formulário NASA, aceite nem submissão.**
+
+**Evidência de CI:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43671123377 — 14 testes Node, 47 Python e verificação Chromium em desktop, sensor por sensor, idioma e preservação de A/B. Documento científico de implementação: `docs/HIST-02_CALENDARIO.md`. O texto realmente salvo no formulário NASA deve ser revisado pela equipe antes do envio, inclusive limites de caracteres e créditos.
