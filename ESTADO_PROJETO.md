@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.2.4 (TEST-02 físico-espacial 10–14/11/2026 executado, dados NASA reais, nenhuma fusão ou alteração da interface)
+**Versão:** engenharia 0.3.0 (FIN-01 + UX-03 mapa principal, caso histórico separado, interpretação unificada e demo de sete slides; submissão NASA pendente)
 
 ## Decisões e requisitos
 
@@ -181,3 +181,18 @@
 - **Riscos e restrições:** scan/track dimensões aproximadas (sem footprints Level-2), diferença entre canais T31/TI5, FRP instantâneo não conservado, NRT provisório, geometria estadual simplificada, formulários NASA salvos não reabertos nesta revisão. Sem inferir mesmo incêndio, fogo sob dossel, origem de fumaça ou harmonização física comprovada.
 - **Auditoria documental:** PDF demo e rascunhos de submissão precisam de revisão de “72 validated”, teste/data desatualizados, atribuições de IA e crédito de terceiros; atualização **só após aprovação**. Existe registro de termos marcados indevidamente em `docs/SUBMISSAO_RASCUNHO.md`; o estado atualmente salvo na NASA requer verificação humana, sem clicar em Submit.
 - **Validação proposta:** conferir números/horas com JSON e scripts TEST-02, rever sete slides e legibilidade, aprovação científica humana, depois verificar créditos e campos reais da submissão. **Responsável/data:** engenharia Stack Manauara, 14/11/2026; aprovação pela sessão principal pendente.
+
+
+## FIN-01 / UX-03 — Finalização da aplicação e documentação (14/11/2026)
+
+- **Decisões e status:** **FIN-01 — APROVADA pelo fundador, IMPLEMENTADA pela engenharia**; **UX-03 — APROVADA pelo fundador, IMPLEMENTADA pela engenharia**. Próximo aceite humano dos slides/textos finais e envio NASA continua pendente. **Nenhum Submit for Judging foi clicado por esta missão.**
+- **Motivo:** mapa principal, interpretação científica de fácil compreensão, exemplo real sem alegar incêndio físico único, histórico preservado e três áreas intuitivas. Alternativas rejeitadas: reconstrução da aplicação e uso das quatro condições como prova definitiva de identidade.
+- **Implementação:** navegação EN/PT-BR **Map / History / Understand the data**; estatísticas e metodologia recolhíveis; painel por ponto mostra explicação unificada primeiro, medições originais e ressalvas em `details`. Área histórica de 2022–2024 A/B preservada.
+- **Caso real separado do NRT:** `data/caso_visao_aguia_20261110.json`, extraído e conferido contra observações reais TEST-02: MODIS Aqua M-000047 e VIIRS V-000192/V-000193 em 10/11, **107 min**, FRP MODIS **18,62 MW** e soma VIIRS **13,09 MW**. Cenário histórico tem estado datado e botão de retorno para NOAA20/NOAA21 NRT; não é indicador “ao vivo”.
+- **Ciência:** `scan × track` apenas dimensões aproximadas, T31/TI5 temperaturas de brilho em canais diferentes, FRP potência e não energia conservada. Associação candidata, **não** confirmação de incêndio individual, sub-bosque, área queimada ou fumaça. Em 11/11, **12 MODIS Aqua / 222 NOAA20 elegíveis**, zero grupos passam as quatro condições exploratórias em 120 min; em 10/11 há dois grupos candidatos. Calibração histórica continua separada da visualização NRT.
+- **Artefatos:** código `index.html`, `app.js`, `map-ui.js`, `style.css`; dados novos `data/caso_visao_aguia_20261110.json`; testes `tests/test_case.cjs` e `tests/test_map_browser.cjs`; scripts de demo `scripts/capture_demo_map.cjs` / `scripts/build_final_demo.py` e `demo/FireLens_7_Slide_Demo_2026.pdf`; documentos `docs/FIN-01_UX-03_ENTREGA.md`, `docs/SUBMISSAO_RASCUNHO.md`, `docs/PACOTE_SUBMISSAO_FIRELENS_2026-11-14.md`, README.
+- **Validação real de interface:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669321931 — 47 testes Python, nove testes Node sobre dados/mapa, navegação em Chrome desktop 1280×900 e celular 390×844, marcadores, filtros, troca EN/PT-BR, caso em camada separada e retorno, calendário, métodos, falha NRT, sem exceções JS. **Demo:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669280189 — imagens geradas da aplicação real, PDF com 7 páginas e textos auditados; URL pública https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf .
+- **Agendamento NRT comprovado:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669211275 — workflow disparado por **schedule**, concluído com sucesso em 15/11/2026 02:44 UTC (14/11 22:44 AMT); `data/recente.json` atualizado com `last_success_utc=2026-11-15T02:45:02Z`, `status=ok` e `count=172`. Isto demonstra uma execução agendada real, **não** garantia contínua do serviço.
+- **Riscos e limitações:** fronteira Amazonas simplificada não aferida com IBGE; footprints exatos Level-2 não analisados; variabilidade NRT/sensores/orbitas/nuvens; dependência de CDN/OSM; screenshots de demo datados. Testes automatizados não substituem revisão científica humana, teste de dispositivos adicionais e confirmação do estado da plataforma NASA.
+- **Verificação de entrega:** site e demo públicas, arquivos com versão e fontes, Actions bem-sucedidos, `docs/FIN-01_UX-03_ENTREGA.md`. Pendência prioritária: revisão humana de direitos/créditos, formulário efetivamente salvo e incidentes prévios dos aceites registrados em `docs/SUBMISSAO_RASCUNHO.md`; **não marcar termos nem submeter sem autorização expressa**.
+- **Responsável/data:** Engenharia Stack Manauara, 14/11/2026; revisão final da equipe, pendente.
