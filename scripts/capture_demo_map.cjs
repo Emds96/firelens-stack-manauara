@@ -14,7 +14,8 @@ const puppeteer=require("puppeteer-core"),fs=require("node:fs");
   await (await page.$("#map-explorer")).screenshot({path:"/tmp/firelens_recent.png"});
   await page.click("#map-show-case");
   await page.waitForFunction(()=>document.querySelectorAll(".map-pixel.case-viirs").length===2);
-  await page.click(".map-measurements summary");
+  // Preserve the compact inspector; expanded measurements would make this image
+  // disproportionately tall and unreadable within a single demonstration slide.
   await (await page.$("#map-explorer")).screenshot({path:"/tmp/firelens_eagle.png"});
   await page.click('[data-view="calendario"]');
   await page.waitForSelector("#calendar .heat-cell:not([disabled])");
