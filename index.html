@@ -25,16 +25,11 @@
       </section>
       <nav class="tabs" aria-label="Sections" data-i18n-aria="nav.aria">
         <button type="button" role="tab" aria-selected="true" data-view="agora">01 <span data-i18n="nav.recent">Recent observations</span></button>
-        <button type="button" role="tab" aria-selected="false" data-view="ciencia">02 <span data-i18n="nav.science">Scientific translator</span></button>
-        <button type="button" role="tab" aria-selected="false" data-view="calendario">03 <span data-i18n="nav.calendar">Historical calendar</span></button>
+        <button type="button" role="tab" aria-selected="false" data-view="calendario">02 <span data-i18n="nav.calendar">History</span></button>
+        <button type="button" role="tab" aria-selected="false" data-view="ciencia">03 <span data-i18n="nav.science">Understand the data</span></button>
       </nav>
       <section class="page-section" id="agora" aria-label="Recent observations" data-i18n-aria="recent.aria">
-        <div class="section-lead"><div><span class="section-n" data-i18n="recent.kicker">01 / RECENT DATA</span><h2 data-i18n="recent.title">What are the satellites observing?</h2><p data-i18n="recent.subtitle">Satellite-detected pixels with thermal anomalies. These are not confirmed individual fire events.</p></div><div id="status-pill" class="pill muted" data-i18n="recent.loading">● Checking source</div></div>
-        <div class="stat-grid">
-          <article class="stat-card"><div class="stat-name" data-i18n="recent.stat.count">Eligible detections · 48h</div><div class="stat-value" id="recent-count">—</div><div class="stat-foot" data-i18n="recent.stat.qualifier">NOAA-20 + NOAA-21 · normal/high confidence</div></article>
-          <article class="stat-card"><div class="stat-name" data-i18n="recent.stat.update">Last successful data retrieval</div><div class="stat-value small" id="last-success">—</div><div class="stat-foot" data-i18n="recent.stat.updatefoot">Time of the latest successful query</div></article>
-          <article class="stat-card"><div class="stat-name" data-i18n="recent.stat.obs">Most recent observation</div><div class="stat-value small" id="last-obs">—</div><div class="stat-foot" data-i18n="recent.stat.obsfoot">Satellite observation time</div></article>
-        </div>
+        <div class="section-lead"><div><span class="section-n" data-i18n="recent.kicker">01 / RECENT DATA</span><h2 data-i18n="recent.title">Explore thermal detections on the map</h2><p data-i18n="recent.subtitle">Select a point to understand what a satellite observed. These dots are not confirmed individual fires.</p></div><div id="status-pill" class="pill muted" data-i18n="recent.loading">● Checking source</div></div>
         <div class="info-alert" id="recent-alert" role="status" data-i18n="recent.alert.loading">Loading retrieval status...</div>
         
         <section id="map-explorer" class="map-explorer" aria-labelledby="map-section-title">
@@ -47,7 +42,12 @@
             <span id="map-status" class="map-status map-status-old" role="status">Loading…</span>
           </div>
           <div id="map-timestamps" class="map-timestamps" aria-live="polite">—</div>
-          <div class="map-toolbar">
+          <div class="map-mode-switch" role="group" aria-label="Map observations / Modo do mapa">
+            <button id="map-show-case" type="button" class="case-cta" data-map-t="caseAction" aria-pressed="false">Explore a real case · Eagle's View</button>
+            <button id="map-show-recent" type="button" class="recent-back" data-map-t="backRecent" aria-pressed="false" hidden>← Return to recent observations</button>
+          </div>
+          <p id="map-case-disclosure" class="case-disclosure" aria-live="polite" hidden></p>
+          <div class="map-toolbar" id="map-live-filters">
             <span data-map-t="filter">Filter satellites</span>
             <div class="map-filter" role="group" aria-label="Satellite filter">
               <button type="button" data-map-filter="all" aria-pressed="true">Both satellites</button>
@@ -65,6 +65,9 @@
               <p id="map-cluster-hint" class="map-cluster-hint"></p>
             </div>
             <aside class="map-inspector" aria-label="Selected thermal detection details">
+              <div id="map-inspector-details" class="map-inspector-details map-placeholder" tabindex="-1">Select a satellite marker to understand the detected thermal signal.</div>
+              <details class="map-list-collapsible" id="map-point-browser">
+                <summary data-map-t="browsePoints">Browse detections in a list</summary>
               <div class="map-list-area">
                 <div class="map-list-head"><strong data-map-t="listTitle">Select a detection</strong><span id="map-list-range"></span></div>
                 <div id="map-point-list" class="map-point-list" role="list"></div>
@@ -73,27 +76,47 @@
                   <button id="map-list-next" type="button" data-map-t="listNext">Next</button>
                 </div>
               </div>
-              <div id="map-inspector-details" class="map-inspector-details map-placeholder" tabindex="-1">Select a satellite marker for its scientific and human explanations.</div>
+              </details>
               <a class="map-nasa-link" href="https://firms.modaps.eosdis.nasa.gov/api/area/" target="_blank" rel="noopener noreferrer">NASA FIRMS Area API ↗</a>
             </aside>
           </div>
           <p id="map-notes" class="map-notes"></p>
           <p class="map-disclaimer" data-map-t="footer">Map background: © OpenStreetMap contributors. NASA FIRMS provides observation points, not burned-area shapes.</p>
-        </section>
-
+          <details class="secondary-data" id="recent-secondary">
+          <summary data-i18n="ux.recentDetails">More about this data · counts and retrieval times</summary>
+        <div class="stat-grid">
+          <article class="stat-card"><div class="stat-name" data-i18n="recent.stat.count">Eligible detections · 48h</div><div class="stat-value" id="recent-count">—</div><div class="stat-foot" data-i18n="recent.stat.qualifier">NOAA-20 + NOAA-21 · normal/high confidence</div></article>
+          <article class="stat-card"><div class="stat-name" data-i18n="recent.stat.update">Last successful data retrieval</div><div class="stat-value small" id="last-success">—</div><div class="stat-foot" data-i18n="recent.stat.updatefoot">Time of the latest successful query</div></article>
+          <article class="stat-card"><div class="stat-name" data-i18n="recent.stat.obs">Most recent observation</div><div class="stat-value small" id="last-obs">—</div><div class="stat-foot" data-i18n="recent.stat.obsfoot">Satellite observation time</div></article>
+        </div>
         <div class="two-col">
           <article class="panel"><div class="panel-head"><h3 data-i18n="recent.chart.title">Breakdown by satellite</h3><span data-i18n="recent.chart.raw">ORIGINAL COUNTS</span></div><div id="sensors-graph" class="bars"><div class="empty" data-i18n="recent.chart.empty">No verified NRT detections available yet.</div></div></article>
           <article class="panel reading"><span class="overline" data-i18n="human.label">HUMAN TRANSLATOR / IN PLAIN LANGUAGE</span><h3 data-i18n="recent.human.title">What do these numbers actually mean?</h3><p id="human-nrt" data-i18n="recent.human.loading">We are checking recent observations. A zero on screen does not prove there was no fire: clouds, satellite orbits, and observation timing affect what is detected.</p><p class="fine" data-i18n="recent.human.note">Scheduled retrievals query the source periodically. This does not mean there is a new satellite overpass every hour.</p></article>
         </div>
+
+        </details>
+      </section>
+
       </section>
       <section class="page-section hidden" id="ciencia" aria-label="Scientific translator" data-i18n-aria="science.aria">
-        <div class="section-lead"><div><span class="section-n" data-i18n="science.kicker">02 / SCIENTIFIC EVIDENCE</span><h2 data-i18n="science.title">Two sensors. A tested count-scale comparison.</h2><p data-i18n="science.subtitle">We tested a simple statistical transformation that brings VIIRS counts closer to MODIS Aqua counts in limited pilot regions.</p></div><span class="pill verified" data-i18n="science.badge">● VAL-TRAD-02 / HISTORICAL TESTS</span></div>
+        <div class="section-lead"><div><span class="section-n" data-i18n="science.kicker">02 / SCIENTIFIC EVIDENCE</span><h2 data-i18n="science.title">Understand what the satellites actually measure</h2><p data-i18n="science.subtitle">One clear explanation, with technical methods and uncertainty available when you want them.</p></div><span class="pill verified" data-i18n="science.badge">● VAL-TRAD-02 / HISTORICAL TESTS</span></div>
+        <article class="panel explain-first">
+          <h3 data-i18n="ux.about.title">A satellite sees a thermal signal — not a confirmed fire.</h3>
+          <p data-i18n="ux.about.simple">MODIS and VIIRS see the landscape with different pixel sizes and at different times. Two nearby observations may be related, but neither location nor a similar temperature proves a single fire.</p>
+          <p data-i18n="ux.about.compare">The historical comparison adjusts detection counts statistically in pilot regions A/B. This is different from the November 2026 observation-level Eagle's View case.</p>
+          <p data-i18n="ux.about.wape">In a separate Amazonas study, the global method's held-out WAPE worsened from 23.11% in 2024 to 50.73% in 2025. It is not a reliable universal physical conversion.</p>
+          <a href="docs/SCI-04_REVISAO_CIENTIFICA_TEST02.md" target="_blank" rel="noopener noreferrer" data-i18n="ux.about.scienceLink">Read the scientific evidence and its limitations ↗</a>
+        </article>
+        <details class="secondary-data" id="science-method">
+          <summary data-i18n="ux.scienceDetails">Explore the methods, historical tests and source data</summary>
         <div class="method-strip"><div><span data-i18n="science.step1">1 / OBSERVE</span><strong>VIIRS NOAA-20</strong><small data-i18n="science.step1.foot">Original pixel-detection counts</small></div><span class="method-arrow">→</span><div><span data-i18n="science.step2">2 / SCALE</span><strong data-i18n="science.step2.name">Global daytime factor</strong><small data-i18n="science.step2.foot">Fitted using training years only</small></div><span class="method-arrow">→</span><div><span data-i18n="science.step3">3 / COMPARE</span><strong data-i18n="science.step3.name">MODIS Aqua count scale</strong><small data-i18n="science.step3.foot">Observation reference, not fire ground truth</small></div></div>
         <article class="panel wide-panel"><div class="panel-head"><h3 data-i18n="science.chart.title">How did the method perform on held-out years?</h3><span data-i18n="science.chart.note">WAPE (%) · LOWER IS BETTER</span></div><p class="fine" data-i18n="science.chart.desc">WAPE is the sum of absolute errors across 1° × monthly cells, divided by the sum of MODIS counts. It does not measure error against actual fire events.</p><div id="validation-chart" class="validation-chart"><div class="empty" data-i18n="science.chart.loading">Loading verified results...</div></div><div class="legend"><span><i class="dot cyan"></i> <span data-i18n="science.chart.global">Global daytime</span></span><span><i class="dot amber"></i> <span data-i18n="science.chart.seasonal">Regularized seasonal</span></span></div></article>
-        <div class="two-col"><article class="panel reading"><span class="overline" data-i18n="science.label">SCIENTIFIC TRANSLATOR</span><h3 data-i18n="science.what.title">What was demonstrated</h3><p data-i18n="science.what.body">Across four daytime tests in 2023 and 2024, the global factor was competitive; the seasonal method was not consistently better.</p><p class="fine" data-i18n="science.what.note">Experimental regions A/B; 2022–2024; MODIS Aqua and NOAA-20. The transformation is not validated for NOAA-21, physical fire events, or all of Amazonas.</p></article><article class="panel reading"><span class="overline" data-i18n="science.human.label">HUMAN TRANSLATOR</span><h3 data-i18n="science.human.title">A fair comparison</h3><p data-i18n="science.human.body">Imagine two cameras with different sensitivities: each can report a different number of detections. Scaling makes observed counts more comparable; it cannot reveal fire that neither sensor detected.</p><p class="fine" data-i18n="science.human.note">Clouds, orbit timing, spatial resolution, and observation opportunities still matter.</p></article></div>
+
+          <div class="method-document-links"><a href="docs/TEST-02_VISAO_AGUIA.md" target="_blank" rel="noopener noreferrer">TEST-02 · NASA FIRMS</a><a href="docs/TEST-01B_INVESTIGACAO.md" target="_blank" rel="noopener noreferrer">TEST-01B · 2025</a><a href="data/test02_resultados.json" target="_blank" rel="noopener noreferrer">TEST-02 · JSON</a></div>
+        </details>
       </section>
       <section class="page-section hidden" id="calendario" aria-label="Historical calendar" data-i18n-aria="calendar.aria">
-        <div class="section-lead"><div><span class="section-n" data-i18n="calendar.kicker">03 / EXPLORE OVER TIME</span><h2 data-i18n="calendar.title">A calendar of observations.</h2><p data-i18n="calendar.subtitle">Explore monthly detection patterns, original historical counts, and tested count-scale adjustments.</p></div><div class="select-wrap"><label for="region" data-i18n="calendar.select.label">EXPERIMENTAL REGION</label><select id="region"><option value="A" data-i18n="calendar.region.a">Region A</option><option value="B" data-i18n="calendar.region.b">Region B</option></select></div></div>
+        <div class="section-lead"><div><span class="section-n" data-i18n="calendar.kicker">03 / EXPLORE OVER TIME</span><h2 data-i18n="calendar.title">History in two experimental regions</h2><p data-i18n="calendar.subtitle">2022–2024 · pilot regions A/B, not a municipality-by-municipality history of Amazonas. Select a month to compare original observations.</p></div><div class="select-wrap"><label for="region" data-i18n="calendar.select.label">EXPERIMENTAL REGION</label><select id="region"><option value="A" data-i18n="calendar.region.a">Region A</option><option value="B" data-i18n="calendar.region.b">Region B</option></select></div></div>
         <article class="panel wide-panel"><div class="panel-head"><h3 data-i18n="calendar.panel.title">Detected fire activity · 2022–2024</h3><span data-i18n="calendar.panel.note">MODIS AQUA / MONTHLY COUNTS</span></div><div id="calendar" class="calendar"><div class="empty" data-i18n="calendar.loading">Monthly series have not been loaded yet. Scientific test results are available in section 02.</div></div><div class="calendar-foot"><span class="heat-legend"><span data-i18n="calendar.legend.low">FEWER</span> <i></i><i></i><i></i><i></i><i></i> <span data-i18n="calendar.legend.high">MORE</span></span><span data-i18n="calendar.legend.note">Local solar months · December may be incomplete</span></div><div id="calendar-detail" class="calendar-detail" data-i18n="calendar.detail.default">Select a verified month to see the sensor comparison.</div></article>
       </section>
       <footer><div><strong data-i18n="footer.brand">FIRELENS · TWO TRANSLATORS</strong><span>Stack Manauara · NASA Space Apps Challenge 2026</span></div><div><a href="https://www.earthdata.nasa.gov/data/tools/firms" target="_blank" rel="noopener noreferrer"><span data-i18n="footer.source">NASA FIRMS data source ↗</span></a><span data-i18n="footer.disclaimer">Independent project · not endorsed by NASA</span></div></footer>
