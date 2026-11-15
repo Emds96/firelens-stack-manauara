@@ -1,0 +1,24 @@
+name: TEST-02 - Offline independent reproducibility
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/test02-verify.yml'
+      - 'scripts/test02_verify.py'
+      - 'data/test02_observacoes_20261110_14.json'
+      - 'data/test02_resultados.json'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run TEST-02 and original Python regression tests
+        run: python -m unittest discover -s tests -v
+      - name: Recompute physical checks from stored NASA original rows without network
+        run: python -m scripts.test02_verify
