@@ -1,4 +1,5 @@
 name: Validate FireLens 2D map
+# HIST-02: state SCI-03 calendar + unchanged pilot A/B + browser regression
 on:
   workflow_dispatch:
   push:
