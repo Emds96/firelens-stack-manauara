@@ -131,6 +131,51 @@ def generate(r,observations,baseline):
           name,x["n"],fmt(x["frp_avg_mw"]),fmt(x["area_avg_km2_approx"],3),
           fmt(x["t4_avg_k"]),fmt(x["t11_avg_k"]),x["i4_saturation_count"],x["i4_folding_candidate_count"]))
     L+=["",
+      "### Somente NOAA-20 elegível diurno — universo dos 222 pixels do TEST-01B",
+      "",
+      "| Classe VIIRS elegível (n/h, D) | N | FRP médio MW | Área média aprox. km² | T4 média K | T11 média K |",
+      "|---|---:|---:|---:|---:|---:|"]
+    for key,name in CATS:
+        v=d11["eligible_diurnal_viirs_categories"][key]
+        L.append("| {} | {} | {} | {} | {} | {} |".format(
+            name,v["n"],fmt(v["frp_avg_mw"]),fmt(v["area_avg_km2_approx"],3),
+            fmt(v["t4_avg_k"]),fmt(v["t11_avg_k"])))
+    L+=["",
+      "**Controle:** {} detecções elegíveis; a soma por classe é {}.".format(
+          recalc_v,d11["eligible_categories_sum_check"]),
+      "",
+      "### Entorno Manaus / Autazes / Careiro — caixa geográfica solicitada",
+      "",
+      "No dia 11, na BBOX local: {} pixels MODIS de todas as plataformas/turnos e {} pixels NOAA-20 de todas as confianças/turnos. Esses números não representam a quantidade de fumaça ou área queimada.".format(
+          d11["focus_bbox_counts"]["modis_all"],d11["focus_bbox_counts"]["noaa20_all"]),
+      "",
+      "| Classe VIIRS na BBOX local | N | FRP médio MW | T4 média K | T11 média K |",
+      "|---|---:|---:|---:|---:|"]
+    for key,name in CATS:
+        v=d11["focus_bbox_viirs_categories"][key]
+        L.append("| {} | {} | {} | {} | {} |".format(
+            name,v["n"],fmt(v["frp_avg_mw"]),fmt(v["t4_avg_k"]),fmt(v["t11_avg_k"])))
+    L += ["",
+      "**Controle da área local:** soma de classes = {}.".format(
+          d11["focus_categories_sum_check"]),
+      "",
+      "### Pares geométricos por linha — 11/11/2026, sem fusão",
+      "",
+      "Cada linha permite reconstituir a relação centro-a-centro (ΔX, ΔY), intervalo UTC entre passagens e motivo da associação. Inclui pares defasados e de borda mesmo quando nenhuma dupla cumpre as quatro travas.",
+      "",
+      "| MODIS ID / plataforma | VIIRS ID | Δt min | ΔX km | ΔY km | Dist. entre centros km | Fora da borda km | Encaixe | Tipo da associação |",
+      "|---|---|---:|---:|---:|---:|---:|---|---|"]
+    modmap={m["id"]:m for m in mod}
+    for p in r.get("pair_diagnostics_2026_11_11",[]):
+        m=modmap[p["modis_id"]]
+        L.append("| {} / {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
+          p["modis_id"],m["satellite"],p["viirs_id"],fmt(p["minutes"],1),
+          fmt(p["dx_km"],3),fmt(p["dy_km"],3),fmt(p["distance_center_km"],3),
+          fmt(p["distance_from_box_km"],3),
+          "sim" if p["inside_approx_box"] else "não",p["relationship"]))
+    if not r.get("pair_diagnostics_2026_11_11"):
+        L.append("| — | — | — | — | — | — | — | — | nenhum par na janela |")
+    L+=["",
       "**Exclusividade e soma:** {} / {} pixels, conferência: {}. "
       "Grupos MODIS que passaram nas quatro travas (5 K / 8 K): {} / {}. Pixels VIIRS associados a múltiplas caixas MODIS: {} na janela total.".format(
        sum(x["n"] for x in d11["categories_viirs_mutually_exclusive"].values()),
