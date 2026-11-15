@@ -64,7 +64,7 @@ Guia vigente: https://www.spaceappschallenge.org/resources/project-submission-gu
 Nome público também pode aparecer como **FireLens | Dois Tradutores**, desde que a equipe confirme consistência com os materiais.
 
 ### 3.2 High-Level Project Summary (draft)
-**FireLens helps people interpret satellite fire detections without mistaking them for individual fires. Our first translator compares historical MODIS Aqua and VIIRS NOAA-20 detections using a transparent, out-of-sample-tested scaling baseline. Our second translator explains what the measurements and their uncertainties actually mean. An interactive monthly calendar explores two experimental regions during 2022–2024, while a separate near-real-time layer displays recently retrieved NOAA-20 and NOAA-21 observations for an approximate Amazonas state boundary. Users can inspect original counts, the historical comparison and observation timestamps. FireLens is a public web prototype built with NASA FIRMS data and reproducible Python processing; it does not claim to predict fires or fully harmonize the physical properties of these sensors.**
+**FireLens is a bilingual, map-first educational tool that helps people interpret NASA FIRMS thermal detections without treating every pixel as an individual fire. Visitors explore recent NOAA-20/NOAA-21 observations, read one plain-language explanation per point, and expand technical measurements when needed. A separate archived Eagle's View case shows a real MODIS Aqua pixel and two VIIRS NOAA-20 pixels observed 107 minutes apart on 10 November 2026: a candidate association, not a confirmed shared fire. A 2022–2024 calendar covers two experimental pilot regions A/B, alongside independently evaluated count-scale comparisons. FireLens does not predict fires or claim validated physical harmonization.**
 
 ### 3.3 Link to Final Project (confirmed)
 **https://emds96.github.io/firelens-stack-manauara/**
@@ -86,26 +86,26 @@ A apresentação foi criada com 7 slides em inglês, com números verificados e 
 
 **Evidence.** We analyzed consolidated NASA FIRMS Brazil files from 2022–2024 in two rectangular experimental regions, A and B. Daytime global-scaling WAPE (weighted absolute percentage error, relative to observed MODIS counts) was 22.16% and 20.00% in region A for the 2023 and 2024 test years, and 20.85% and 20.15% in region B. Seasonal alternatives were not consistently better. These are errors against MODIS observations, not against actual fire counts or ground truth. The processing workflow checks that the recorded baseline metrics are reproduced before publishing the monthly data.
 
-**What users see.** Our public static web application contains: (1) recent detections from NASA FIRMS NOAA-20/NOAA-21 near-real-time feeds; (2) a scientific validation view comparing scaling methods; and (3) a clickable 2022–2024 calendar for the two pilot regions. The recent layer shows distinct observation and update timestamps, counts by sensor and explanations about latency. The historical calendar preserves original counts and distinguishes calibrated comparisons from training periods.
+**What users see.** The bilingual public application now organizes three areas: (1) **Map**, showing real recent NASA FIRMS NOAA-20/NOAA-21 detections with a single accessible explanation and collapsible original attributes; (2) **History**, a clickable 2022–2024 calendar for pilot rectangles A/B, not an Amazonas municipality inventory; and (3) **Understand the data**, which explains different sensor characteristics, historical statistics and limitations. The map also has an explicitly archived Eagle's View case (10 November 2026), showing one MODIS Aqua and two VIIRS NOAA-20 observations; it never mixes these older records with current NRT points. Statistics, methods and source links remain available in expandable sections.
 
 **Implementation.** Python (standard library) retrieves and processes NASA FIRMS data, exports traceable JSON and runs in GitHub Actions. HTML, CSS and JavaScript render the interface through GitHub Pages. The NOAA-20/NOAA-21 API integration and the website were tested on November 14, 2026. A scheduled hourly workflow is configured but its schedule-triggered execution has not yet been verified.
 
 **Limits and next steps.** The current historical analysis covers only 2022–2024, and the pilot rectangles are not the state's administrative boundary. Near-real-time observations are shown separately; our historical NOAA-20 scaling is not presented as validated for NOAA-21. Amazonas near-real-time filtering currently uses a simplified state outline whose boundary accuracy is pending official verification. Weather/cloud effects, orbital coverage and differences in detection capabilities remain important. We aim to strengthen geographic validation, test the schedule and extend historical coverage in future iterations.
 
 ### 3.6 AI / Super Intelligence declaration (draft — confirm with team)
-**We used ChatGPT (OpenAI) to assist with architecture comparison, code and test generation, debugging, documentation and communication drafts. TinyFish was used to perform read-only browser testing of the publicly deployed prototype. Team members reviewed and approved major decisions and are responsible for scientific claims, code, presentation and final submission. The project does not rely on generative AI to invent scientific observations. We have not represented AI-generated content as NASA-approved material. This disclosure will be updated to include every additional AI/SI tool actually used by the team.**
+**We used ChatGPT (OpenAI) to assist with architecture, code and tests, debugging, scientific review, documentation, communication and project-demo text/design. TinyFish was used to test browser navigation and to assist with drafting/saving project-form entries; these actions were not a final project submission. Satellite measurements were obtained from NASA FIRMS, not generated by AI. Human team members remain responsible for source accuracy, credit/licensing, scientific claims and explicitly approving the final submission. The complete inventory of tools and materials must be reviewed by the team before submitting.**
 
 **Atenção:** o guia exige identificação nos materiais em que IA foi usada (incluindo código/dados, imagens/vídeos/áudio conforme o caso). A sessão de submissão deve verificar autoria humana da ideia e TODOS os serviços de IA empregados nas demais sessões, inclusive geração do layout e conteúdo do PDF de demonstração.
 
 ### 3.7 NASA Data and Resources (draft)
 - NASA FIRMS (Fire Information for Resource Management System): https://www.earthdata.nasa.gov/data/tools/firms
 - FIRMS annual Brazil country CSV archive, 2022–2024: https://firms.modaps.eosdis.nasa.gov/data/country/
-- FIRMS Area API, VIIRS NOAA-20 NRT and NOAA-21 NRT: https://firms.modaps.eosdis.nasa.gov/api/area/
+- FIRMS Area API: NOAA-20/NOAA-21 NRT for the public map; separately MODIS_NRT Aqua/Terra and VIIRS_NOAA20_NRT for TEST-02 (10–14/11/2026; not an operational map layer): https://firms.modaps.eosdis.nasa.gov/api/area/
 - FIRMS active fire data attributes (MODIS/VIIRS): https://www.earthdata.nasa.gov/data/tools/firms/active-fire-data-attributes-modis-viirs
 - Challenge page: https://www.spaceappschallenge.org/2026/challenges/modis-and-viirs-hot-spots/
 
 ### 3.8 Other resources, code and tools (draft, confirm completeness)
-- Open-source programming tools: Python standard library; HTML; CSS; JavaScript.
+- Open-source tools: Python standard library; HTML; CSS; JavaScript; Leaflet 1.9.4 (BSD-2-Clause); Leaflet.markercluster 1.5.3 (MIT); © OpenStreetMap contributors and OSM tiles. Verify final tile attribution and license compliance.
 - Hosting and workflows: GitHub repository, GitHub Pages, GitHub Actions.
 - Simplified state boundary compiled from IBGE-based geodata by a third party: https://github.com/henriquemalvar/br-geojson/blob/main/dist/estados.geojson
 - Official IBGE geodata service for future boundary confirmation: https://servicodados.ibge.gov.br/api/docs/malhas?versao=3
@@ -160,3 +160,18 @@ A apresentação foi criada com 7 slides em inglês, com números verificados e 
 > Our prototype also includes an interactive 2D map of recent NASA FIRMS NOAA-20 and NOAA-21 thermal-anomaly detections in Amazonas. Visitors can zoom, filter by satellite, select a real coordinate from the map or an accessible list, and inspect observation time, location, confidence class, day/night status, and a scientific and plain-language explanation. An observation represents a detected thermal pixel, not an individual fire or the burned area. The near-real-time layer is separate from our historical MODIS/VIIRS count-scale comparison. Source and observation timestamps, stale-data warnings, and limitations of the simplified state boundary are disclosed.
 
 **Restrições de submissão:** o globo 3D continua **não implementado**. O PDF da demo com sete slides foi criado antes do mapa 2D e ainda não foi atualizado para demonstrá-lo; considerar revisão da apresentação mediante autorização da sessão principal, sem retirar as limitações científicas. Não afirmar cobertura global, incêndios confirmados nem harmonização NRT NOAA-21.
+
+
+## 8. FIN-01 / UX-03 — versão pronta para conferência humana (14/11/2026)
+
+**Decisão:** fundador aprovou a finalização de três áreas (Mapa / Histórico / Entenda os dados), com o caso real TEST-02 incorporado como **camada histórica separada** e a interpretação unificada por ponto. Sem alteração dos dados originais TEST-01, TEST-01B, SCI-03, TEST-02.
+
+**Artefatos:** `index.html`, `app.js`, `map-ui.js`, `style.css`, `data/caso_visao_aguia_20261110.json`, testes de navegador e nova demo de sete slides com capturas reais. Aplicativo: https://emds96.github.io/firelens-stack-manauara/?lang=en ; alternativa PT-BR: https://emds96.github.io/firelens-stack-manauara/?lang=pt-BR .
+
+**Caso documentado:** MODIS Aqua M-000047, VIIRS NOAA-20 V-000192/V-000193, dia 10/11/2026, 18:02→19:49 UTC (**107 min**); FRP MODIS **18,62 MW**, soma VIIRS **13,09 MW**, diferença **5,53 MW**. O centro dos pixels e `scan × track` fazem apenas aproximação geométrica. T31/TI5 são temperaturas de brilho em canais diferentes. A FRP não é energia conservada nem exige igualdade 1:1. **Não** confirmar incêndio único, sub-bosque, origem de fumaça ou harmonização física.
+
+**Transparência:** em 11/11/2026, 12 Aqua e 222 NOAA-20 diurnos elegíveis foram observados, mas nenhum grupo passou nos quatro limites exploratórios dentro de 120 minutos. O fator global histórico teve WAPE de 23,11% em 2024 e 50,73% em 2025 na avaliação separada Amazonas TEST-01B; isso não demonstra incêndios físicos nem valida aplicação do coeficiente ao NOAA-21.
+
+**QA:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43668744952 — 47 testes Python e fluxo de navegador validado: idioma EN/PT-BR, desktop/celular, pontos, filtros, caso histórico, retorno à camada recente, histórico A/B e falhas simuladas de API. **Demo:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf (até 7 slides, inglês), gerada com capturas reais e validada em GitHub Actions; a revisão final visual e humana continua necessária.
+
+**Submissão NASA:** o formulário real, os aceites de termos/originalidade e Submit for Judging **não foram manipulados** por esta entrega. O histórico `docs/SUBMISSAO_RASCUNHO.md` registra incidente anterior de aceites com persistência não confirmada, que exige avaliação humana. A versão efetivamente salva do formulário também precisa ser conferida antes de qualquer envio.
