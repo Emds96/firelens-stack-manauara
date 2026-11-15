@@ -1,7 +1,7 @@
 # TEST-02 — Visão da Águia: análise físico-espacial, 10–14/11/2026
 
 **Engenharia Stack Manauara | Experimento exploratório | Aprovação científica pendente**
-**Executado UTC:** 2026-11-15T01:17:14.621746+00:00
+**Executado UTC:** 2026-11-15T01:19:56.048976+00:00
 
 ## Veredito
 
@@ -97,7 +97,7 @@ Detalhe completo de outras 242 observações no JSON original separado.
 
 #### M-000086 / Terra / UTC 2026-11-11T00:47:00Z (AMT 2026-11-10T20:47-04:00)
 MODIS: coordenadas (-3.43877, -59.61699), dimensões 1.28×1.12 km (área ~1.434 km²); T4 305.36 K, T11 292.26 K, FRP 6.71 MW.
-VIIRS dentro da caixa e ≤120 min: 0; >120 min: 2; TI5 média — K; ΔT11 — K; ΣFRP 0 MW; razão VIIRS/MODIS 0.000; 4 critérios a 8 K: **não passou**.
+VIIRS dentro da caixa e ≤120 min: 0; >120 min: 2; TI5 média — K; ΔT11 — K; ΣFRP — MW; razão VIIRS/MODIS —; 4 critérios a 8 K: **não passou**.
 
 | ID | Satélite | Hora UTC | AMT | Lat | Lon | scan × track (km) | Área aprox. km² | T4 K | T11 K | FRP MW | Conf. | Saturação/Folding |
 |---|---|---|---|---:|---:|---|---:|---:|---:|---:|---|---|
@@ -106,7 +106,7 @@ VIIRS dentro da caixa e ≤120 min: 0; >120 min: 2; TI5 média — K; ΔT11 — 
 
 #### M-000096 / Aqua / UTC 2026-11-11T20:25:00Z (AMT 2026-11-11T16:25-04:00)
 MODIS: coordenadas (-9.14287, -68.21483), dimensões 1.00×1.00 km (área ~1.000 km²); T4 317.01 K, T11 294.11 K, FRP 8.71 MW.
-VIIRS dentro da caixa e ≤120 min: 0; >120 min: 1; TI5 média — K; ΔT11 — K; ΣFRP 0 MW; razão VIIRS/MODIS 0.000; 4 critérios a 8 K: **não passou**.
+VIIRS dentro da caixa e ≤120 min: 0; >120 min: 1; TI5 média — K; ΔT11 — K; ΣFRP — MW; razão VIIRS/MODIS —; 4 critérios a 8 K: **não passou**.
 
 | ID | Satélite | Hora UTC | AMT | Lat | Lon | scan × track (km) | Área aprox. km² | T4 K | T11 K | FRP MW | Conf. | Saturação/Folding |
 |---|---|---|---|---:|---:|---|---:|---:|---:|---:|---|---|
@@ -114,7 +114,7 @@ VIIRS dentro da caixa e ≤120 min: 0; >120 min: 1; TI5 média — K; ΔT11 — 
 
 #### M-000103 / Aqua / UTC 2026-11-11T20:25:00Z (AMT 2026-11-11T16:25-04:00)
 MODIS: coordenadas (-8.93286, -68.55575), dimensões 1.01×1.01 km (área ~1.020 km²); T4 328.36 K, T11 291.26 K, FRP 21.91 MW.
-VIIRS dentro da caixa e ≤120 min: 0; >120 min: 8; TI5 média — K; ΔT11 — K; ΣFRP 0 MW; razão VIIRS/MODIS 0.000; 4 critérios a 8 K: **não passou**.
+VIIRS dentro da caixa e ≤120 min: 0; >120 min: 8; TI5 média — K; ΔT11 — K; ΣFRP — MW; razão VIIRS/MODIS —; 4 critérios a 8 K: **não passou**.
 
 | ID | Satélite | Hora UTC | AMT | Lat | Lon | scan × track (km) | Área aprox. km² | T4 K | T11 K | FRP MW | Conf. | Saturação/Folding |
 |---|---|---|---|---:|---:|---|---:|---:|---:|---:|---|---|
@@ -129,7 +129,7 @@ VIIRS dentro da caixa e ≤120 min: 0; >120 min: 8; TI5 média — K; ΔT11 — 
 
 #### M-000104 / Aqua / UTC 2026-11-11T20:25:00Z (AMT 2026-11-11T16:25-04:00)
 MODIS: coordenadas (-8.93157, -68.54681), dimensões 1.01×1.01 km (área ~1.020 km²); T4 309.43 K, T11 288.67 K, FRP 3.97 MW.
-VIIRS dentro da caixa e ≤120 min: 0; >120 min: 9; TI5 média — K; ΔT11 — K; ΣFRP 0 MW; razão VIIRS/MODIS 0.000; 4 critérios a 8 K: **não passou**.
+VIIRS dentro da caixa e ≤120 min: 0; >120 min: 9; TI5 média — K; ΔT11 — K; ΣFRP — MW; razão VIIRS/MODIS —; 4 critérios a 8 K: **não passou**.
 
 | ID | Satélite | Hora UTC | AMT | Lat | Lon | scan × track (km) | Área aprox. km² | T4 K | T11 K | FRP MW | Conf. | Saturação/Folding |
 |---|---|---|---|---:|---:|---|---:|---:|---:|---:|---|---|
@@ -145,14 +145,14 @@ VIIRS dentro da caixa e ≤120 min: 0; >120 min: 9; TI5 média — K; ΔT11 — 
 
 #### M-000108 / Aqua / UTC 2026-11-11T20:25:00Z (AMT 2026-11-11T16:25-04:00)
 MODIS: coordenadas (-7.89819, -63.70957), dimensões 1.57×1.23 km (área ~1.931 km²); T4 323.94 K, T11 294.36 K, FRP 30.09 MW.
-VIIRS dentro da caixa e ≤120 min: 0; >120 min: 0; TI5 média — K; ΔT11 — K; ΣFRP 0 MW; razão VIIRS/MODIS 0.000; 4 critérios a 8 K: **não passou**.
+VIIRS dentro da caixa e ≤120 min: 0; >120 min: 0; TI5 média — K; ΔT11 — K; ΣFRP — MW; razão VIIRS/MODIS —; 4 critérios a 8 K: **não passou**.
 
 | ID | Satélite | Hora UTC | AMT | Lat | Lon | scan × track (km) | Área aprox. km² | T4 K | T11 K | FRP MW | Conf. | Saturação/Folding |
 |---|---|---|---|---:|---:|---|---:|---:|---:|---:|---|---|
 
 #### M-000109 / Aqua / UTC 2026-11-11T20:25:00Z (AMT 2026-11-11T16:25-04:00)
 MODIS: coordenadas (-7.89330, -63.71756), dimensões 1.56×1.23 km (área ~1.919 km²); T4 330.14 K, T11 295.10 K, FRP 44.06 MW.
-VIIRS dentro da caixa e ≤120 min: 0; >120 min: 1; TI5 média — K; ΔT11 — K; ΣFRP 0 MW; razão VIIRS/MODIS 0.000; 4 critérios a 8 K: **não passou**.
+VIIRS dentro da caixa e ≤120 min: 0; >120 min: 1; TI5 média — K; ΔT11 — K; ΣFRP — MW; razão VIIRS/MODIS —; 4 critérios a 8 K: **não passou**.
 
 | ID | Satélite | Hora UTC | AMT | Lat | Lon | scan × track (km) | Área aprox. km² | T4 K | T11 K | FRP MW | Conf. | Saturação/Folding |
 |---|---|---|---|---:|---:|---|---:|---:|---:|---:|---|---|
@@ -184,6 +184,78 @@ As quatro classes sugeridas foram mantidas como hipóteses, acrescidas da classe
 | 4. VIIRS isolado (>2,5 km de qualquer caixa MODIS) | 243 | 7.35 | 0.176 | 336.20 | 296.49 | 0 | 0 |
 | 5. Ambíguo / critério não atendido | 0 | — | — | — | — | 0 | 0 |
 | 5b. Indeterminado | 4 | 8.23 | 0.178 | 343.43 | 295.39 | 0 | 0 |
+
+### Somente NOAA-20 elegível diurno — universo dos 222 pixels do TEST-01B
+
+| Classe VIIRS elegível (n/h, D) | N | FRP médio MW | Área média aprox. km² | T4 média K | T11 média K |
+|---|---:|---:|---:|---:|---:|
+| 1. Quatro critérios compatíveis (candidato, NÃO confirmado) | 0 | — | — | — | — |
+| 2. Sobreposição e intervalo >120 min | 15 | 16.66 | 0.277 | 339.73 | 282.85 |
+| 3. Borda: fora da caixa, até 2,5 km | 1 | 2.02 | 0.291 | 327.23 | 279.18 |
+| 4. VIIRS isolado (>2,5 km de qualquer caixa MODIS) | 202 | 7.89 | 0.172 | 339.09 | 296.37 |
+| 5. Ambíguo / critério não atendido | 0 | — | — | — | — |
+| 5b. Indeterminado | 4 | 8.23 | 0.178 | 343.43 | 295.39 |
+
+**Controle:** 222 detecções elegíveis; a soma por classe é True.
+
+### Entorno Manaus / Autazes / Careiro — caixa geográfica solicitada
+
+No dia 11, na BBOX local: 2 pixels MODIS de todas as plataformas/turnos e 35 pixels NOAA-20 de todas as confianças/turnos. Esses números não representam a quantidade de fumaça ou área queimada.
+
+| Classe VIIRS na BBOX local | N | FRP médio MW | T4 média K | T11 média K |
+|---|---:|---:|---:|---:|
+| 1. Quatro critérios compatíveis (candidato, NÃO confirmado) | 0 | — | — | — |
+| 2. Sobreposição e intervalo >120 min | 2 | 1.01 | 307.69 | 290.42 |
+| 3. Borda: fora da caixa, até 2,5 km | 0 | — | — | — |
+| 4. VIIRS isolado (>2,5 km de qualquer caixa MODIS) | 30 | 7.97 | 339.09 | 297.13 |
+| 5. Ambíguo / critério não atendido | 0 | — | — | — |
+| 5b. Indeterminado | 3 | 8.00 | 345.82 | 298.71 |
+
+**Controle da área local:** soma de classes = True.
+
+### Pares geométricos por linha — 11/11/2026, sem fusão
+
+Cada linha permite reconstituir a relação centro-a-centro (ΔX, ΔY), intervalo UTC entre passagens e motivo da associação. Inclui pares defasados e de borda mesmo quando nenhuma dupla cumpre as quatro travas.
+
+| MODIS ID / plataforma | VIIRS ID | Δt min | ΔX km | ΔY km | Dist. entre centros km | Fora da borda km | Encaixe | Tipo da associação |
+|---|---|---:|---:|---:|---:|---:|---|---|
+| M-000086 / Terra | V-000251 | 256.0 | 0.408 | 0.346 | 0.535 | 0.000 | sim | spatial_delayed_candidate |
+| M-000086 / Terra | V-000252 | 256.0 | 0.487 | 0.129 | 0.504 | 0.000 | sim | spatial_delayed_candidate |
+| M-000096 / Aqua | V-000338 | 164.0 | 0.193 | 0.429 | 0.471 | 0.000 | sim | spatial_delayed_candidate |
+| M-000103 / Aqua | V-000360 | 164.0 | 0.031 | 0.383 | 0.384 | 0.000 | sim | spatial_delayed_candidate |
+| M-000103 / Aqua | V-000361 | 164.0 | 0.306 | 0.327 | 0.448 | 0.000 | sim | spatial_delayed_candidate |
+| M-000103 / Aqua | V-000362 | 164.0 | 0.538 | 0.307 | 0.619 | 0.000 | sim | spatial_delayed_candidate |
+| M-000103 / Aqua | V-000363 | 164.0 | 0.260 | 0.249 | 0.359 | 0.000 | sim | spatial_delayed_candidate |
+| M-000103 / Aqua | V-000364 | 164.0 | 1.103 | 0.233 | 1.127 | 0.318 | não | near_border_unverified |
+| M-000103 / Aqua | V-000365 | 164.0 | 0.826 | 0.170 | 0.843 | 0.041 | não | near_border_unverified |
+| M-000103 / Aqua | V-000366 | 164.0 | 1.661 | 0.159 | 1.668 | 0.875 | não | near_border_unverified |
+| M-000103 / Aqua | V-000367 | 164.0 | 1.385 | 0.092 | 1.388 | 0.600 | não | near_border_unverified |
+| M-000103 / Aqua | V-000368 | 164.0 | 0.467 | 0.218 | 0.516 | 0.000 | sim | spatial_delayed_candidate |
+| M-000103 / Aqua | V-000370 | 164.0 | 0.191 | 0.276 | 0.336 | 0.000 | sim | spatial_delayed_candidate |
+| M-000103 / Aqua | V-000371 | 164.0 | 0.754 | 0.355 | 0.834 | 0.000 | sim | spatial_delayed_candidate |
+| M-000103 / Aqua | V-000372 | 164.0 | 0.392 | 0.742 | 0.839 | 0.000 | sim | spatial_delayed_candidate |
+| M-000103 / Aqua | V-000373 | 164.0 | 1.145 | 1.695 | 2.045 | 0.997 | não | near_border_unverified |
+| M-000104 / Aqua | V-000360 | 164.0 | 1.014 | 0.525 | 1.142 | 0.229 | não | near_border_unverified |
+| M-000104 / Aqua | V-000361 | 164.0 | 1.289 | 0.470 | 1.372 | 0.504 | não | near_border_unverified |
+| M-000104 / Aqua | V-000362 | 164.0 | 0.445 | 0.450 | 0.633 | 0.000 | sim | spatial_delayed_candidate |
+| M-000104 / Aqua | V-000363 | 164.0 | 0.724 | 0.391 | 0.823 | 0.000 | sim | spatial_delayed_candidate |
+| M-000104 / Aqua | V-000364 | 164.0 | 0.120 | 0.376 | 0.395 | 0.000 | sim | spatial_delayed_candidate |
+| M-000104 / Aqua | V-000365 | 164.0 | 0.157 | 0.313 | 0.350 | 0.000 | sim | spatial_delayed_candidate |
+| M-000104 / Aqua | V-000366 | 164.0 | 0.677 | 0.302 | 0.742 | 0.000 | sim | spatial_delayed_candidate |
+| M-000104 / Aqua | V-000367 | 164.0 | 0.401 | 0.234 | 0.465 | 0.000 | sim | spatial_delayed_candidate |
+| M-000104 / Aqua | V-000368 | 164.0 | 0.516 | 0.075 | 0.521 | 0.000 | sim | spatial_delayed_candidate |
+| M-000104 / Aqua | V-000370 | 164.0 | 0.792 | 0.134 | 0.803 | 0.007 | não | near_border_unverified |
+| M-000104 / Aqua | V-000371 | 164.0 | 0.229 | 0.212 | 0.312 | 0.000 | sim | spatial_delayed_candidate |
+| M-000104 / Aqua | V-000372 | 164.0 | 0.592 | 0.599 | 0.842 | 0.000 | sim | spatial_delayed_candidate |
+| M-000104 / Aqua | V-000373 | 164.0 | 2.128 | 1.552 | 2.634 | 1.557 | não | near_border_unverified |
+| M-000108 / Aqua | V-000421 | 164.0 | 0.258 | 1.172 | 1.200 | 0.367 | não | near_border_unverified |
+| M-000109 / Aqua | V-000421 | 164.0 | 0.623 | 0.631 | 0.887 | 0.000 | sim | spatial_delayed_candidate |
+| M-000110 / Aqua | V-000421 | 164.0 | 0.063 | 0.019 | 0.066 | 0.000 | sim | spatial_delayed_candidate |
+| M-000111 / Aqua | V-000437 | 164.0 | 0.212 | 0.814 | 0.841 | 0.034 | não | near_border_unverified |
+| M-000111 / Aqua | V-000438 | 164.0 | 0.671 | 0.880 | 1.107 | 0.100 | não | near_border_unverified |
+| M-000112 / Aqua | V-000437 | 164.0 | 0.345 | 0.469 | 0.582 | 0.000 | sim | spatial_delayed_candidate |
+| M-000112 / Aqua | V-000438 | 164.0 | 0.114 | 0.535 | 0.547 | 0.000 | sim | spatial_delayed_candidate |
+| M-000116 / Aqua | V-000588 | 164.0 | 0.659 | 0.238 | 0.701 | 0.000 | sim | spatial_delayed_candidate |
 
 **Exclusividade e soma:** 267 / 267 pixels, conferência: True. Grupos MODIS que passaram nas quatro travas (5 K / 8 K): 0 / 0. Pixels VIIRS associados a múltiplas caixas MODIS: 2 na janela total.
 A categoria 4 usa distância >2,5 km da borda das caixas aproximadas MODIS na mesma data, não distância entre centros. Ela NÃO demonstra detecção impossível pelo MODIS, fogo menor, incêndio de sub-bosque ou fumaça originada desse local.
