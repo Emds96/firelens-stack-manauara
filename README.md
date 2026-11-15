@@ -18,11 +18,23 @@ O arquivo versionado `data/amazonas_ibge.geojson` é **uma geometria estadual si
 
 ## MAP-01: Interactive geographic hotspot viewer
 
-- The **Recent observations** section includes a 2D Leaflet map, real NASA FIRMS NOAA-20/NOAA-21 pixel coordinates, clustering, satellite filters, and a keyboard-accessible paginated selection list. Selecting a detection displays original scientific attributes and a plain-language translation in EN/PT-BR.
+- The **Map** is the main entry point: a real NASA FIRMS NOAA-20/NOAA-21 2D Leaflet viewer, clustered points, satellite filters and keyboard-accessible list. Selecting a point displays **one plain-language interpretation first**; observed attributes are available in an expandable technical panel (EN/PT-BR).
 - The current observation and retrieval timestamps are distinct; stale or failed snapshots are labelled instead of presented as current. Pixel detections are not individual confirmed fires or burned-area outlines.
 - Verified in Chrome CI: [MAP-01 browser test and scientific regressions](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43641760032). Includes mobile viewport 390x844 and unavailable JSON case.
 - Libraries: Leaflet 1.9.4, Leaflet.markercluster 1.5.3. Base map: © OpenStreetMap contributors. Browser network access needed. Details: [docs/MAP-01.md](docs/MAP-01.md).
 - 3D globe is not part of this MVP and is not approved.
+
+## FIN-01 / UX-03 — Map-first final experience (14 Nov 2026)
+
+The app is organized into **Map / History / Understand the data**, with a compact header, simplified navigation and expandable supporting measurements. The original 2022–2024 experimental calendar (regions A/B) and historical WAPE charts remain accessible.
+
+- **Eagle's View:** On the Map, use “Explore a real case / Explorar um caso real” to switch from recent NOAA-20/NOAA-21 points to a completely separate **archived 10 November 2026** observation example. Its three source-verified pixels are MODIS Aqua M-000047 and VIIRS NOAA-20 V-000192/V-000193. VIIRS was observed at **18:02 UTC**, Aqua at **19:49 UTC** (107 minutes apart); FRP MODIS **18.62 MW** and summed VIIRS **13.09 MW**. These are **candidate associations, not evidence of one confirmed physical fire**.
+- **Scientific cautions:** `scan × track` approximates pixel dimensions, not exact orbital footprints; MODIS T31 and VIIRS TI5 are brightness temperatures in different channels; FRP is radiative power, not conserved energy. No evidence establishes an understory fire, burned-area polygon, smoke origin, or that a missing MODIS point implies no fire.
+- **Archived case source:** [data/caso_visao_aguia_20261110.json](data/caso_visao_aguia_20261110.json), derived **without changing** [TEST-02 observations](data/test02_observacoes_20261110_14.json) or [TEST-02 analysis](data/test02_resultados.json).
+- **Historical limitations:** pilot calendar A/B ≠ the whole Amazonas state or a municipal history; separate Amazonas TEST-01B holdout WAPE worsened from **23.11% (2024)** to **50.73% (2025)**, showing that the factor is not a universal correction.
+- **Seven-slide English demo:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf — actual application screenshots, dated observational evidence, distinct processing/data coverage and explicit limitations; generated with ChatGPT assistance and validated for seven pages.
+- **Regression evidence:** [47 Python tests and full browser QA](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669321931); [actual browser screenshots and seven-slide PDF build](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669280189).
+- **Release documentation:** [docs/FIN-01_UX-03_ENTREGA.md](docs/FIN-01_UX-03_ENTREGA.md). NASA project submission remains **NOT submitted** without explicit human authorization.
 
 ## Rodar localmente
 
