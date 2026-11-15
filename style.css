@@ -75,3 +75,101 @@
 .map-list-pager button{border:1px solid #37596b;background:#172d3a;color:#d7e6eb;border-radius:7px;padding:6px 10px;cursor:pointer;font-size:11px}
 .map-list-pager button:disabled{opacity:.4;cursor:default}
 .map-inspector-details{flex:initial}
+
+
+/* FIN-01 / UX-03 — map-first, restrained visual hierarchy. */
+[hidden]{display:none!important}
+.topbar{padding:11px 0;min-height:64px}
+.brand{gap:9px}.brand-mark{width:32px;height:32px;font-size:21px;border-radius:9px}
+.brand strong{font-size:17px}.brand small{font-size:8px;letter-spacing:.8px;margin-top:3px}
+.topright{gap:8px}.topright .top-pulse,.topright [data-i18n="top.science"],.topright .source-link{display:none}
+.hero{max-width:none;padding:24px 0 17px}.eyebrow{font-size:9px;letter-spacing:1.6px}
+.hero h1{font-size:clamp(27px,3.7vw,46px);line-height:1.14;letter-spacing:-1.1px;margin:9px 0}
+.hero h1 br{display:none}.hero h1 em:before{content:" ";white-space:pre}
+.intro{font-size:13px;line-height:1.5;margin:5px 0;color:#aebfc7;max-width:850px}
+.tagbar{display:none}
+.tabs{gap:12px;padding:0 4px;position:relative}
+.tabs button{font-size:10px;padding:12px 10px}.tabs button span{font-weight:650;margin-left:5px}
+.page-section{padding:22px 0 32px}.section-lead{margin-bottom:8px;align-items:center}
+.section-n{font-size:9px;letter-spacing:1.2px}.section-lead h2{font-size:clamp(20px,2.8vw,27px);margin:3px 0}
+.section-lead p{font-size:12px;line-height:1.45;max-width:760px}
+#agora .section-lead .pill{padding:6px 9px;font-size:10px;white-space:normal}
+#recent-alert{font-size:11px;line-height:1.5;padding:8px 12px;margin:8px 0}
+.map-explorer{margin:8px 0 12px;padding:12px;border:1px solid #2b4a58;background:#0b1822;border-radius:13px}
+.map-top{align-items:center}.map-top h3{font-size:clamp(18px,2vw,24px);margin:3px 0 1px}
+.map-top p{font-size:11px;line-height:1.5;margin:2px 0}
+.map-status{font-size:10px;padding:7px 9px}.map-timestamps{margin:6px 0;font-size:10px}
+.map-mode-switch{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:8px 0}
+.map-mode-switch button{font:700 12px/1.45 inherit;font-family:inherit;cursor:pointer;padding:10px 14px;border-radius:9px}
+.map-mode-switch button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.case-cta{border:1px solid #ff9869;background:#f48855;color:#172129;font-weight:800}
+.case-cta:hover{background:#ffb08b}.case-cta:disabled{opacity:.45;cursor:not-allowed}
+.recent-back{background:#173741;color:#b7efe8;border:1px solid #438b8b}
+.case-disclosure{font-size:11px;line-height:1.5;color:#f6d5ba;border-left:3px solid #ff8854;padding:7px 11px;margin:6px 0;background:#31231d;border-radius:5px}
+.map-toolbar{gap:9px;margin:7px 0;font-size:11px}
+.map-filter button{padding:6px 9px}.map-legend{font-size:10px;margin:6px 0}
+.map-key.case-modis,.map-pixel.case-modis{background:#ff8750}
+.map-key.case-viirs,.map-pixel.case-viirs{background:#55d4d6}
+.map-columns{grid-template-columns:minmax(0,1.85fr) minmax(270px,.9fr);gap:10px}
+.map-canvas-wrap{border:1px solid #325363;border-radius:9px}
+#fire-map{height:clamp(420px,59vh,640px);min-height:360px}
+.map-inspector{padding:13px;border-radius:9px;border:1px solid #2e4a58;gap:7px}
+.map-inspector h4{color:#f9b58d;font-size:12px;margin:8px 0;font-weight:700}
+.map-unified{background:#16363c;color:#e1f9f4;border:1px solid #3e7776;border-radius:9px;padding:13px;font-size:14px;line-height:1.65;margin:0 0 9px;font-weight:600}
+.map-measurements{border:1px solid #365160;border-radius:9px;background:#132934;padding:0 10px;margin-top:13px}
+.map-measurements summary{color:#acdcd7;font-size:12px;font-weight:700;padding:12px 0;cursor:pointer}
+.map-measurements .map-fields{padding:5px 0}.map-measurements .map-data-row{font-size:11px}
+.map-science-note{margin:7px 0 12px}
+.map-list-collapsible{margin-top:15px;border-top:1px solid #294655;padding-top:10px}
+.map-list-collapsible summary{font-size:12px;cursor:pointer;color:#a9d9d6;font-weight:650;padding:4px 0 8px}
+.map-list-area{margin-top:7px;padding-bottom:9px}
+.map-inspector-details{font-size:12px}.map-inspector-details.map-placeholder{min-height:180px}
+.map-notes,.map-disclaimer{margin:8px 0 0;font-size:10px;line-height:1.5}
+.map-cluster-hint{font-size:9px}
+.secondary-data{margin:14px 0;padding:0 14px 12px;border:1px solid #324958;border-radius:11px;background:#101e29}
+.secondary-data>summary{cursor:pointer;padding:13px 3px;color:#a8c8d2;font-weight:650;font-size:12px}
+.secondary-data .stat-grid{margin:7px 0 13px}.secondary-data .stat-card{min-height:115px;padding:14px}
+.secondary-data .stat-value{font-size:27px;margin-top:8px}.secondary-data .stat-value.small{font-size:16px;padding-top:5px}
+.secondary-data .stat-foot{margin-top:7px}.secondary-data .two-col{margin-top:12px}
+.explain-first{padding:22px;max-width:950px}
+.explain-first h3{margin:0 0 12px;font-size:clamp(19px,2.5vw,25px)}
+.explain-first p{color:#c1d5dc;line-height:1.65;font-size:13px}
+.explain-first a{display:inline-block;color:#8ee2d8;text-decoration:underline;font-size:12px;margin-top:10px}
+#science-method .method-strip{margin-top:12px;padding:15px}
+#science-method .panel{padding:16px}
+.method-document-links{display:flex;gap:14px;flex-wrap:wrap;padding:10px 4px 5px;font-size:12px}
+.method-document-links a{color:#86d9cf;text-decoration:underline}
+#calendario .section-lead{margin-bottom:18px}
+#calendario .wide-panel{padding:18px}
+#calendario .calendar-foot{margin-top:10px}
+footer{padding:20px 0}
+@media(max-width:860px){
+ .map-columns{grid-template-columns:1fr}
+ .map-inspector{min-height:150px}
+ #fire-map{height:52vh;min-height:330px;max-height:570px}
+ .topright{justify-content:flex-end}
+ .app-shell{width:calc(100% - 28px)}
+}
+@media(max-width:560px){
+ .topbar{flex-wrap:wrap;gap:6px;padding:10px 0}
+ .topright{width:auto;gap:5px}.topright .demo-link{font-size:10px;padding:6px 9px}
+ .lang-toggle button{padding:6px 7px;min-width:35px}
+ .hero{padding:12px 0 8px}.hero h1{font-size:27px;line-height:1.12}
+ .intro{font-size:12px}
+ .tabs{justify-content:space-between;gap:0}
+ .tabs button{padding:10px 6px;font-size:10px}
+ .tabs button span{font-size:11px;margin-left:4px}
+ .page-section{padding:14px 0 25px}
+ #agora .section-lead{gap:8px;align-items:flex-start}
+ #agora .section-lead .pill{font-size:9px}
+ .map-explorer{padding:7px;border-radius:9px}
+ .map-top{gap:5px}.map-top h3{font-size:19px}
+ #fire-map{height:47vh;min-height:300px;max-height:480px}
+ .map-toolbar{gap:5px}.map-filter button{font-size:10px;padding:6px}
+ .map-unified{font-size:13px;padding:11px}
+ .map-mode-switch button{width:100%;text-align:center;padding:10px}
+ .secondary-data .stat-grid{grid-template-columns:1fr}
+ .secondary-data .two-col{grid-template-columns:1fr}
+ .explain-first{padding:17px}
+ .calendar{overflow-x:auto}.year-row,.month-top{min-width:620px}
+}
