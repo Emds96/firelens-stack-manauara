@@ -134,6 +134,20 @@ async function run(){
   }));
   assert.ok(geo.wrap<=390&&geo.map>270&&geo.map<=geo.wrap&&geo.h>=300,"mobile map layout");
   assert.ok(geo.horizontalOverflow<20,"no horizontal page overflow");
+  await page.click('[data-view="calendario"]');
+  const mobileHist=await page.evaluate(()=>({
+   content:document.querySelector("#state-calendar").scrollWidth,
+   viewport:document.querySelector("#state-calendar").clientWidth,
+   pageOverflow:document.documentElement.scrollWidth-window.innerWidth
+  }));
+  assert.ok(mobileHist.content>mobileHist.viewport,"state calendar has its own horizontal scrolling on phone");
+  assert.ok(mobileHist.pageOverflow<20,"mobile state calendar does not overflow entire page");
+  await page.click('[data-state-sensor="NOAA20"]');
+  assert.equal(await page.$eval('[data-state-sensor="NOAA20"]',e=>e.getAttribute("aria-pressed")),"true");
+  await page.click('[data-history-view="pilot"]');
+  assert.equal(await page.$eval("#pilot-history",e=>e.hidden),false);
+  await page.click('[data-view="agora"]');
+  console.log("HIST-02: mobile calendar scrolls locally and preserves mode/satellite controls");
   await page.click("#map-show-case");
   assert.match(await page.$eval("#map-case-disclosure",e=>e.textContent),/separate from|not part of/i);
   await page.click("#map-show-recent");
