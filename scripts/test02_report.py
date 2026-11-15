@@ -115,6 +115,32 @@ def generate(r,observations,baseline):
           ""
         ])
     L+=["",
+      "### Dois grupos de 10/11 com os quatro critérios exploratórios compatíveis",
+      "",
+      "O dia 11 não teve grupos em até 120 minutos. No dia anterior, os seguintes grupos VIIRS–Aqua são candidatos para verificação posterior com geolocalização Level-2, **não incêndios confirmados**.",
+      ""]
+    modmap={m["id"]:m for m in mod}
+    viirsmap={v["id"]:v for v in vrs}
+    strong10=[g for g in r["group_diagnostics"]
+              if g["modis_time_utc"].startswith("2026-11-10") and
+              g["four_locks_candidate_8k"]]
+    for g in strong10:
+        m=modmap[g["modis_id"]]
+        associated=[viirsmap[v] for v in g["in_box_and_within_120min_ids"]]
+        L += ["**{} / {}**: UTC {}, AMT {}, coord ({}, {}), scan×track {}×{} km, "
+              "FRP MODIS {} MW, T31 {} K; VIIRS {} pixels, ΣFRP {} MW, média TI5 {} K, "
+              "ΔT11 {} K, razão {}, Δt {} minutos.".format(
+              m["id"],m["satellite"],m["time_utc"],m["time_manaus"],
+              fmt(m["latitude"],5),fmt(m["longitude"],5),
+              fmt(m["scan_km"]),fmt(m["track_km"]),fmt(m["frp_mw"]),
+              fmt(m["t11_k"]),len(associated),fmt(g["viirs_frp_sum_mw"]),
+              fmt(g["viirs_t11_mean_k"]),fmt(g["delta_t11_k"]),
+              fmt(g["frp_ratio_viirs_to_modis"],3),
+              int(round(abs((__import__("datetime").datetime.fromisoformat(m["time_utc"].replace("Z","+00:00"))-
+                 __import__("datetime").datetime.fromisoformat(associated[0]["time_utc"].replace("Z","+00:00"))).total_seconds()/60)))
+              ),"",rows_md(associated),""]
+    if not strong10:L.append("Nenhum grupo de 10/11 passou nas quatro travas exploratórias.")
+    L+=["",
       "### Exemplos de detecções VIIRS distantes das caixas MODIS",
       "",
       rows_md(r["examples_2026_11_11"]["isolated_viirs_examples"]),
