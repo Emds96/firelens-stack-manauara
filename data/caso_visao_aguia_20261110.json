@@ -1,0 +1,90 @@
+{
+  "id": "FIN-01-EAGLE-2026-11-10",
+  "status": "historical_case_not_live",
+  "source": "NASA FIRMS MODIS_NRT and VIIRS_NOAA20_NRT",
+  "date_utc": "2026-11-10",
+  "capture_utc": "2026-11-15T01:21:34.635346+00:00",
+  "area": "Amazonas, Brasil — provisional simplified boundary",
+  "records": [
+    {
+      "id": "M-000047",
+      "source": "MODIS_NRT",
+      "satellite": "Aqua",
+      "latitude": -3.44421,
+      "longitude": -59.61359,
+      "time_utc": "2026-11-10T19:49:00Z",
+      "time_manaus": "2026-11-10T15:49-04:00",
+      "date_utc": "2026-11-10",
+      "daynight": "D",
+      "confidence": "80",
+      "scan_km": 1,
+      "track_km": 1,
+      "area_km2_approx": 1,
+      "frp_mw": 18.62,
+      "t4_k": 326.32,
+      "t11_k": 297.36
+    },
+    {
+      "id": "V-000192",
+      "source": "VIIRS_NOAA20_NRT",
+      "satellite": "NOAA-20",
+      "latitude": -3.44233,
+      "longitude": -59.61069,
+      "time_utc": "2026-11-10T18:02:00Z",
+      "time_manaus": "2026-11-10T14:02-04:00",
+      "date_utc": "2026-11-10",
+      "daynight": "D",
+      "confidence": "n",
+      "scan_km": 0.57,
+      "track_km": 0.52,
+      "area_km2_approx": 0.2964,
+      "frp_mw": 6.86,
+      "t4_k": 332.16,
+      "t11_k": 294.24
+    },
+    {
+      "id": "V-000193",
+      "source": "VIIRS_NOAA20_NRT",
+      "satellite": "NOAA-20",
+      "latitude": -3.44225,
+      "longitude": -59.60994,
+      "time_utc": "2026-11-10T18:02:00Z",
+      "time_manaus": "2026-11-10T14:02-04:00",
+      "date_utc": "2026-11-10",
+      "daynight": "D",
+      "confidence": "n",
+      "scan_km": 0.57,
+      "track_km": 0.52,
+      "area_km2_approx": 0.2964,
+      "frp_mw": 6.23,
+      "t4_k": 332.46,
+      "t11_k": 293.72
+    }
+  ],
+  "analysis": {
+    "method": "axis_aligned_scan_track_rectangle_approximation",
+    "delta_minutes": 107,
+    "modis_frp_mw": 18.62,
+    "viirs_frp_sum_mw": 13.09,
+    "frp_difference_mw": 5.53,
+    "viirs_to_modis_frp_ratio": 0.703,
+    "modis_t31_k": 297.36,
+    "viirs_ti5_mean_k": 293.98,
+    "t11_brightness_difference_k": 3.38,
+    "spatial_approximate": true,
+    "identity_confirmed": false
+  },
+  "notes": [
+    "scan x track approximates pixel dimensions, not geolocated Level-2 footprints.",
+    "Brightness temperatures T31 and TI5 are from distinct channels, not interchangeable background measurements.",
+    "FRP is radiative power, not conserved energy. Differences are descriptive.",
+    "Nearby thermal detections do not confirm one physical fire."
+  ],
+  "provenance": {
+    "observations_file": "data/test02_observacoes_20261110_14.json",
+    "observations_git_sha": "05c40c0dba096c044e7815390468519d241d9850",
+    "metrics_file": "data/test02_resultados.json",
+    "metrics_git_sha": "91e72d21d4fe6f4c8075b07ee2d23a8c31773b1d",
+    "science_report": "docs/TEST-02_VISAO_AGUIA.md"
+  }
+}
