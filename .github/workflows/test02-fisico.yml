@@ -4,11 +4,14 @@ on:
   push:
     paths:
       - '.github/workflows/test02-fisico.yml'
+      - 'scripts/test02_fisico.py'
+      - 'scripts/test02_report.py'
+      - 'tests/test_test02_fisico.py'
 permissions:
   contents: write
 concurrency:
   group: test02-fisico
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   test-and-retrieve:
     runs-on: ubuntu-latest
@@ -35,7 +38,7 @@ jobs:
           records=json.loads(Path('data/test02_observacoes_20261110_14.json').read_text())
           assert results['id']=='TEST-02'
           assert len(results['daily'])==5
-          assert all(d['all_categories_sum_check'] for d in results['daily'])
+          assert all(d['all_categories_sum_check'] and d['eligible_categories_sum_check'] and d['focus_categories_sum_check'] for d in results['daily'])
           assert all(len(records[p])==results['sources'][p]['filter_stats']['inside_amazonas'] for p in ('MODIS_NRT','VIIRS_NOAA20_NRT'))
           for key,value in results['sources'].items():
               assert value['sha256_csv'] and len(value['sha256_csv'])==64
