@@ -12,6 +12,8 @@ from pathlib import Path
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader, simpleSplit
 from PIL import Image
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 W,H=960,540
 BG="#0a1822";SURFACE="#142936";ACC="#ff9568";CYAN="#80e0d9";WHITE="#f4f8f8";MUTED="#b3c7d0";LINE="#2d4a55"
@@ -19,6 +21,36 @@ ROOT=Path(__file__).resolve().parents[1]
 DEST=ROOT/"demo"/"FireLens_7_Slide_Demo_2026.pdf"
 CASE=json.loads((ROOT/"data"/"caso_visao_aguia_20261110.json").read_text())
 TEST=json.loads((ROOT/"data"/"test02_resultados.json").read_text())
+SCI03=json.loads((ROOT/"data"/"sci03_agregados.json").read_text(encoding="utf-8"))
+TEAM=[
+    "Crhystopher Ferreira de Aguiar",
+    "Eder Magalhães dos Santos",
+    "Leonardo de Souza Pinheiro",
+    "Luís Henrique da Silva Carvalho",
+    "Mirna do Amaral Maquiné Nascimento",
+    "Paulo Elias Cajado Pinto",
+]
+assert SCI03["id"]=="SCI-03" and len(SCI03["rows"])==4434
+assert SCI03["columns"]==["year","month","sensor","cell_south_lat","cell_west_lon","pixels"]
+assert set((r[0],r[1],r[2]) for r in SCI03["rows"])=={
+    (year,month,sensor)
+    for year in (2023,2024,2025,2026)
+    for month in range(1,11)
+    for sensor in ("Aqua","NOAA20")
+}
+SEPT_2026={sensor:sum(r[5] for r in SCI03["rows"]
+                           if r[0]==2026 and r[1]==9 and r[2]==sensor)
+           for sensor in ("Aqua","NOAA20")}
+assert SEPT_2026=={"Aqua":3518,"NOAA20":16489},SEPT_2026
+# Embed one Unicode font solely for the six exact accented names.
+font_candidates=[
+    Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
+    Path("/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf"),
+]
+name_font_path=next((p for p in font_candidates if p.exists()),None)
+if name_font_path is None:
+    raise RuntimeError("Unicode TrueType font unavailable for exact team-name rendering")
+pdfmetrics.registerFont(TTFont("FireLensTeam",str(name_font_path)))
 assert CASE["analysis"]["identity_confirmed"] is False
 assert len(CASE["records"])==3
 assert CASE["analysis"]["delta_minutes"]==107
@@ -31,7 +63,7 @@ for file in ("/tmp/firelens_recent.png","/tmp/firelens_eagle.png","/tmp/firelens
     assert Path(file).is_file() and Path(file).stat().st_size>1000,file
 
 c=canvas.Canvas(str(DEST),pagesize=(W,H),pageCompression=1)
-c.setTitle("FireLens - Two Translators | 7-slide Project Demo | FIN-01")
+c.setTitle("FireLens | 7-slide Project Demo | DEMO-02")
 c.setAuthor("Stack Manauara | AI-assisted slide layout and text")
 c.setSubject("NASA FIRMS MODIS/VIIRS observations; real 2026 candidate association, not confirmed physical fire identity")
 
@@ -59,6 +91,11 @@ def title(s,kicker,n):
     txt("FIRELENS  /  STACK MANAUARA",48,25,9,CYAN,True)
     txt("NASA FIRMS data  |  AI-assisted slides  |  Independent team project",278,25,8,MUTED)
     txt(str(n)+" / 7",885,25,9,MUTED)
+def team_name(s,x,y,size=11.8):
+    if pdfmetrics.stringWidth(s,"FireLensTeam",size)>365:
+        raise ValueError("Team name does not fit its slide column: "+s)
+    color(WHITE);c.setFont("FireLensTeam",size);c.drawString(x,y,s)
+
 def arrow(x,y,endx):
     strok(CYAN);c.setLineWidth(2);c.line(x,y,endx,y)
     c.line(endx-7,y+4,endx,y);c.line(endx-7,y-4,endx,y)
@@ -70,16 +107,16 @@ def photo(path,x,y,w,h):
     rbox(x-5,y-5,w+10,h+10,"#10202a","#4a6470",10)
     c.drawImage(ImageReader(im),x+(w-ww)/2,y+(h-hh)/2,width=ww,height=hh,preserveAspectRatio=True,mask='auto')
 
-# 1: Intro
-title("Two sensors. Two translators. One clearer view.","NASA SPACE APPS 2026",1)
-txt("Real satellite thermal observations,",70,363,28,WHITE,True)
-txt("explained without overstating the evidence.",70,318,24,CYAN,True)
-wrapped("FireLens turns NASA FIRMS detections into an interactive map, a tested historical count comparison, and a transparent observation-level research example.",70,260,780,16,23,MUTED,maxlines=4)
-rbox(70,88,820,72,"#173541","#3b7475",12)
-txt("ONE OBSERVED PIXEL",97,132,13,CYAN,True)
-arrow(310,125,356)
-txt("ONE CLEAR INTERPRETATION",372,132,13,WHITE,True)
-txt("Not a confirmed individual fire; not a burned-area outline.",97,106,12,MUTED)
+# 1: FireLens and all six correctly accented team members
+title("FireLens","NASA SPACE APPS CHALLENGE 2026",1)
+txt("Harmonization of MODIS and VIIRS Hot Spots",70,402,19,CYAN,True)
+txt("One clearer view of satellite observations.",70,359,23,WHITE,True)
+wrapped("An interactive NASA FIRMS map, an Amazonas monthly history, and an honest observation-level MODIS / VIIRS case.",70,320,814,14,20,MUTED,maxlines=2)
+rbox(68,91,823,170,"#173541","#3b7475",12)
+txt("STACK MANAUARA  /  THE SIX TEAM MEMBERS",89,229,12,CYAN,True)
+for idx,name in enumerate(TEAM):
+    col=idx//3;row=idx%3
+    team_name(name,89+col*399,195-row*30,11.8)
 c.showPage()
 
 # 2: Live map
@@ -122,16 +159,16 @@ for i,(num_,h,body) in enumerate(cards):
 txt("These four observations are descriptive tests, not four proofs of physical fire identity.",59,63,12,CYAN,True)
 c.showPage()
 
-# 5: historical calendar
-title("04  |  Put observations in context","HISTORY / PILOT REGIONS A & B",5)
-photo("/tmp/firelens_history.png",45,93,590,324)
-txt("2022-2024",667,383,18,CYAN,True)
-wrapped("72 checked region-month records in two experimental pilot rectangles (A/B).",667,351,237,13,20,WHITE,maxlines=5)
-wrapped("Not a municipality-level history of all Amazonas.",667,267,235,12,18,ACC,maxlines=4)
-txt("A separate Amazonas test:",667,174,12,MUTED,True)
-txt("WAPE 2024  23.11%",667,151,12,WHITE)
-txt("WAPE 2025  50.73%",667,129,12,WHITE)
-wrapped("Absolute-count error versus MODIS, not physical fire accuracy.",667,105,226,10,13,MUTED,maxlines=3)
+# 5: refreshed HIST-02: actual state calendar, not the hidden pilot A/B view
+title("04  |  Amazonas: the updated history","HIST-02 / NASA FIRMS 2023-2026",5)
+photo("/tmp/firelens_history.png",45,91,590,326)
+txt("AMAZONAS",668,385,16,CYAN,True)
+txt("Jan-Oct 2023-2026",668,359,15,WHITE,True)
+wrapped("MODIS Aqua and VIIRS NOAA-20 are selectable separately.",668,328,229,12,18,MUTED,maxlines=3)
+wrapped("2026 is PARTIAL. SP and provisional NRT are labeled by month.",668,260,230,12,18,ACC,maxlines=3)
+wrapped("Nov-Dec are unavailable in this dataset, NOT months without fire.",668,198,230,12,17,MUTED,maxlines=4)
+txt("Separate pilot: A/B, 2022-2024",668,118,11,CYAN,True)
+wrapped("Different regions and filters; not combined with statewide counts.",668,98,229,10,13,MUTED,maxlines=3)
 c.showPage()
 
 # 6: source validation and caveat
@@ -145,8 +182,9 @@ txt("11 NOVEMBER",504,370,14,ACC,True)
 txt("12 Aqua  /  222 NOAA-20",504,329,19,WHITE,True)
 wrapped("Eligible daytime detections; zero groups met all four exploratory criteria within 120 minutes.",504,300,355,12,17,MUTED,maxlines=4)
 txt("Evidence can be reproduced.",70,208,20,WHITE,True)
-wrapped("Original NASA fields, dated JSON, TEST-02 methods, source hashes, and 47 passing Python tests are published.",70,173,800,14,20,MUTED,maxlines=3)
-txt("github.com/Emds96/firelens-stack-manauara",70,100,15,CYAN,True)
+wrapped("Source-verified NASA fields, versioned methods, original SCI-03 records and automated tests are public.",70,174,810,14,20,MUTED,maxlines=3)
+txt("Historical global scaling: held-out WAPE rose from 23.11% (2024) to 50.73% (2025).",70,123,12,ACC,True)
+txt("github.com/Emds96/firelens-stack-manauara",70,91,15,CYAN,True)
 c.showPage()
 
 # 7: limitations, credit and clear ending
@@ -163,7 +201,7 @@ for i,(label,body) in enumerate(statements):
     wrapped(body,222,y+48,647,12,17,WHITE,maxlines=2)
 txt("Open the map  |  Explore a case  |  Learn the limits",66,103,20,WHITE,True)
 txt("emds96.github.io/firelens-stack-manauara/",66,76,13,CYAN,True)
-wrapped("Satellite data: NASA FIRMS. Map: OpenStreetMap contributors. Slide design and text prepared with ChatGPT assistance. FireLens is independent and not endorsed by NASA.",65,60,820,9,12,MUTED,maxlines=2)
+wrapped("Data: NASA FIRMS. Map: OpenStreetMap contributors. ChatGPT assisted with slides and code. FireLens is an independent project, not endorsed by NASA.",65,60,820,9,12,MUTED,maxlines=2)
 c.showPage()
 c.save()
-print(f"FIN-01 PDF {DEST} bytes={DEST.stat().st_size} seven_slides=verified_by_source_logic",flush=True)
+print(f"DEMO-02 PDF {DEST} bytes={DEST.stat().st_size} pages=7 team={len(TEAM)} sci03_cells={len(SCI03['rows'])} sep2026={SEPT_2026}",flush=True)
