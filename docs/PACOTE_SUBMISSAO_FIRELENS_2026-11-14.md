@@ -24,7 +24,7 @@
 5. Site: abas Observações Recentes, Tradutor Científico e Calendário Histórico navegáveis; resultados científicos, contagens por sensor, detalhes de meses e recortes A/B apresentados.
 
 ### Pendente / NÃO alegar como concluído
-- Execução periódica horária por **cron**: arquivo GitHub Actions configurado para `:23` de cada hora, mas ainda não foi observada uma execução disparada por `schedule`; execuções por acionamento manual e `push` foram comprovadas.
+- Execução periódica por **cron**: arquivo GitHub Actions configurado para `:23` de cada hora. Um disparo real `schedule` em 14/11/2026 22:44 AMT foi verificado com sucesso, além de execuções manuais/push: https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669211275 . Isso não garante que todas as execuções futuras serão pontuais.
 - A malha NRT do Amazonas é uma **geometria simplificada secundária baseada em IBGE**; precisão da fronteira **não foi validada contra malha oficial atualizada**. Fonte e risco: https://github.com/Emds96/firelens-stack-manauara/blob/main/docs/GEOMETRIA_AMAZONAS.md
 - Os recortes históricos A/B **não são as fronteiras do estado do Amazonas**. O teste dos fatores históricos **não foi validado para NOAA-21, toda a Amazônia ou incêndios no terreno**.
 - Série histórica desde o início dos anos 2000 não implementada; o MVP tem **2022–2024**.
@@ -131,7 +131,7 @@ A apresentação foi criada com 7 slides em inglês, com números verificados e 
 
 **Evidências:** links do GitHub, Pages, Actions, arquivos JSON, teste de navegador e guia NASA 2026 citados aqui.
 
-**Riscos e restrições:** desatualização do NRT, geometria simplificada, cron ainda não validado, demo pública disponível mas aguardando revisão humana, campos/limites dependentes de formulário autenticado.
+**Riscos e restrições:** desatualização do NRT, geometria simplificada, cron com ao menos uma execução schedule comprovada (periodicidade futura não garantida), demo pública atualizada e aguardando revisão humana, campos/limites dependentes de formulário autenticado.
 
 **Critério de validação:** sessão de submissão conferir formulário, salvar rascunhos com confirmação, referenciar dados atuais, comprovar demo/links públicos e obter aprovação humana do envio.
 
@@ -146,7 +146,7 @@ A apresentação foi criada com 7 slides em inglês, com números verificados e 
 - **Evidência de QA no navegador:** https://agent.tinyfish.ai/runs/1c6d33da-b39b-4150-9461-4d192ef130ae ; poderá exigir login para ver o histórico do agente, mas a demo e o app são públicos.
 - **GitHub Pages build:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43637716718 — sucesso.
 - **Disclosure de IA:** o PDF possui rodapé visível de assistência por IA; incluir declaração completa na submissão, conferir alterações feitas por outras ferramentas/sessões e atribuir dados NASA FIRMS.
-- **Não alegar:** cron hourly independentemente validado, previsão, validação NRT NOAA-21 do ajuste histórico, precisão cartográfica IBGE oficial ou incêndios físicos individuais.
+- **Não alegar:** periodicidade futura garantida do cron, previsão, validação NRT NOAA-21 do ajuste histórico, precisão cartográfica IBGE oficial ou incêndios físicos individuais.
 
 
 ## 7. Atualização MAP-01 — mapa interativo concluído no MVP 2D
