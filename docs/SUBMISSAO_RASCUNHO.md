@@ -110,12 +110,14 @@
 - **Instrução oficial:** confirmar termos e que todos os materiais externos estão referenciados antes de “Submit for Judging”.
 - **Status:** BLOQUEADO / autorização humana explícita pendente. **Não marcar. Não clicar em Submit for Judging.**
 
-## Elegibilidade e bloqueios de acompanhamento
+## Elegibilidade e bloqueios de acompanhamento — registro histórico anterior a FIN-01
+
+> **Atenção:** os itens abaixo registram o estado de uma revisão preliminar. Alguns estavam pendentes àquela data e foram superados pelos artefatos FIN-01/UX-03 e pelo evento `schedule` comprovado em 14/11 às 22:44 AMT. Para a situação atual, usar a seção “Atualização FIN-01 / UX-03” ao final deste documento. O incidente de aceites ainda requer revisão humana.
 1. **Acesso NASA para edição:** TinyFish profile `Default` ainda sem sessão autenticada registrada; conferir o link/aba Project da equipe após login do fundador em sessão própria, sem compartilhar credenciais no chat.
 2. **Nomes exatos e limites:** não disponíveis sem acesso à tela real. Testar salvamento com `Save Progress` somente após acesso autenticado.
 3. **Idioma:** o protótipo público observado em 14/11 tem interface predominantemente em português (título, controles, explicações). **O guia exige inglês nos materiais vinculados. Acionar engenharia para oferecer interface em inglês antes da submissão.**
 4. **Demo:** vídeo ≤30 s ou slides ≤7 com link público ainda não existe. Não considerar esta etapa concluída.
-5. **Agendamento:** arquivo cron `23 * * * *` foi verificado, mas eventos inspecionados foram `push` e `dynamic`, não `schedule`.
+5. **Agendamento, no momento da revisão inicial:** havia somente `push`/`dynamic`. **Atualização verificada:** o evento `schedule` ocorreu e foi bem-sucedido em 14/11/2026 às 22:44 AMT: https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669211275 .
 6. **Dados científicos:** sem validação NOAA-21, sem todo o Amazonas histórico, sem série desde 2000; contorno NRT aproximado e limitações de dezembro local solar.
 7. **Equipe e evento:** verificar membros na mesma modalidade/local, situação não waitlisted, evento, fuso e líder local. Prazo do guia: **15/11/2026 às 23h59**, horário do evento local (ou residência do Team Owner, para Universal). Perguntar sobre avaliação local antecipada.
 8. **IA, referências e licenças:** auditar créditos e uso de ferramentas; confirmar presença das indicações necessárias nos artefatos finais.
