@@ -2,7 +2,7 @@
 
 NASA Space Apps Challenge 2026 · **Harmonization of MODIS and VIIRS Hot Spots**.
 
-**Status atual:** código e dados no GitHub e **GitHub Pages publicado e testado** em https://emds96.github.io/firelens-stack-manauara/. **NASA NRT NOAA-20/NOAA-21 comprovado em 14/11/2026 nas execuções #2 e #3**. **Calendário 2022–2024 publicado com 72 registros mensais e quatro métricas WAPE reproduzidas** no workflow histórico. Execução automática por cron ainda não foi observada.
+**Status atual:** código e dados no GitHub e **GitHub Pages publicado e testado** em https://emds96.github.io/firelens-stack-manauara/. **NASA NRT NOAA-20/NOAA-21 comprovado em 14/11/2026 nas execuções #2 e #3**. **Calendário 2022–2024 publicado com 72 registros mensais e quatro métricas WAPE reproduzidas** no workflow histórico. Execução automática agendada por **schedule** observada e concluída com sucesso em 14/11/2026 22:44 AMT (execução [43669211275](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669211275)); isso não garante disponibilidade contínua futura.
 
 ## Limites do recorte geográfico
 
@@ -69,7 +69,7 @@ No Windows PowerShell, forneça a variável via mecanismo seguro de segredo/ambi
 
 O script usa a geometria versionada (simplificada, compilada a partir de dados IBGE); se o arquivo local não existir, tenta baixar a malha oficial do IBGE; usa a geometria para recortar os pixels no estado do Amazonas (a API só filtra por caixa envolvente). Consulta os dois sensores para os dois dias mais recentes, aplica confiança `n/h`, preserva dia/noite, registra hora UTC da observação e da consulta e grava `data/recente.json`. A interface exibe em Manaus (UTC−4). Não há aplicação do fator histórico a NOAA-21 ou ao NRT.
 
-Se um sensor falhar, **todo o lote é marcado indisponível** e a última captura bem-sucedida é preservada com aviso; não se inventa um zero de ocorrências. A atualização agendada do GitHub Actions é proposta para `:23` de cada hora; horários reais podem variar. A execução manual #1 falhou por indisponibilidade na obtenção da malha; a execução automática por push #2 comprovou a API e o JSON, mas **o agendamento horário por cron ainda precisa ser observado**.
+Se um sensor falhar, **todo o lote é marcado indisponível** e a última captura bem-sucedida é preservada com aviso; não se inventa um zero de ocorrências. A atualização agendada do GitHub Actions é proposta para `:23` de cada hora; horários reais podem variar. A execução manual #1 falhou por indisponibilidade na obtenção da malha; a execução por push #2 comprovou a API e o JSON; uma execução adicional com evento **schedule** em 14/11 às 22:44 AMT foi bem-sucedida ([evidência](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669211275)), embora a pontualidade futura não seja garantida.
 
 ### Dados históricos e calendário
 
@@ -93,7 +93,7 @@ Esse exportador usa os **mesmos filtros, células e método** do arquivo cientí
 - `data/recente.json`: somente resultados NRT verdadeiros ou estado indisponível.
 - `data/historico.json`: 72 séries mensais de A/B × 2022–2024, geradas com validação WAPE comprovada.
 - `data/validacao.json`: resultados experimentais fornecidos pela pesquisa.
-- `.github/workflows/atualizar-firms.yml`: rotina NRT horária e publicação de JSON (cron ainda não observado).
+- `.github/workflows/atualizar-firms.yml`: rotina NRT horária e publicação de JSON (evento schedule comprovado em 14/11/2026).
 - `.github/workflows/construir-historico.yml`: workflow de extração 2022–2024, com WAPE reproduzido e JSON histórico publicado.
 - `tests/`: testes sintéticos para lógica, não testes de integração NASA.
 - `ESTADO_PROJETO.md`: transferência e status para submissão.
