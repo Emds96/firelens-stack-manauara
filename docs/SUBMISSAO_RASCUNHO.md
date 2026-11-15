@@ -252,3 +252,36 @@ A visualização do experimento A/B 2022–2024 permanece acessível por um **co
 - **Impedimento operacional:** a plataforma anteriormente exigiu marcar Terms e Originality até para `Save Progress`. O fundador proibiu expressamente novo aceite e exigiu interrupção caso seja necessário. Por isso **não efetuamos edição/salvamento** nesta execução. Se o usuário revisar pessoalmente e consentir com termos futuramente, uma autorização separada deve ser recebida antes de salvar/submeter.
 - **Pendências prioritárias:** (1) regularizar/explicar discrepância de Leonardo na equipe oficial; (2) revisar legalmente aceites já marcados anteriormente; (3) preencher Demo URL com PDF, SI com categorias reais e NASA Resources com links; (4) atualizar Summary/Details/credits; (5) salvar e conferir persistência **somente** com autorização pertinente e sem envio definitivo.
 - **Registro DOC-05:** decisão operacional — respeitar o bloqueio de aceites, não submeter, documentar diferença entre seis autores da demo e cinco membros registrados. Evidência — captura TinyFish e DEMO-02; risco de elegibilidade e prazo; validação — Members mostrar seis integrantes elegíveis e Project/Edit persistir os novos campos após Save Progress autorizado; responsáveis — sessão de submissão (registro), fundador (aceites e integrantes), engenharia (artefatos), data 14/11/2026.
+
+
+## SUB-04 — execução no formulário NASA com Save Progress (14/11/2026, 23h16 AMT da interface)
+
+**STATUS REAL:** rascunho atualizado e salvo; editor da NASA reaberto e conferido em sessão autenticada `emds96`. **NÃO SUBMETIDO PARA JULGAMENTO.** Não declarar aprovado pela NASA. **ATENÇÃO:** os dois aceites anteriores continuam marcados no servidor, remanescentes do incidente antigo; **nenhuma interação com esses aceites nesta execução**.
+
+### Evidências (execuções TinyFish autenticadas)
+- Preflight leitura e membros (antes de editar): https://agent.tinyfish.ai/runs/36e3e620-0e2c-4112-a9d4-1a2cb95e7f3c
+- Substituição de resumo, detalhes, link do PDF e preservação da URL do aplicativo; `Save Progress`: https://agent.tinyfish.ai/runs/5ed40491-d59c-401f-9879-a8121be99b54 — **Saved Revision** exibido, Last Saved 14/11/2026 23:12.
+- Três recursos NASA FIRMS + categorias SI; `Save Progress`: https://agent.tinyfish.ai/runs/35f85316-884d-4e8f-a611-f85fe4130676 — **Saved Revision** 23:14.
+- Cinco novas fontes complementares; `Save Progress`: https://agent.tinyfish.ai/runs/c220def5-3373-43fb-898b-6199bd10a1a0 — **Saved Revision** 23:16.
+- Auditoria final **somente leitura** com editor reaberto, estado preservado e comparação com página pública: https://agent.tinyfish.ai/runs/6e69c290-b9ed-4a1e-80d9-10da92c07598
+
+### Campos NASA — verificados no editor após o salvamento
+- **Project Name:** `FireLens — Two Translators`; preservado.
+- **Project Summary:** substituído por resumo em inglês com mapa bilingue NOAA-20/21, interpretação humana, Eagle's View como candidato, HIST-02 janeiro–outubro 2023–2026, piloto A/B independente e incertezas. Limite observado: 1500 caracteres.
+- **Project Details:** substituído por texto inglês sobre desafio MODIS/VIIRS, caso 10/11 de 107 minutos e FRP 18,62 / 13,09 MW (não mesmo incêndio), HIST-02 4.434 células mensais originais, SP/NRT de 2026, validação A/B distinta, WAPE **23,11% em 2024** e **50,73% em 2025** para experimento anual Amazonas, implementação e testes, limites físicos, IA e atribuições.
+- **Project Demonstration:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf — **DEMO-02 de 7 slides**, inglês, seis nomes no slide 1, HIST-02 estadual no slide 5, pública sem autenticação. Confirmada em PDF e no editor.
+- **Project Link:** https://emds96.github.io/firelens-stack-manauara/ — preservado.
+- **NASA Data:** 3 linhas persistidas: https://www.earthdata.nasa.gov/data/tools/firms ; https://firms.modaps.eosdis.nasa.gov/api/area/ ; https://firms.modaps.eosdis.nasa.gov/data/country/
+- **Use of Super Intelligence:** 7 escolhas relatadas no preenchimento: ideation, research, coding/debugging, writing/editing/translation, visual design, presentation/video/audio e other project-related SI use. `Data Analysis and Interpretation`, `Building SI/ML Into the Project` e `None` não selecionados. Na auditoria final foi confirmada persistência de 7 opções; a ferramenta listou `Coding` e `Debugging` como fragmentos da mesma opção — conferir o seletor manualmente antes do envio final se necessário. **ChatGPT e TinyFish** declarados nominalmente no texto; **Gemini não afirmado sem confirmação**.
+- **Space Agency Partner & Other Data:** ao reabrir o editor aparecem **6 linhas**: uma repetição do arquivo anual FIRMS e cinco referências novas a GitHub, Leaflet, Leaflet.markercluster, OpenStreetMap e fonte provisória do polígono Amazonas (br-geojson). **ALERTA DE PUBLICAÇÃO:** a página pública exibiu apenas a linha FIRMS. **Não afirmar que os cinco créditos externos estejam publicamente visíveis até resolver essa discrepância.**
+- **Status das seções:** Project Summary, Project Links, Project Information e Project Submission Verification = **Complete**. Sem erro de validação visível. `Save Progress` e `Submit for Judging` continuam disponíveis; nenhuma submissão concluída/bandeira de confirmação.
+- **Termos/originalidade:** duas caixas continuavam **marcadas desde antes** da missão, resultado do incidente histórico; nenhum novo clique, marcação ou alteração. A equipe humana deve revisar o significado jurídico do aceite armazenado antes do envio.
+- **Equipe oficial NASA (Members):** somente **5 membros visíveis**: Eder Magalhães dos Santos, Crhystopher Ferreira De Aguiar, Paulo Elias Cajado Pinto, Luís Henrique da Silva Carvalho, Mirna do Amaral Maquiné Nascimento. **Leonardo de Souza Pinheiro está nos slides, mas não consta na equipe NASA.** Precisa regularização humana, sem adição automática nem alteração de permissões.
+
+### Registro DOC-06 / SUB-04
+- **Decisão/status:** operacional, aprovada pelo fundador — editar e salvar rascunho; executada com ressalvas. **Envio definitivo NÃO autorizado nem realizado.**
+- **Motivo/alternativas:** apresentar o FireLens atualizado e verificável sem adiantar o envio; alternativa de edição integral manual foi evitada usando TinyFish com inspeção prévia e verificações posteriores.
+- **Evidência:** DEMO-02, HIST-02, FIN-01, TEST-02, SCI-03, Github Actions e execuções TinyFish listadas acima.
+- **Riscos e restrições:** sexto membro ausente no cadastro oficial; crédito de cinco links adicionais não visível publicamente apesar de aparecer no editor; revisar escopo real de cada ferramenta IA e direitos de terceiros; aceites legais anteriores marcados indevidamente; envio depende de autorização humana futura.
+- **Validação:** rascunho persistido e quatro seções completas; auditagem final antes de Submit for Judging exige conferir equipe, links públicos, direitos/créditos, aceites e confirmação real de envio após comando expresso.
+- **Responsável/data:** sessão de submissão / Stack Manauara, 14/11/2026; decisões e submissão definitivas sob responsabilidade humana.
