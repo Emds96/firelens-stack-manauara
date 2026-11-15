@@ -219,3 +219,8 @@ footer{padding:20px 0}
  .state-history-legend{font-size:10px}
  .hist-processing,.hist-caveat{font-size:11px}
 }
+
+/* BRAND-01 — wordmark only, no icon or tagline. */
+.topbar .brand{display:inline-flex;align-items:center;gap:0;min-width:0}
+.topbar .brand strong{display:block;font-size:clamp(21px,2.4vw,25px);font-weight:800;line-height:1.1;letter-spacing:-.65px;color:var(--text)}
+@media(max-width:560px){.topbar .brand strong{font-size:22px}}
