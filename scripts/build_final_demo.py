@@ -91,7 +91,7 @@ def title(s,kicker,n):
     txt("FIRELENS  /  STACK MANAUARA",48,25,9,CYAN,True)
     txt("NASA FIRMS data  |  AI-assisted slides  |  Independent team project",278,25,8,MUTED)
     txt(str(n)+" / 7",885,25,9,MUTED)
-def team_name(s,x,y,size=11.8):
+def team_name(s,x,y,size=14.2):
     if pdfmetrics.stringWidth(s,"FireLensTeam",size)>365:
         raise ValueError("Team name does not fit its slide column: "+s)
     color(WHITE);c.setFont("FireLensTeam",size);c.drawString(x,y,s)
@@ -116,7 +116,7 @@ rbox(68,91,823,170,"#173541","#3b7475",12)
 txt("STACK MANAUARA  /  THE SIX TEAM MEMBERS",89,229,12,CYAN,True)
 for idx,name in enumerate(TEAM):
     col=idx//3;row=idx%3
-    team_name(name,89+col*399,195-row*30,11.8)
+    team_name(name,89+col*399,195-row*30,14.2)
 c.showPage()
 
 # 2: Live map
