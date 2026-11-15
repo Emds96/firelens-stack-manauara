@@ -163,3 +163,65 @@ O campo **History** agora começa com **Amazonas, janeiro–outubro de 2023–20
 A visualização do experimento A/B 2022–2024 permanece acessível por um **controle separado** e preserva `data/historico.json` e a metodologia original. **Não houve ajuste de calibração, alteração de arquivos científicos, login em formulário NASA, aceite nem submissão.**
 
 **Evidência de CI:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43671123377 — 14 testes Node, 47 Python e verificação Chromium em desktop, sensor por sensor, idioma e preservação de A/B. Documento científico de implementação: `docs/HIST-02_CALENDARIO.md`. O texto realmente salvo no formulário NASA deve ser revisado pela equipe antes do envio, inclusive limites de caracteres e créditos.
+
+
+## SUB-03 — preparação final para envio futuro (14/11/2026, 23h AMT)
+
+**Status:** verificação concluída; documentos de preenchimento preparados; **nenhuma alteração ou Save Progress efetuado na NASA nesta etapa**. **Submit for Judging absolutamente proibido** até autorização explícita do fundador em 15/11/2026.
+
+### Evidência atual de engenharia e demonstração
+- **HIST-02 publicado:** código, SCI-03 (`data/sci03_agregados.json`, 4.434 registros), relatório `docs/HIST-02_CALENDARIO.md`, [CI 43671123377](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43671123377) concluído com sucesso; [GitHub Pages 43672265799](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43672265799) concluído em 14/11. Página pública `?lang=en` contém o novo calendário estadual e A/B separado.
+- **Demonstração disponível e pública:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf ; 7 slides em inglês, com indicação visível de assistência de IA e ressalvas. **A apresentação atual enfatiza o calendário piloto A/B e ainda não apresenta explicitamente a nova interface HIST-02 estadual.** Revisar e considerar atualizar a demonstração antes do envio.
+- **Agendamento real:** [evento `schedule` 43669211275](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669211275) concluído com sucesso às 22:44 AMT, 14/11. É um exemplo observado, não garantia de funcionamento horário futuro.
+- **Limitações permanentes:** malha estadual simplificada; 2026 SP/NRT heterogêneo; ausências não são zero; A/B independente; NOAA-21 sem calibração histórica validada; associação candidata TEST-02 não prova o mesmo incêndio.
+
+### Campos reais da plataforma e valores vistos em inspeção somente leitura
+- **URL:** https://www.spaceappschallenge.org/2026/find-a-team/stack-manauara/?tab=project
+- **Evidência TinyFish:** https://agent.tinyfish.ai/runs/d0803a96-14cd-4854-b12c-63c66b5a4696 .
+- Project Name: `FireLens — Two Translators`, salvo anteriormente.
+- Summary: 552/1500 caracteres, **texto antigo**, não menciona HIST-02 ou `schedule`. Projeto Summary aparece Complete.
+- Project Link: https://emds96.github.io/firelens-stack-manauara/ , salvo anteriormente.
+- Project Details: **texto antigo**, menciona calendário A/B como principal e afirma agendamento não comprovado.
+- Project Demonstration: **vazio**. Project Links = Incomplete.
+- Use of Super Intelligence: **sem opções selecionadas**. NASA Data: **sem linhas/links**. Space Agency Partner & Other Data: **sem linhas/links**. Project Information = Incomplete.
+- **Termos e originalidade: ambos já estavam MARCADOS na inspeção de leitura de 14/11** (estado salvo decorrente de incidente anterior de automação, não um novo aceite humano). Não foram tocados nesta etapa. Último salvamento exibido pelo TinyFish: 14/11/2026 às 15:10 (hora conforme interface inspecionada).
+- **BLOQUEIO de permissão:** a plataforma já rejeitou Save Progress com as duas caixas desmarcadas, conforme [teste de correção anterior](https://agent.tinyfish.ai/runs/003f8bc6-18ed-426a-95e2-5c835b00a7c1). Diante da instrução ABSOLUTA do fundador de não aceitar termos/originalidade nem salvar se exigir aceite, **esta sessão interrompeu antes de qualquer edição/salvamento NASA**. É necessário revisão humana explícita da situação legal antes de prosseguir.
+
+### Texto recomendado para Summary (inglês, ${summary.length} caracteres; limite observado 1500)
+> FireLens helps people interpret NASA FIRMS thermal detections without mistaking pixels for confirmed fires. Our bilingual map shows recent VIIRS NOAA-20/NOAA-21 observations over an approximate Amazonas boundary, with dates, filters and accessible explanations. An archived 10 November 2026 case juxtaposes one MODIS Aqua and two NOAA-20 detections as a candidate association, not proof of one fire. The main History calendar displays original MODIS Aqua or NOAA-20 monthly counts for Amazonas, January–October 2023–2026; unavailable months and provisional 2026 SP/NRT sources are identified. A separate 2022–2024 pilot A/B calendar presents historical count-scaling tests and their limitations. FireLens provides reproducible evidence and context, not physically validated sensor harmonization or fire forecasts.
+
+### Texto recomendado para Project Details (inglês)
+> **Problem and user experience.** MODIS and VIIRS detect thermal anomalies with different resolutions, sensitivities and observation schedules. FireLens is a bilingual NASA FIRMS web prototype that puts one plain-language explanation next to source-grounded satellite measurements. A pixel detection is not a confirmed individual fire, burned-area polygon or forecast.
+>
+> **Map and recent observations.** An interactive 2D map uses NOAA-20 and NOAA-21 near-real-time NASA FIRMS detections in a simplified, provisional Amazonas boundary. Visitors filter sensors, select points and inspect timestamps, confidence, coordinates and optional technical details. Retrieval time and observation time are distinct, and stale or unavailable snapshots are indicated. A GitHub Actions schedule-triggered retrieval succeeded on November 14, 2026 at 22:44 Manaus time, but continuous hourly reliability is not guaranteed.
+>
+> **Eagle's View research case.** A separate archived example from November 10, 2026 presents one MODIS Aqua detection and two nearby NOAA-20 detections, observed 107 minutes apart. The Aqua FRP was 18.62 MW and the summed VIIRS FRP was 13.09 MW. Their locations and measured attributes support a candidate spatial-temporal association, not identification of a single physical fire. Scan × track is not an exact orbital footprint, MODIS T31 and VIIRS TI5 use different spectral channels, and FRP is radiative power, not conserved energy.
+>
+> **Historical calendar (HIST-02).** The default History view aggregates 4,434 original 1° UTC-month SCI-03 cell records into separate MODIS Aqua and VIIRS NOAA-20 monthly counts for the approximate Amazonas region, January–October 2023–2026. The 2023–2025 series comes from NASA FIRMS annual Brazil archives. In 2026, January–July uses SP/SP, August uses Aqua SP and NOAA-20 NRT, and September–October NRT/NRT. November and December are unavailable in this dataset, never zero fires. NRT products are provisional and not physically equivalent to SP or across sensors. No scaling factor is applied to the statewide counts.
+>
+> **Separate historical calibration experiment.** A/B are two experimental rectangles, not statewide borders. Their 2022–2024 calendar has 72 region-month records; a global daytime scaling factor trained on preceding years was evaluated on held-out years against MODIS Aqua counts, not against ground truth. In a distinct Amazonas experiment, held-out WAPE worsened from 23.11% in 2024 to 50.73% in 2025, warning against treating the factor as a universally reliable correction. Neither result validates scaling for NOAA-21 NRT.
+>
+> **Engineering and boundaries.** Python processes NASA FIRMS historical CSV and Area API observations into versioned JSON consumed by HTML/CSS/JavaScript on GitHub Pages. Leaflet, Leaflet.markercluster and OpenStreetMap underpin the map. An accepted GitHub Actions run completed 47 Python and 14 Node tests plus browser checks of desktop/mobile, languages and History state. The state boundary is from simplified third-party IBGE-based geometry, not yet checked against the current official IBGE mesh. Orbital coverage, cloud effects, different sensor opportunities and processing differences remain unresolved. The app does not estimate real fire counts, predict future fires or prove a complete physical MODIS/VIIRS harmonization.
+
+### Campos de URLs a preencher após liberação do bloqueio
+- Project Demonstration: https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf
+- Project Link: https://emds96.github.io/firelens-stack-manauara/ (já salvo).
+- NASA Data: usar o controle **Add New Link** (Link Text / Link Url):
+  - NASA Earthdata FIRMS — https://www.earthdata.nasa.gov/data/tools/firms
+  - NASA FIRMS Brazil country archives — https://firms.modaps.eosdis.nasa.gov/data/country/
+  - NASA FIRMS Area API — https://firms.modaps.eosdis.nasa.gov/api/area/
+- Space Agency Partner & Other Data (mesmo controle de links): código [FireLens GitHub](https://github.com/Emds96/firelens-stack-manauara); [Leaflet](https://leafletjs.com/); [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster); [OpenStreetMap attribution](https://www.openstreetmap.org/copyright); [contorno estadual IBGE-based de terceiro](https://github.com/henriquemalvar/br-geojson/blob/main/dist/estados.geojson). Conferir créditos de imagens, permissões e demais ferramentas antes do envio.
+
+### AI / Super Intelligence — a confirmar com a equipe antes de selecionar
+- **Uso fundamentado na engenharia:** ChatGPT (OpenAI) ajudou a redigir código, testes, explicações, documentos e apresentação; TinyFish apoiou QA em navegador e preenchimento assistido anterior. Fonte de dados é NASA FIRMS, sem geração de detecções por IA.
+- **Opções do formulário potencialmente aplicáveis:** Coding, Debugging, or Troubleshooting; Writing, Editing, or Translation; Visual Design or Image Creation; Presentation, Video, or Audio; Research or Information Gathering. Revisar se `Other Project-Related SI Use` e `Data Analysis and Interpretation` também se aplicam; não marcar `None`. **Nenhuma opção foi selecionada**.
+- **Crédito proposto (EN; para documentação/descrições e revisão):** “ChatGPT (OpenAI) assisted with code and test drafting, debugging, scientific explanation, documentation and presentation layout/text. TinyFish assisted browser quality assurance and prior form drafting. NASA FIRMS supplied all source satellite observations; AI did not invent detections. Team members remain responsible for accuracy, permissions, credits and submission. The project is independent and not endorsed by NASA.”
+- **Verificação antes do envio:** indicar SI em conteúdos produzidos; a demo PDF traz “AI-assisted slides”, mas a equipe deve revisar se as exigências de marca-d'água e metadados se aplicam adequadamente às imagens/artefatos efetivamente gerados e se há outros serviços de IA.
+
+### Registro DOC-04 / SUB-03
+- **Decisão/status:** interromper edição NASA após detectar que Save Progress requer aceites anteriormente selecionados indevidamente (**bloqueada por restrição expressa do fundador**).
+- **Motivo/alternativa:** segurança jurídica e preservação do controle humano; alternativa rejeitada: deixar a automação reafirmar termos sem autorização.
+- **Evidências:** execução read-only TinyFish, guias oficiais 2026, arquivos e CI da engenharia acima.
+- **Riscos:** a revisão anterior da NASA preserva informações desatualizadas; a demo não mostra claramente HIST-02; referências e SI faltam; prazo oficial 15/11/2026 23:59 no fuso do evento.
+- **Validação pendente:** humano revisar estado dos termos e autorizar aceites quando apropriado; depois inserir conteúdo, **Save Progress**, reabrir para conferir e manter `Submit for Judging` não acionado; submissão final somente em 15/11 com ordem expressa.
+- **Responsáveis:** sessão de submissão (documentar); fundador (autorização); engenharia (revisão de demo) · data 14/11/2026.
