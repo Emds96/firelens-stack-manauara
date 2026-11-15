@@ -225,3 +225,30 @@ A visualização do experimento A/B 2022–2024 permanece acessível por um **co
 - **Riscos:** a revisão anterior da NASA preserva informações desatualizadas; a demo não mostra claramente HIST-02; referências e SI faltam; prazo oficial 15/11/2026 23:59 no fuso do evento.
 - **Validação pendente:** humano revisar estado dos termos e autorizar aceites quando apropriado; depois inserir conteúdo, **Save Progress**, reabrir para conferir e manter `Submit for Judging` não acionado; submissão final somente em 15/11 com ordem expressa.
 - **Responsáveis:** sessão de submissão (documentar); fundador (autorização); engenharia (revisão de demo) · data 14/11/2026.
+
+
+## SUB-04 — checagem real NASA após DEMO-02 (14/11/2026, revisão somente leitura)
+
+**Evidência de navegador:** https://agent.tinyfish.ai/runs/30503026-db91-4aa7-b3ca-db72d5b27300 . Esta execução inspecionou Members e Project sem editar, salvar, alterar aceites ou submeter. **Não declarar os novos campos como salvos.**
+
+### Discordância crítica: seis integrantes nos slides, cinco na página NASA
+- **Demonstração PDF DEMO-02 pública:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf — sete páginas, seis nomes e HIST-02 no slide 5, comprovados pela leitura pública do PDF. Nomes: Crhystopher Ferreira de Aguiar; Eder Magalhães dos Santos; Leonardo de Souza Pinheiro; Luís Henrique da Silva Carvalho; Mirna do Amaral Maquiné Nascimento; Paulo Elias Cajado Pinto.
+- **Aba Members NASA, cinco nomes visíveis:** Eder Magalhães dos Santos (owner), Crhystopher Ferreira De Aguiar, Paulo Elias Cajado Pinto, Luís Henrique da Silva Carvalho, Mirna do Amaral Maquiné Nascimento. **Leonardo de Souza Pinheiro NÃO apareceu.** A condição de participação confirmada no evento não foi demonstrada para os cinco. Local Event informado pelo navegador: **Manaus, Brazil**. **Precisamos que o fundador confira e regularize o sexto integrante antes do prazo se for membro oficial**; não omitir o crédito do slide automaticamente e não inventar registro.
+- Os critérios 2026 exigem que todos os participantes da equipe estejam no mesmo evento e registrados; máximo 6 pessoas. Fonte: https://www.spaceappschallenge.org/resources/judging-awards-guide/
+
+### Estado visto da aba Project (read-only)
+- **Project Name**: FireLens — Two Translators, existente.
+- **Summary e Project Details**: texto antigo, menciona somente experimento A/B e afirma schedule não comprovado; precisa substituir por textos SUB-03 para incluir HIST-02 e execução `schedule` verificada.
+- **Demo Link na leitura pública:** https://emds96.github.io/firelens-stack-manauara/ (**aplicativo, não PDF**). Atenção: há divergência com a inspeção anterior do editor que dizia campo Demo vazio. **Consultar input do editor antes de afirmar qualquer valor armazenado.**
+- **Public App Link:** https://emds96.github.io/firelens-stack-manauara/ (correto).
+- **NASA Data / Credits links**: não visíveis na leitura do projeto; não provar cadastro completo.
+- **SI / Terms / Originality / Last Saved**: não visíveis na página de leitura; a execução não pode confirmar se aceites continuam marcados ou se estão desmarcados.
+- **Nenhum banner de submissão foi visto**; isso não substitui a confirmação de status no editor.
+- **Nenhum campo atualizado/salvo nesta revisão; nenhum Submit for Judging acionado.**
+
+### Estado final SUB-04
+- Documento de rascunho SUB-03 com resumo e detalhes completos permanece como base pronta para colagem, com HIST-02 e limitações científicas.
+- **DEMO-02 atualizada e verificada no link público**, diferente da versão antiga: slide 1 seis membros, slide 5 HIST-02 Amazonas 2023–2026 e A/B independente.
+- **Impedimento operacional:** a plataforma anteriormente exigiu marcar Terms e Originality até para `Save Progress`. O fundador proibiu expressamente novo aceite e exigiu interrupção caso seja necessário. Por isso **não efetuamos edição/salvamento** nesta execução. Se o usuário revisar pessoalmente e consentir com termos futuramente, uma autorização separada deve ser recebida antes de salvar/submeter.
+- **Pendências prioritárias:** (1) regularizar/explicar discrepância de Leonardo na equipe oficial; (2) revisar legalmente aceites já marcados anteriormente; (3) preencher Demo URL com PDF, SI com categorias reais e NASA Resources com links; (4) atualizar Summary/Details/credits; (5) salvar e conferir persistência **somente** com autorização pertinente e sem envio definitivo.
+- **Registro DOC-05:** decisão operacional — respeitar o bloqueio de aceites, não submeter, documentar diferença entre seis autores da demo e cinco membros registrados. Evidência — captura TinyFish e DEMO-02; risco de elegibilidade e prazo; validação — Members mostrar seis integrantes elegíveis e Project/Edit persistir os novos campos após Save Progress autorizado; responsáveis — sessão de submissão (registro), fundador (aceites e integrantes), engenharia (artefatos), data 14/11/2026.
