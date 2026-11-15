@@ -8,6 +8,10 @@ on:
       - 'app.js'
       - 'map-ui.js'
       - 'map-data.js'
+      - 'history-state.js'
+      - 'history-ui.js'
+      - 'data/sci03_agregados.json'
+      - 'tests/test_history_state.cjs'
       - 'tests/test_map.cjs'
       - 'tests/test_case.cjs'
       - 'data/caso_visao_aguia_20261110.json'
@@ -26,8 +30,10 @@ jobs:
           node --check app.js
           node --check map-data.js
           node --check map-ui.js
+          node --check history-state.js
+          node --check history-ui.js
       - name: Map data tests (real JSON plus synthetic failure cases)
-        run: node --test tests/test_map.cjs tests/test_case.cjs
+        run: node --test tests/test_map.cjs tests/test_case.cjs tests/test_history_state.cjs
       - name: Existing Python regression tests
         run: python -m unittest discover -s tests -v
 
