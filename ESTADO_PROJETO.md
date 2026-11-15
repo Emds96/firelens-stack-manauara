@@ -2,7 +2,7 @@
 
 **Equipe:** Stack Manauara  
 **Atualização:** 14/11/2026  
-**Versão:** engenharia 0.2.3 (SCI-03 padrões relativos 2023–2026 testados, resultados separados e interface preservada)
+**Versão:** engenharia 0.2.4 (TEST-02 físico-espacial 10–14/11/2026 executado, dados NASA reais, nenhuma fusão ou alteração da interface)
 
 ## Decisões e requisitos
 
@@ -157,3 +157,17 @@
 - **Restrições e riscos:** sensibilidade, resolução, nuvens e órbitas diferentes; sem denominador de oportunidades observacionais; geometria estadual simplificada não validada oficialmente; 2026 SP/NRT, NRT sem `type` e sujeito a revisões; 1° pode esconder padrões locais; desempenho em períodos de poucos registros pode variar.
 - **Validação e próximo passo:** revisar métricas e fontes por produto/período, testar com malha IBGE oficial, considerar cobertura orbital e qualidade; nenhum uso operacional antes de aprovação da sessão principal.
 - **Responsável/data:** Engenharia Stack Manauara, 14/11/2026.
+
+
+## TEST-02 — Visão da Águia: análise físico-espacial (10–14/11/2026)
+
+- **ID / decisão / status:** TEST-02, experimento observacional autorizado e executado, **aprovação científica pendente da sessão principal**. O método não demonstrou identidade única de incêndios nem foi integrado à operação. Alternativas: fundir registros pelas 4 travas (rejeitada sem validação independente) e manter pares candidatos com incertezas (implementada).
+- **Fontes e evidências:** NASA FIRMS Area API, MODIS_NRT (Terra/Aqua) e VIIRS_NOAA20_NRT, com FIRMS_MAP_KEY somente como segredo GitHub. Consulta de 10/11/2026 (5 dias) recortada pelo polígono Amazonas simplificado, com atenção a Manaus/Autazes/Careiro (lon −61,5 a −58,5, lat −4,5 a −2,0). CSVs originais 321 linhas MODIS (147 dentro de AM) e 1.420 linhas VIIRS (760 dentro); hashes e todas as colunas fonte preservadas nos dados separados.
+- **11/11/2026:** 12 MODIS Aqua, 5 MODIS Terra, 267 VIIRS NOAA-20 de todas as confianças e turnos; filtros diurnos elegíveis reproduzem exatamente **12 Aqua e 222 NOAA-20 do TEST-01B**. Dentro da BBOX Manaus/Autazes/Careiro: 2 MODIS e 35 NOAA-20 totais. Nenhuma dupla MODIS–VIIRS encaixada em mesma data/turno com defasagem ≤120 min; **zero grupos de quatro travas compatíveis** no dia.
+- **Categorias em 11/11 — somente os 222 VIIRS elegíveis:** 0 compatíveis com as quatro travas; 15 sobreposição geométrica mas >120min; 1 borda ≤2,5km; **202 isolados espacialmente >2,5km de uma caixa aproximada MODIS** (FRP médio 7,8863 MW, área nominal média 0,1722 km², T4 média 339,0872 K e T11 média 296,3736 K); 4 não resolvidos. **Esses 202 não são automaticamente incêndios invisíveis ao MODIS, de sub-bosque, nem causa de fumaça.**
+- **Categorias para 267 VIIRS de todos turnos/confianças:** 0 diretos, 19 defasados, 1 borda, 243 isolados, 4 não resolvidos. No dia 11, zero I4=367 K ou I4<250 K; em toda janela, cinco VIIRS registraram I4=367 K e nenhum I4<250 K.
+- **10/11/2026 — dois grupos candidatos, não incêndios confirmados:** M-000047 Aqua / V-000192, V-000193 (Δt 107min, ΔT11 3,38K, ΣFRP 13,09 MW vs Aqua 18,62 MW, razão 0,703) e M-000048 Aqua / V-000194 (107min, 4,05K, 3,91 MW vs 4,70 MW, razão 0,832); perto do entorno focal. Critérios exploratórios 5K/8K e FRP 0,5–2,0 **não validados pela NASA como teste de identidade**.
+- **Limitações físicas:** valores scan×track descrevem dimensões aproximadas, não footprints orientados Level-2; T31 e TI5 são temperaturas de brilho de pixels detectados, não fundo não queimado independente; FRP é potência instantânea, não energia conservada; sobreposições podem multiplicar associações; NRT provisório, polígono estadual simplificado; sem máscaras de nuvens, cobertura de passagens ou evidência independente sobre fumaça em Manaus ou sub-bosque.
+- **Artefatos separados:** `scripts/test02_fisico.py`, `scripts/test02_report.py`, `scripts/test02_verify.py`, `tests/test_test02_fisico.py`; `data/test02_observacoes_20261110_14.json` (todas as colunas da fonte para cada pixel no recorte), `data/test02_resultados.json`, `docs/TEST-02_VISAO_AGUIA.md`.
+- **Validação:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43662712437 — ingestão autenticada real, 47 testes, 5 dias e categorias checadas; https://github.com/Emds96/firelens-stack-manauara/actions/runs/43662809732 — reprocessamento offline idêntico de cada atributo e par, sem credencial/rede, 47 testes.
+- **Responsável/data:** engenharia Stack Manauara, 14/11/2026. **Próximo passo científico proposto:** estudar footprints Level-2 e oportunidades de observação/cobertura sob autorização da sessão principal, antes de afirmar harmonização físico-espacial.
