@@ -194,8 +194,8 @@ def group_candidates(modis,viirs):
         if inside_sync or inside_delay or border:
             avg_t=(sum(x["t11_k"] for x in inside_sync if x["t11_k"] is not None)/
                    sum(x["t11_k"] is not None for x in inside_sync)) if any(x["t11_k"] is not None for x in inside_sync) else None
-            sum_frp=(sum(x["frp_mw"] for x in inside_sync if x["frp_mw"] is not None)
-                     if all(x["frp_mw"] is not None for x in inside_sync) else None)
+            sum_frp=(sum(x["frp_mw"] for x in inside_sync)
+                     if inside_sync and all(x["frp_mw"] is not None for x in inside_sync) else None)
             ratio=sum_frp/m["frp_mw"] if sum_frp is not None and m["frp_mw"] and m["frp_mw"]>0 else None
             delta_t=abs(m["t11_k"]-avg_t) if m["t11_k"] is not None and avg_t is not None else None
             thermal_5=delta_t is not None and delta_t<=THERMAL_LIMITS[0]
@@ -301,6 +301,12 @@ def evaluate_day(modis,viirs,groups,pairs,date):
        "unresolved_ambiguous_or_lock_failure","unresolved"]
     summary={label:summarize([v for v in curv if cat[v["id"]]["category"]==label])
              for label in allcategories}
+    quality_summary={label:summarize([v for v in curv
+                    if v["historic_quality_filter_eligible"] and cat[v["id"]]["category"]==label])
+                    for label in allcategories}
+    focus_summary={label:summarize([v for v in curv
+                    if v["focus_bbox"] and cat[v["id"]]["category"]==label])
+                    for label in allcategories}
     quality=[v for v in curv if v["historic_quality_filter_eligible"]]
     focus=[v for v in curv if v["focus_bbox"]]
     qual_m=[m for m in curm if m["historic_quality_filter_eligible"]]
@@ -313,7 +319,11 @@ def evaluate_day(modis,viirs,groups,pairs,date):
             "focus_bbox_counts":{"modis_all":sum(m["focus_bbox"] for m in curm),
                                  "noaa20_all":len(focus)},
             "categories_viirs_mutually_exclusive":summary,
+            "eligible_diurnal_viirs_categories":quality_summary,
+            "focus_bbox_viirs_categories":focus_summary,
             "all_categories_sum_check":sum(x["n"] for x in summary.values())==len(curv),
+            "eligible_categories_sum_check":sum(x["n"] for x in quality_summary.values())==len(quality),
+            "focus_categories_sum_check":sum(x["n"] for x in focus_summary.values())==len(focus),
             "four_locks_candidate_groups_8k":sum(g["four_locks_candidate_8k"] for g in groups
               if g["modis_id"] in {m["id"] for m in curm}),
             "four_locks_candidate_groups_5k":sum(g["four_locks_candidate_5k"] for g in groups
@@ -344,6 +354,10 @@ def build_analysis(modis,viirs,meta,geometry_sha):
             "focus_bbox_wsen":FOCUS_BBOX,"geometry_sha256":geometry_sha,
             "sources":meta,"daily":days,
             "group_diagnostics":groups,"examples_2026_11_11":examples,
+            "pair_diagnostics_2026_11_11":sorted([
+                dict(pair) for p in pairs.values() for pair in p
+                if pair["modis_id"] in {m["id"] for m in m11}],
+                key=lambda p:(p["modis_id"],p["viirs_id"])),
             "viirs_multi_MODIS_spatiotemporal_overlap_count":count_shared,
             "total_modis_rows":len(modis),"total_viirs_rows":len(viirs),
             "thresholds_exploratory":{"time_min":MAX_TIME_DIRECT_MIN,"thermal_k":[5,8],
