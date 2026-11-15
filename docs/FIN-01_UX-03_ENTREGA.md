@@ -60,6 +60,12 @@ No mesmo TEST-02, **dois grupos candidatos** foram encontrados em 10/11. Em **11
 - **TEST-02 original reprodutível:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43662809732 — 47 testes Python e recálculo offline exato a partir das observações NASA arquivadas. Testes não constituem confirmação física.
 - **Agendamento NRT observado:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669211275 — evento **schedule**, concluído com sucesso em 15/11/2026 02:44 UTC (14/11 22:44 AMT); consultou NOAA-20/NOAA-21 e publicou `data/recente.json` com `last_success_utc=2026-11-15T02:45:02Z`, `status=ok`, `count=172`. Isto demonstra pelo menos uma execução agendada, não disponibilidade garantida futura.
 
+### Validação complementar na URL pública (sem login)
+
+- **Execução externa de navegador:** https://agent.tinyfish.ai/runs/d45055e0-2b2d-4294-b2b9-c63e24650894 — concluída sem erros reportados. Página pública EN/PT-BR, mapa recente com 172 pontos do snapshot de 14/11 às 22:45 AMT (NOAA-20: 48; NOAA-21: 124), separação entre última consulta e observação, filtros por sensor, calendário A/B, seção “Entenda os dados” com WAPE 2025 de 50,73% e PDF público de 7 páginas foram conferidos.
+- **Precisão sobre o alcance:** essa execução externa confirmou o botão Visão da Águia e a descrição do caso na demo, **mas não documentou uma interação direta completa com os três marcadores na camada histórica pública**. Esse caminho foi testado diretamente e sem erros no Chromium de CI https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669321931. Não confundir um teste com o outro.
+- **Publicação comprovada:** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669617287 — GitHub Pages deploy `completed/success` do mesmo commit `d0f48ff6f5fcc3826521c6fe1539ac73dc524706` que estava na branch `main` durante esta conferência.
+
 ## 5. Riscos e pendências — sem omissões
 
 1. **Revisão final humana** da interface e dos sete slides, títulos, números, créditos e licenças. Revisão técnica e execução automática foram realizadas; não equivalem a aprovação científica ou jurídica final.
@@ -67,7 +73,7 @@ No mesmo TEST-02, **dois grupos candidatos** foram encontrados em 10/11. Em **11
 3. **Física:** sem geolocalização dos footprints Level-2, máscaras de nuvens/opportunidades de observação, taxa de falsos pareamentos ou validação externa da identidade dos incêndios; sem previsão de fogo ou atribuição de fumaça.
 4. **NRT:** dados provisórios, atualizações dependentes de acesso NASA/GitHub e rede; uma captura antiga deve continuar identificada como antiga.
 5. **Submissão NASA:** nenhum clique em **Submit for Judging**, nenhuma alteração nesta missão nas caixas de aceite. Em `docs/SUBMISSAO_RASCUNHO.md` existe registro de um incidente anterior de aceite com persistência não verificada, exigindo inspeção direta pelo responsável. Campos efetivamente salvos e direitos de imagens/bibliotecas devem ser conferidos.
-6. **Teste público posterior a deploy:** confirmar acesso sem login e screenshots em navegadores reais adicionais; GitHub Actions demonstrou renderização e navegação em Chromium nos dois tamanhos.
+6. **Cobertura complementar:** o acesso público sem login e a leitura do conteúdo foram conferidos com TinyFish após deploy; permanece desejável revisão manual em mais dispositivos reais, inclusive legibilidade visual dos sete slides e atalhos do teclado.
 
 ## 6. Registro de decisões e aceitação
 
