@@ -1,0 +1,55 @@
+name: TEST-02 - NASA physical pixel observation experiment
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/test02-fisico.yml'
+permissions:
+  contents: write
+concurrency:
+  group: test02-fisico
+  cancel-in-progress: false
+jobs:
+  test-and-retrieve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run existing and TEST-02 isolated unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Retrieve NASA FIRMS NRT 2026-11-10 through 2026-11-14 (masked credential)
+        env:
+          FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
+        run: python -m scripts.test02_fisico
+      - name: Build human-readable 11 November physical comparison from actual NASA rows
+        run: python -m scripts.test02_report
+      - name: Verify category integrity and file provenance before publishing
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          results=json.loads(Path('data/test02_resultados.json').read_text())
+          records=json.loads(Path('data/test02_observacoes_20261110_14.json').read_text())
+          assert results['id']=='TEST-02'
+          assert len(results['daily'])==5
+          assert all(d['all_categories_sum_check'] for d in results['daily'])
+          assert all(len(records[p])==results['sources'][p]['filter_stats']['inside_amazonas'] for p in ('MODIS_NRT','VIIRS_NOAA20_NRT'))
+          for key,value in results['sources'].items():
+              assert value['sha256_csv'] and len(value['sha256_csv'])==64
+              assert '[MAP_KEY]' in value['url_redacted']
+              assert all(col in value['csv_columns'] for col in ('latitude','longitude','scan','track','frp'))
+          assert not results['interface_modified']
+          print('TEST02 verification: source hashes, NASA physical columns, 5 days, exclusive categories and no UI changes OK')
+          PY
+      - name: Commit only isolated TEST-02 evidence artifacts (not site or older science)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/test02_observacoes_20261110_14.json data/test02_resultados.json docs/TEST-02_VISAO_AGUIA.md
+          if ! git diff --cached --quiet; then
+            git commit -m "research(TEST-02): publish real NASA Nov 10-14 observation-level physical comparison"
+            git push
+          fi
