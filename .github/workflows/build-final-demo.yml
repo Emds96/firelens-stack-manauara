@@ -1,4 +1,4 @@
-name: FIN-01 - Build 7-slide evidence demo
+name: DEMO-02 - Build final seven-slide FireLens PDF
 on:
   workflow_dispatch:
   push:
@@ -22,38 +22,79 @@ jobs:
           python-version: '3.12'
       - name: Install PDF authoring and browser dependencies
         run: |
-          python -m pip install --quiet reportlab pillow pypdf
+          python -m pip install --quiet reportlab pillow pypdf pymupdf
           npm install --no-save --ignore-scripts puppeteer-core@24.26.1
           CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
           echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
-      - name: Capture actual local FireLens map, archived case and historical calendar
+      - name: Capture real map, archived case and current HIST-02 state calendar
         run: |
           python -m http.server 8124 --bind 127.0.0.1 > /tmp/firelens-demo-server.log 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID" || true' EXIT
           sleep 2
           node scripts/capture_demo_map.cjs
-      - name: Rebuild PDF with audited real data and seven pages
+      - name: Rebuild existing PDF with audited science, seven pages and exact team names
         run: python scripts/build_final_demo.py
-      - name: Verify count, content and visible assets
+      - name: Verify Unicode names, HIST-02, source science, pagination and PDF render
         run: |
           python - <<'PY'
-          from pypdf import PdfReader
           from pathlib import Path
+          from pypdf import PdfReader
           from PIL import Image
+          import fitz
           p=Path('demo/FireLens_7_Slide_Demo_2026.pdf')
           doc=PdfReader(str(p))
           assert len(doc.pages)==7, len(doc.pages)
-          full=' '.join(page.extract_text() or '' for page in doc.pages)
-          for text in ['107 minutes', '18.62 MW', '13.09 MW', '12 Aqua', '222 NOAA-20',
-                       'NOT a confirmed', '2022-2024', 'NASA FIRMS', 'ChatGPT']:
-              assert text in full, text
-          for file in ['/tmp/firelens_recent.png','/tmp/firelens_eagle.png','/tmp/firelens_history.png']:
-              image=Image.open(file)
-              assert image.width>=500 and image.height>=230, (file,image.size)
-              print('DEMO_ASSET',file,'size',image.size,flush=True)
-          assert p.stat().st_size>40000, p.stat().st_size
-          print('FIN-01 DEMO VERIFIED:',len(doc.pages),'pages',p.stat().st_size,'bytes')
+          pages=[page.extract_text() or "" for page in doc.pages]
+          whole="\n".join(pages)
+          team=[
+            'Crhystopher Ferreira de Aguiar',
+            'Eder Magalhães dos Santos',
+            'Leonardo de Souza Pinheiro',
+            'Luís Henrique da Silva Carvalho',
+            'Mirna do Amaral Maquiné Nascimento',
+            'Paulo Elias Cajado Pinto',
+          ]
+          for name in team:
+            assert name in pages[0],('missing or broken Unicode team name',name)
+          assert 'Harmonization of MODIS and VIIRS Hot Spots' in pages[0]
+          for text in ['NASA FIRMS NRT','NOAA-20','NOAA-21']:
+            assert text in pages[1],('slide 2',text)
+          for text in ['107 minutes', '18.62 MW', '13.09 MW', 'NOT a confirmed']:
+            assert text in pages[2],('slide 3',text)
+          for text in ['GEOMETRY','TEMPERATURE','RADIATIVE POWER','Not conserved']:
+            assert text.lower() in pages[3].lower(),('slide 4',text)
+          for text in ['HIST-02','AMAZONAS','Jan-Oct 2023-2026','2026 is PARTIAL',
+                       'SP','NRT','Nov-Dec','Separate pilot: A/B, 2022-2024']:
+            assert text in pages[4],('slide 5',text)
+          assert '72 checked region-month records' not in pages[4]
+          for text in ['2 candidate association groups','12 Aqua', '222 NOAA-20',
+                       '23.11% (2024)', '50.73% (2025)']:
+            assert text in pages[5],('slide 6',text)
+          for text in ['NASA FIRMS','OpenStreetMap','ChatGPT','not endorsed by NASA']:
+            assert text in pages[6],('slide 7',text)
+          assert len(team)==6 and p.stat().st_size>40000
+          for img in ['/tmp/firelens_recent.png','/tmp/firelens_eagle.png',
+                      '/tmp/firelens_history.png']:
+            im=Image.open(img)
+            assert im.width>=500 and im.height>=230,(img,im.size)
+            print('DEMO02_SCREENSHOT',img,'dimensions=',im.size)
+          doc2=fitz.open(str(p))
+          out=Path('/tmp/demo02_pdf_pages');out.mkdir(exist_ok=True)
+          for i,page in enumerate(doc2):
+            assert abs(page.rect.width-960)<1 and abs(page.rect.height-540)<1
+            spans=[span for block in page.get_text('dict')['blocks'] if 'lines' in block
+                   for line in block['lines'] for span in line['spans']]
+            assert spans,('page with no text',i+1)
+            for span in spans:
+              x0,y0,x1,y1=span['bbox']
+              assert x0>=-0.5 and y0>=-0.5 and x1<=961 and y1<=541,(
+                'text outside page',i+1,span['text'],span['bbox'])
+            page.get_pixmap(matrix=fitz.Matrix(1.6,1.6),alpha=False).save(
+              str(out/f'slide_{i+1:02d}.png'))
+            print('DEMO02_SLIDE',i+1,'spans=',len(spans),'rendered')
+          print('DEMO-02 VERIFIED:',len(doc.pages),'pages; six names exact;',
+                'HIST-02 screen/current science; source-backed limitations')
           PY
       - name: Commit only final seven-slide PDF
         run: |
@@ -61,16 +102,17 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add demo/FireLens_7_Slide_Demo_2026.pdf
           if ! git diff --cached --quiet; then
-            git commit -m "demo(FIN-01): replace 7-slide PDF with real map, Eagle case and scientific caveats"
+            git commit -m "demo(DEMO-02): refresh HIST-02 screenshots and credit all six team members"
             git fetch origin main
             git rebase origin/main
             git push origin HEAD:main
           fi
       - uses: actions/upload-artifact@v4
         with:
-          name: fin01-browser-demo-screenshots
+          name: demo02-browser-and-pdf-review
           path: |
             /tmp/firelens_recent.png
             /tmp/firelens_eagle.png
             /tmp/firelens_history.png
+            /tmp/demo02_pdf_pages/*.png
           retention-days: 15
