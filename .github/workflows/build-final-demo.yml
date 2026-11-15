@@ -96,17 +96,31 @@ jobs:
           print('DEMO-02 VERIFIED:',len(doc.pages),'pages; six names exact;',
                 'HIST-02 screen/current science; source-backed limitations')
           PY
-      - name: Commit only final seven-slide PDF
+      - name: Publish only verified PDF on newest main (concurrent update safe)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add demo/FireLens_7_Slide_Demo_2026.pdf
-          if ! git diff --cached --quiet; then
-            git commit -m "demo(DEMO-02): refresh HIST-02 screenshots and credit all six team members"
+          cp demo/FireLens_7_Slide_Demo_2026.pdf /tmp/demo02-final-pdf.bin
+          # Never rebase two competing binary PDFs or force-push unrelated work.
+          for attempt in 1 2 3; do
             git fetch origin main
-            git rebase origin/main
-            git push origin HEAD:main
-          fi
+            git reset --hard origin/main
+            cp /tmp/demo02-final-pdf.bin demo/FireLens_7_Slide_Demo_2026.pdf
+            git add demo/FireLens_7_Slide_Demo_2026.pdf
+            if git diff --cached --quiet; then
+              echo "The verified PDF already matches the newest main"
+              break
+            fi
+            git commit -m "demo(DEMO-02): publish final HIST-02 slides and six contributors"
+            if git push origin HEAD:main; then
+              echo "DEMO-02 PDF pushed on attempt $attempt"
+              break
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo "DEMO-02 publication failed after safe retries" >&2
+              exit 1
+            fi
+          done
       - uses: actions/upload-artifact@v4
         with:
           name: demo02-browser-and-pdf-review
