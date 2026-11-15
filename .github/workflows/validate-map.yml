@@ -9,6 +9,8 @@ on:
       - 'map-ui.js'
       - 'map-data.js'
       - 'tests/test_map.cjs'
+      - 'tests/test_case.cjs'
+      - 'data/caso_visao_aguia_20261110.json'
       - 'tests/test_map_browser.cjs'
       - '.github/workflows/validate-map.yml'
 permissions:
@@ -25,7 +27,7 @@ jobs:
           node --check map-data.js
           node --check map-ui.js
       - name: Map data tests (real JSON plus synthetic failure cases)
-        run: node --test tests/test_map.cjs
+        run: node --test tests/test_map.cjs tests/test_case.cjs
       - name: Existing Python regression tests
         run: python -m unittest discover -s tests -v
 
