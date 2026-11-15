@@ -2,7 +2,7 @@
 
 NASA Space Apps Challenge 2026 · **Harmonization of MODIS and VIIRS Hot Spots**.
 
-**Status atual:** código e dados no GitHub e **GitHub Pages publicado e testado** em https://emds96.github.io/firelens-stack-manauara/. **NASA NRT NOAA-20/NOAA-21 comprovado em 14/11/2026 nas execuções #2 e #3**. **Calendário 2022–2024 publicado com 72 registros mensais e quatro métricas WAPE reproduzidas** no workflow histórico. Execução automática agendada por **schedule** observada e concluída com sucesso em 14/11/2026 22:44 AMT (execução [43669211275](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669211275)); isso não garante disponibilidade contínua futura.
+**Status atual:** código e dados no GitHub e **GitHub Pages publicado e testado** em https://emds96.github.io/firelens-stack-manauara/. **NASA NRT NOAA-20/NOAA-21 comprovado em 14/11/2026 nas execuções #2 e #3**. **HIST-02:** calendário estadual do Amazonas de janeiro–outubro 2023–2026 para MODIS Aqua e NOAA-20, baseado no SCI-03, com SP/NRT e meses indisponíveis sinalizados; o calendário A/B 2022–2024 permanece como opção separada. Execução automática agendada por **schedule** observada e concluída com sucesso em 14/11/2026 22:44 AMT (execução [43669211275](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669211275)); isso não garante disponibilidade contínua futura.
 
 ## Limites do recorte geográfico
 
@@ -35,6 +35,17 @@ The app is organized into **Map / History / Understand the data**, with a compac
 - **Seven-slide English demo:** https://emds96.github.io/firelens-stack-manauara/demo/FireLens_7_Slide_Demo_2026.pdf — actual application screenshots, dated observational evidence, distinct processing/data coverage and explicit limitations; generated with ChatGPT assistance and validated for seven pages.
 - **Regression evidence:** [47 Python tests and full browser QA](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669321931); [actual browser screenshots and seven-slide PDF build](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43669280189).
 - **Release documentation:** [docs/FIN-01_UX-03_ENTREGA.md](docs/FIN-01_UX-03_ENTREGA.md). NASA project submission remains **NOT submitted** without explicit human authorization.
+
+## HIST-02 — Statewide historical calendar (14 Nov 2026)
+
+The default **History** view now reads **4,434 original 1° × UTC-month SCI-03 cell records** from [data/sci03_agregados.json](data/sci03_agregados.json). The calendar covers **January–October 2023–2026**, with separate **MODIS Aqua / VIIRS NOAA-20** selection. All counts are original detected pixels (no sensor harmonization correction, no physical fire events). November/December are shown as **unavailable**, never zero fires; **2026 is partial**. For 2026, Jan–Jul is SP/SP, August SP Aqua / NRT NOAA-20, and September–October NRT/NRT. NRT is provisional and processing and attribute differences limit comparability.
+
+The existing **2022–2024 pilot A/B** calendar remains a separate option, with its original `data/historico.json`, original geography and distinct scientific methodology. The two histories are not mixed.
+
+- New isolated modules: [history-state.js](history-state.js) (strict original-source projection, fails closed on absent months) and [history-ui.js](history-ui.js) (EN/PT-BR calendar, two sensor controls, original A/B toggle).
+- [HIST-02 report and provenance](docs/HIST-02_CALENDARIO.md) and [SCI-03 study](docs/SCI-03_HARMONIZACAO_PADROES.md).
+- [CI success — 14 Node tests, 47 Python tests plus desktop/mobile browser acceptance](https://github.com/Emds96/firelens-stack-manauara/actions/runs/43671123377). The browser checked real 2026 SP/NRT labels, missing months, language and preservation of A/B.
+- No changes were made to the original TEST-01/01B/SCI-03/TEST-02 datasets or scientific methodology. NASA submission and acceptance checkboxes remain untouched.
 
 ## Rodar localmente
 
