@@ -173,3 +173,49 @@ footer{padding:20px 0}
  .explain-first{padding:17px}
  .calendar{overflow-x:auto}.year-row,.month-top{min-width:620px}
 }
+
+
+/* HIST-02 — distinct Amazonas SCI-03 series and preserved separate 2022–24 A/B view. */
+.history-mode,.history-sensors{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.history-mode{margin:14px 0 16px;padding:5px;border-radius:11px;background:#10222d;border:1px solid #304858;width:fit-content;max-width:100%}
+.history-mode button,.history-sensors button{border:1px solid transparent;background:#172f3a;color:#aec6cf;border-radius:8px;padding:10px 13px;font-size:12px;font-weight:700;cursor:pointer;line-height:1.4}
+.history-mode button[aria-pressed=true],.history-sensors button[aria-pressed=true]{background:#e99468;border-color:#ffb78e;color:#18222b}
+.history-mode button:focus-visible,.history-sensors button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.state-calendar-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+.state-calendar-heading h3{font-size:21px;margin:0 0 4px;letter-spacing:-.5px}
+.state-calendar-heading p{font-size:12px;line-height:1.5;margin:0;color:#a6c0c9;max-width:560px}
+.state-sensor-controls{display:flex;flex-direction:column;gap:7px;align-items:flex-start}
+.state-sensor-controls>span{font-size:11px;color:#b4d0d6;font-weight:650}
+.history-sensors{flex-wrap:nowrap}
+.history-sensors button{font-size:11px;white-space:nowrap;padding:9px 10px;border:1px solid #345467}
+.hist-processing,.hist-caveat{border-left:3px solid #479f9d;background:#142b34;color:#b9d9da;padding:9px 12px;font-size:12px;line-height:1.6;margin:12px 0;border-radius:5px}
+.hist-caveat{border-color:#c58e67;color:#d7c8ba;background:#29231e}
+#state-history .state-calendar{overflow-x:auto;padding-bottom:6px;margin-top:14px;min-height:0}
+#state-calendar .month-top,#state-calendar .year-row{min-width:835px;grid-template-columns:76px repeat(12,minmax(0,1fr));gap:6px}
+#state-calendar .month-top span{font-size:10px;color:#a0bbc4}
+#state-calendar .year-row{margin-bottom:7px}
+#state-calendar .heat-cell{height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:4px 1px;border-radius:7px}
+.state-heat-cell strong{font-size:11px;font-weight:800;color:#f6f8f8;letter-spacing:-.15px;font-variant-numeric:tabular-nums}
+.state-heat-cell small{font-size:9px;letter-spacing:.3px;color:#d1e2e4;font-weight:700}
+#state-calendar .state-unavailable{background:#182530!important;border:1px dashed #3b4c58;color:#82949f;opacity:.8;cursor:not-allowed;font-size:20px}
+#state-calendar .state-heat-cell.active{outline:2px solid #effeff;outline-offset:2px}
+#state-calendar .year-label{display:flex;flex-direction:column;justify-content:center;line-height:1.25;color:#f4eded;font-size:13px}
+#state-calendar .year-label small{font-size:9px;color:#ffc18c;letter-spacing:.2px;margin-top:5px}
+.state-history-legend{display:flex;justify-content:space-between;gap:13px;flex-wrap:wrap;font-size:11px;margin:8px 0 15px;color:#a2bac4}
+#state-calendar-detail{margin-top:12px;line-height:1.65}
+.pilot-history-lead{margin:14px 0 17px;align-items:center}
+.pilot-history-lead h3{margin:3px 0;font-size:22px}
+.pilot-history-lead p{font-size:12px;color:#b5cbd4;margin:0;max-width:580px}
+@media(max-width:830px){
+ .state-calendar-heading{flex-direction:column;align-items:flex-start}
+ .state-sensor-controls{width:100%}
+ #state-history .panel{padding:15px}
+}
+@media(max-width:520px){
+ .history-mode{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+ .history-mode button{padding:9px 5px;font-size:10px}
+ .history-sensors{flex-wrap:wrap}
+ .state-calendar-heading h3{font-size:18px}
+ .state-history-legend{font-size:10px}
+ .hist-processing,.hist-caveat{font-size:11px}
+}
