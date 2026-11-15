@@ -79,10 +79,42 @@ async function run(){
 
   await page.click('[data-view="calendario"]');
   assert.equal(await page.$eval("#calendario",e=>e.classList.contains("hidden")),false);
+  await page.waitForFunction(()=>document.querySelectorAll("#state-calendar .state-heat-cell:not(:disabled)").length===40,{timeout:30000});
+  assert.equal(await page.$eval('[data-history-view="state"]',e=>e.getAttribute("aria-pressed")),"true");
+  assert.match(await page.$eval("#calendario .section-lead",e=>e.textContent),/January|October|historical thermal/i);
+  assert.equal(await page.$eval("#state-calendar .state-year-row",e=>e.textContent.includes("2023")),true);
+  assert.equal(await page.$eval("#state-calendar .state-heat-cell:disabled",xs=>xs.length),8);
+  assert.match(await page.$eval("#state-calendar .year-partial",e=>e.textContent),/PARTIAL/);
+  await page.click("#state-calendar .state-year-row:last-child .state-heat-cell:nth-child(10)");
+  assert.match(await page.$eval("#state-calendar-detail",e=>e.textContent),/SEP\/2026.*MODIS Aqua.*3,518.*NRT/s);
+  await page.click('[data-state-sensor="NOAA20"]');
+  assert.match(await page.$eval("#state-calendar-detail",e=>e.textContent),/SEP\/2026.*VIIRS NOAA-20.*16,489.*NRT/s);
+  await page.click('[data-state-sensor="Aqua"]');
+  await page.click("#state-calendar .state-year-row:last-child .state-heat-cell:nth-child(9)");
+  assert.match(await page.$eval("#state-calendar-detail",e=>e.textContent),/AUG\/2026.*MODIS Aqua.*2,153.*SP/s);
+  await page.click('[data-state-sensor="NOAA20"]');
+  assert.match(await page.$eval("#state-calendar-detail",e=>e.textContent),/AUG\/2026.*VIIRS NOAA-20.*10,451.*NRT/s);
+  await page.click('[data-language="pt-BR"]');
+  assert.match(await page.$eval("#state-calendar-detail",e=>e.textContent),/AGO\/2026.*VIIRS NOAA-20.*10\.451.*provisório/s);
+  assert.match(await page.$eval('[data-history-view="state"]',e=>e.textContent),/Amazonas/);
+  assert.match(await page.$eval("#state-calendar .year-partial",e=>e.textContent),/PARCIAL/);
+  await page.click('[data-language="en"]');
+  console.log("HIST-02: state SCI-03 2023–26 40 months, two sensors, SP/NRT, missing November/December, EN/PT-BR");
+
+  await page.click('[data-history-view="pilot"]');
+  assert.equal(await page.$eval("#pilot-history",e=>e.hidden),false);
+  assert.equal(await page.$eval("#state-history",e=>e.hidden),true);
   await page.waitForSelector("#calendar .heat-cell:not([disabled])");
   await page.click("#calendar .heat-cell:not([disabled])");
   assert.match(await page.$eval("#calendar-detail",e=>e.textContent),/MODIS Aqua/);
-  assert.match(await page.$eval("#calendario .section-lead",e=>e.textContent),/experimental regions/);
+  assert.match(await page.$eval("#pilot-history",e=>e.textContent),/2022–2024/);
+  await page.select("#region","B");
+  assert.equal(await page.$eval("#region",e=>e.value),"B");
+  await page.click('[data-history-view="state"]');
+  assert.equal(await page.$eval("#state-history",e=>e.hidden),false);
+  assert.equal(await page.$eval("#pilot-history",e=>e.hidden),true);
+  console.log("HIST-02: pilot A/B stays independent and selectable; statewide remains primary");
+
   await page.click('[data-view="ciencia"]');
   assert.match(await page.$eval(".explain-first",e=>e.textContent),/not a confirmed fire/i);
   assert.match(await page.$eval(".explain-first",e=>e.textContent),/50.73%/);
