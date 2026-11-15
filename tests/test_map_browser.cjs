@@ -83,7 +83,7 @@ async function run(){
   assert.equal(await page.$eval('[data-history-view="state"]',e=>e.getAttribute("aria-pressed")),"true");
   assert.match(await page.$eval("#calendario .section-lead",e=>e.textContent),/January|October|historical thermal/i);
   assert.equal(await page.$eval("#state-calendar .state-year-row",e=>e.textContent.includes("2023")),true);
-  assert.equal(await page.$eval("#state-calendar .state-heat-cell:disabled",xs=>xs.length),8);
+  assert.equal(await page.evaluate(()=>document.querySelectorAll("#state-calendar .state-heat-cell:disabled").length),8);
   assert.match(await page.$eval("#state-calendar .year-partial",e=>e.textContent),/PARTIAL/);
   await page.click("#state-calendar .state-year-row:last-child .state-heat-cell:nth-child(10)");
   assert.match(await page.$eval("#state-calendar-detail",e=>e.textContent),/SEP\/2026.*MODIS Aqua.*3,518.*NRT/s);
