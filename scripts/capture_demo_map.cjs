@@ -11,15 +11,15 @@ const puppeteer=require("puppeteer-core"),fs=require("node:fs");
     !document.querySelector("#map-show-case").disabled,{timeout:35000});
   await new Promise(resolve=>setTimeout(resolve,3000));
   await page.$eval("#map-explorer",e=>e.scrollIntoView({block:"start"}));
-  await page.screenshot({path:"/tmp/firelens_recent.png",clip:await page.$eval("#map-explorer",e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height}})});
+  await (await page.$("#map-explorer")).screenshot({path:"/tmp/firelens_recent.png"});
   await page.click("#map-show-case");
   await page.waitForFunction(()=>document.querySelectorAll(".map-pixel.case-viirs").length===2);
   await page.click(".map-measurements summary");
-  await page.screenshot({path:"/tmp/firelens_eagle.png",clip:await page.$eval("#map-explorer",e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height}})});
+  await (await page.$("#map-explorer")).screenshot({path:"/tmp/firelens_eagle.png"});
   await page.click('[data-view="calendario"]');
   await page.waitForSelector("#calendar .heat-cell:not([disabled])");
   await page.$eval("#calendario",e=>e.scrollIntoView({block:"start"}));
-  await page.screenshot({path:"/tmp/firelens_history.png",clip:await page.$eval("#calendario",e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height}})});
+  await (await page.$("#calendario")).screenshot({path:"/tmp/firelens_history.png"});
   console.log("REAL_APP_SCREENSHOTS",JSON.stringify(["/tmp/firelens_recent.png","/tmp/firelens_eagle.png","/tmp/firelens_history.png"].map(p=>({path:p,bytes:fs.statSync(p).size}))));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1});
