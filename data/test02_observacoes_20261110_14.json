@@ -9,7 +9,7 @@
     "MODIS_NRT": {
       "source": "MODIS_NRT",
       "url_redacted": "https://firms.modaps.eosdis.nasa.gov/api/area/csv/[MAP_KEY]/MODIS_NRT/-73.79810,-9.81800,-56.09540,2.21850/5/2026-11-10",
-      "retrieved_at_utc": "2026-11-15T01:19:55.139802+00:00",
+      "retrieved_at_utc": "2026-11-15T01:21:33.945829+00:00",
       "sha256_csv": "caa13ba58a9f00fd3b1bc6ff3cc7f729f4e98a05d7015543540af352744f3301",
       "bytes_csv": 27728,
       "csv_columns": [
@@ -41,7 +41,7 @@
     "VIIRS_NOAA20_NRT": {
       "source": "VIIRS_NOAA20_NRT",
       "url_redacted": "https://firms.modaps.eosdis.nasa.gov/api/area/csv/[MAP_KEY]/VIIRS_NOAA20_NRT/-73.79810,-9.81800,-56.09540,2.21850/5/2026-11-10",
-      "retrieved_at_utc": "2026-11-15T01:19:55.796440+00:00",
+      "retrieved_at_utc": "2026-11-15T01:21:34.263935+00:00",
       "sha256_csv": "ed567a392b3ab65d548ec05065da367c574d1ffc8a511bbd7afcd05cd7a96ad1",
       "bytes_csv": 119682,
       "csv_columns": [

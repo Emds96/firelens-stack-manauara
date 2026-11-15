@@ -1,7 +1,7 @@
 # TEST-02 — Visão da Águia: análise físico-espacial, 10–14/11/2026
 
 **Engenharia Stack Manauara | Experimento exploratório | Aprovação científica pendente**
-**Executado UTC:** 2026-11-15T01:19:56.048976+00:00
+**Executado UTC:** 2026-11-15T01:21:34.635346+00:00
 
 ## Veredito
 
@@ -157,6 +157,24 @@ VIIRS dentro da caixa e ≤120 min: 0; >120 min: 1; TI5 média — K; ΔT11 — 
 | ID | Satélite | Hora UTC | AMT | Lat | Lon | scan × track (km) | Área aprox. km² | T4 K | T11 K | FRP MW | Conf. | Saturação/Folding |
 |---|---|---|---|---:|---:|---|---:|---:|---:|---:|---|---|
 | V-000421 | NOAA-20 | 17:41 | 13:41 | -7.88759 | -63.71191 | 0.43×0.38 | 0.1634 | 338.72 | 299.16 | 212.90 | l | — |
+
+
+### Dois grupos de 10/11 com os quatro critérios exploratórios compatíveis
+
+O dia 11 não teve grupos em até 120 minutos. No dia anterior, os seguintes grupos VIIRS–Aqua são candidatos para verificação posterior com geolocalização Level-2, **não incêndios confirmados**.
+
+**M-000047 / Aqua**: UTC 2026-11-10T19:49:00Z, AMT 2026-11-10T15:49-04:00, coord (-3.44421, -59.61359), scan×track 1.00×1.00 km, FRP MODIS 18.62 MW, T31 297.36 K; VIIRS 2 pixels, ΣFRP 13.09 MW, média TI5 293.98 K, ΔT11 3.38 K, razão 0.703, Δt 107 minutos.
+
+| ID | Satélite | Hora UTC | AMT | Lat | Lon | scan × track (km) | Área aprox. km² | T4 K | T11 K | FRP MW | Conf. | Saturação/Folding |
+|---|---|---|---|---:|---:|---|---:|---:|---:|---:|---|---|
+| V-000192 | NOAA-20 | 18:02 | 14:02 | -3.44233 | -59.61069 | 0.57×0.52 | 0.2964 | 332.16 | 294.24 | 6.86 | n | — |
+| V-000193 | NOAA-20 | 18:02 | 14:02 | -3.44225 | -59.60994 | 0.57×0.52 | 0.2964 | 332.46 | 293.72 | 6.23 | n | — |
+
+**M-000048 / Aqua**: UTC 2026-11-10T19:49:00Z, AMT 2026-11-10T15:49-04:00, coord (-3.41922, -60.31168), scan×track 1.02×1.01 km, FRP MODIS 4.70 MW, T31 297.60 K; VIIRS 1 pixels, ΣFRP 3.91 MW, média TI5 293.55 K, ΔT11 4.05 K, razão 0.832, Δt 107 minutos.
+
+| ID | Satélite | Hora UTC | AMT | Lat | Lon | scan × track (km) | Área aprox. km² | T4 K | T11 K | FRP MW | Conf. | Saturação/Folding |
+|---|---|---|---|---:|---:|---|---:|---:|---:|---:|---|---|
+| V-000194 | NOAA-20 | 18:02 | 14:02 | -3.41687 | -60.30735 | 0.51×0.50 | 0.2550 | 331.33 | 293.55 | 3.91 | n | — |
 
 
 ### Exemplos de detecções VIIRS distantes das caixas MODIS
