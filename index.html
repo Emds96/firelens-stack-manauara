@@ -121,34 +121,34 @@
         <div class="section-lead">
           <div>
             <span class="section-n" data-i18n="calendar.kicker">02 / HISTORY</span>
-            <h2 data-i18n="calendar.title">Historical thermal detections in Amazonas</h2>
-            <p data-i18n="calendar.subtitle">January–October 2023–2026 · statewide exploratory monthly counts. These are satellite-detected pixels, not individual fires.</p>
+            <h2 data-hist-t="mainTitle">Historical thermal detections in Amazonas</h2>
+            <p data-hist-t="mainSubtitle">January–October 2023–2026 · statewide exploratory monthly counts. These are satellite-detected pixels, not individual fires.</p>
           </div>
         </div>
-        <div class="history-mode" role="group" aria-label="History dataset" data-i18n-aria="hist.mode.aria">
-          <button type="button" data-history-view="state" aria-pressed="true" data-i18n="hist.mode.state">Amazonas · 2023–2026</button>
-          <button type="button" data-history-view="pilot" aria-pressed="false" data-i18n="hist.mode.pilot">Pilot regions A/B · 2022–2024</button>
+        <div class="history-mode" role="group" aria-label="History dataset" data-hist-aria="mode.aria">
+          <button type="button" data-history-view="state" aria-pressed="true" data-hist-t="mode.state">Amazonas · 2023–2026</button>
+          <button type="button" data-history-view="pilot" aria-pressed="false" data-hist-t="mode.pilot">Pilot regions A/B · 2022–2024</button>
         </div>
-        <section id="state-history" aria-label="Amazonas monthly history" data-i18n-aria="hist.state.aria">
+        <section id="state-history" aria-label="Amazonas monthly history" data-hist-aria="state.aria">
           <article class="panel wide-panel">
             <div class="state-calendar-heading">
               <div>
-                <h3 data-i18n="hist.state.title">Amazonas · monthly detections</h3>
-                <p data-i18n="hist.state.scope">Simplified Amazonas boundary · 1° grid aggregated by UTC month · January–October only.</p>
+                <h3 data-hist-t="state.title">Amazonas · monthly detections</h3>
+                <p data-hist-t="state.scope">Simplified Amazonas boundary · 1° grid aggregated by UTC month · January–October only.</p>
               </div>
               <div class="state-sensor-controls">
-                <span data-i18n="hist.sensor.label">Choose a satellite</span>
-                <div class="history-sensors" role="group" aria-label="Satellite in historical calendar" data-i18n-aria="hist.sensor.aria">
+                <span data-hist-t="sensor.label">Choose a satellite</span>
+                <div class="history-sensors" role="group" aria-label="Satellite in historical calendar" data-hist-aria="sensor.aria">
                   <button type="button" data-state-sensor="Aqua" aria-pressed="true">MODIS Aqua</button>
                   <button type="button" data-state-sensor="NOAA20" aria-pressed="false">VIIRS NOAA-20</button>
                 </div>
               </div>
             </div>
-            <p class="hist-processing" id="state-history-provenance" data-i18n="hist.provenance">2023–2025: annual Brazil FIRMS archives. 2026: Jan–Jul SP/SP; August Aqua SP and NOAA-20 NRT; Sep–Oct NRT/NRT. NRT is provisional.</p>
-            <div id="state-calendar" class="calendar state-calendar" aria-live="polite"><div class="empty" data-i18n="hist.loading">Loading Amazonas historical observations…</div></div>
-            <div class="state-history-legend"><span data-i18n="hist.legend">Fewer → more detections within the selected sensor</span><span data-i18n="hist.unavailable.legend">— = Unavailable in this dataset, not zero fires</span></div>
-            <div id="state-calendar-detail" class="calendar-detail" aria-live="polite" data-i18n="hist.detail.default">Select a month to see its original pixel count and processing source.</div>
-            <p class="hist-caveat" data-i18n="hist.caveat">2026 is partial: November and December are not included. SP and NRT may differ in processing and attributes. These sensor counts are not interchangeable and do not measure individual fires.</p>
+            <p class="hist-processing" id="state-history-provenance" data-hist-t="provenance">2023–2025: annual Brazil FIRMS archives. 2026: Jan–Jul SP/SP; August Aqua SP and NOAA-20 NRT; Sep–Oct NRT/NRT. NRT is provisional.</p>
+            <div id="state-calendar" class="calendar state-calendar" aria-live="polite"><div class="empty" data-hist-t="loading">Loading Amazonas historical observations…</div></div>
+            <div class="state-history-legend"><span data-hist-t="legend">Fewer → more detections within the selected sensor</span><span data-hist-t="unavailable.legend">— = Unavailable in this dataset, not zero fires</span></div>
+            <div id="state-calendar-detail" class="calendar-detail" aria-live="polite" data-hist-t="detail.default">Select a month to see its original pixel count and processing source.</div>
+            <p class="hist-caveat" data-hist-t="caveat">2026 is partial: November and December are not included. SP and NRT may differ in processing and attributes. These sensor counts are not interchangeable and do not measure individual fires.</p>
             <div class="method-document-links">
               <a href="docs/SCI-03_HARMONIZACAO_PADROES.md" target="_blank" rel="noopener noreferrer">SCI-03 · method / método ↗</a>
               <a href="data/sci03_agregados.json" target="_blank" rel="noopener noreferrer">SCI-03 · original data / dados ↗</a>
@@ -177,6 +177,7 @@
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
   <script src="history-state.js" defer></script>
+  <script src="history-ui.js" defer></script>
   <script src="map-data.js" defer></script>
   <script src="map-ui.js" defer></script>
   <script src="app.js" defer></script>
