@@ -36,6 +36,12 @@ Números verificados pela soma dos campos `pixels` de `data/sci03_agregados.json
 
 A classificação de processamento foi documentada no **SCI-03** ([relatório de pesquisa](SCI-03_HARMONIZACAO_PADROES.md), [proveniência detalhada](../data/sci03_resultados.json)). Os dados de 2026 NRT diferem do SP em atributos disponíveis, como a ausência observada do campo `type` em consultas NRT: isso limita comparações quantitativas. Janeiro–outubro são meses UTC completos da janela analisada em SCI-03; **2026 permanece uma série anual parcial**. O calendário não é previsão, taxa de risco nem ferramenta operacional de incêndios.
 
+## Execução de testes e publicação — evidência real
+
+- **GitHub Actions (sucesso):** https://github.com/Emds96/firelens-stack-manauara/actions/runs/43671123377 — **14 testes Node aprovados, 47 testes Python aprovados** e aceitação em navegador Chromium sem erros. O teste de navegador verificou 40 meses disponíveis para o satélite selecionado, oito meses indisponíveis (novembro/dezembro dos quatro anos), totais de agosto e setembro de 2026, rótulos SP/NRT, 2026 parcial, EN/PT-BR, modo piloto A/B e o retorno ao modo estadual.
+- **Regressões preservadas:** o mesmo workflow verificou o mapa NOAA-20/NOAA-21, camada separada Visão da Águia, filtros, idiomas, carregamento, detalhes técnicos, histórico A/B e layout móvel 390×844.
+- **Alcance do teste:** reproduz lógica e navegação com dados SCI-03 reais versionados, mas não certifica contorno estadual IBGE, completude instrumental das passagens, precisão física de incêndios nem equivalência SP/NRT.
+
 ## Arquitetura, testes e decisões
 
 **Arquivos de interface:** `index.html`, `style.css`; novos `history-state.js`, `history-ui.js`. O módulo legado de calendário em `app.js` e os dados do calendário A/B foram preservados; novos componentes independentes escutam o evento de troca de idioma existente.
