@@ -4,9 +4,9 @@
   "source": "NASA FIRMS Area API",
   "source_url": "https://firms.modaps.eosdis.nasa.gov/api/area/",
   "status": "ok",
-  "last_attempt_utc": "2026-11-17T04:34:08Z",
-  "last_success_utc": "2026-11-17T04:34:08Z",
-  "last_observation_utc": "2026-11-16T18:34:00Z",
+  "last_attempt_utc": "2026-11-17T14:33:49Z",
+  "last_success_utc": "2026-11-17T14:33:49Z",
+  "last_observation_utc": "2026-11-17T05:37:00Z",
   "query_days": 2,
   "filters": "VIIRS confidence n/h; dia e noite separados; geometria IBGE",
   "sensors": {
@@ -14,13 +14,13 @@
       "status": "ok",
       "response_state": "ok",
       "summary": {
-        "detections": 179,
+        "detections": 200,
         "diurnal": 167,
-        "nocturnal": 12,
-        "latest_observation_utc": "2026-11-16T17:51:00Z"
+        "nocturnal": 33,
+        "latest_observation_utc": "2026-11-17T04:53:00Z"
       },
       "exclusions": {
-        "outside_amazonas": 160,
+        "outside_amazonas": 181,
         "low_confidence": 9,
         "invalid": 0
       }
@@ -29,19 +29,555 @@
       "status": "ok",
       "response_state": "ok",
       "summary": {
-        "detections": 131,
+        "detections": 177,
         "diurnal": 123,
-        "nocturnal": 8,
-        "latest_observation_utc": "2026-11-16T18:34:00Z"
+        "nocturnal": 54,
+        "latest_observation_utc": "2026-11-17T05:37:00Z"
       },
       "exclusions": {
-        "outside_amazonas": 169,
+        "outside_amazonas": 241,
         "low_confidence": 8,
         "invalid": 0
       }
     }
   },
   "detections": [
+    {
+      "latitude": -9.66247,
+      "longitude": -66.85101,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -9.37952,
+      "longitude": -66.49168,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -9.37891,
+      "longitude": -66.49542,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -9.3761,
+      "longitude": -66.49113,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -9.3755,
+      "longitude": -66.49486,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -9.07533,
+      "longitude": -65.91975,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -9.07475,
+      "longitude": -65.92337,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -9.07417,
+      "longitude": -65.92699,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -9.07139,
+      "longitude": -65.92284,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -8.98994,
+      "longitude": -66.09603,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -8.58976,
+      "longitude": -66.68343,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -8.5863,
+      "longitude": -66.68286,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -8.57381,
+      "longitude": -66.71629,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -8.57319,
+      "longitude": -66.72012,
+      "observed_at_utc": "2026-11-17T05:37:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -6.09895,
+      "longitude": -62.55483,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -6.0956,
+      "longitude": -62.55431,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -6.09505,
+      "longitude": -62.55787,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -6.0945,
+      "longitude": -62.56142,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -6.0928,
+      "longitude": -62.55023,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -6.09225,
+      "longitude": -62.55379,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -6.0917,
+      "longitude": -62.55735,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -6.0889,
+      "longitude": -62.55328,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -4.34825,
+      "longitude": -59.97778,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -3.81678,
+      "longitude": -59.177,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -3.69422,
+      "longitude": -58.51551,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -3.69026,
+      "longitude": -58.51493,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -3.46735,
+      "longitude": -59.33816,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -3.44109,
+      "longitude": -59.3341,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -3.44024,
+      "longitude": -59.33194,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -3.43955,
+      "longitude": -59.33642,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -3.43734,
+      "longitude": -59.3335,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -3.43667,
+      "longitude": -59.33801,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -3.4358,
+      "longitude": -59.33584,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.964,
+      "longitude": -60.97391,
+      "observed_at_utc": "2026-11-17T05:35:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.83176,
+      "longitude": -57.29135,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.72055,
+      "longitude": -57.31169,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.71995,
+      "longitude": -57.31561,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.68891,
+      "longitude": -57.49277,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.68531,
+      "longitude": -57.48832,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.68114,
+      "longitude": -57.48767,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.5713,
+      "longitude": -57.52554,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.56525,
+      "longitude": -57.50915,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.56468,
+      "longitude": -57.51293,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.56109,
+      "longitude": -57.50851,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.56052,
+      "longitude": -57.5123,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -1.73571,
+      "longitude": -60.13191,
+      "observed_at_utc": "2026-11-17T05:33:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -9.07,
+      "longitude": -65.92639,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -6.0955,
+      "longitude": -62.56252,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -6.0945,
+      "longitude": -62.55893,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -6.09358,
+      "longitude": -62.56387,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -6.0902,
+      "longitude": -62.55641,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -6.0893,
+      "longitude": -62.5614,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -6.08831,
+      "longitude": -62.55778,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -6.08739,
+      "longitude": -62.56274,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -3.69195,
+      "longitude": -58.51707,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -3.6911,
+      "longitude": -58.51493,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -3.69019,
+      "longitude": -58.52045,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -3.68701,
+      "longitude": -58.5162,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -2.72061,
+      "longitude": -57.31581,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -2.71598,
+      "longitude": -57.31506,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -2.68415,
+      "longitude": -57.49326,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -2.68195,
+      "longitude": -57.48965,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -2.68025,
+      "longitude": -57.48752,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -2.57059,
+      "longitude": -57.52793,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -2.56799,
+      "longitude": -57.52495,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -2.56589,
+      "longitude": -57.52712,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
+    {
+      "latitude": -2.56269,
+      "longitude": -57.54715,
+      "observed_at_utc": "2026-11-17T04:53:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA20"
+    },
     {
       "latitude": -3.40139,
       "longitude": -64.64232,
@@ -2532,6 +3068,6 @@
     -56.0954,
     2.2185
   ],
-  "count": 310,
+  "count": 377,
   "snapshot_age_hours": 0.0
 }
