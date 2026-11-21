@@ -4,9 +4,9 @@
   "source": "NASA FIRMS Area API",
   "source_url": "https://firms.modaps.eosdis.nasa.gov/api/area/",
   "status": "ok",
-  "last_attempt_utc": "2026-11-21T02:25:06Z",
-  "last_success_utc": "2026-11-21T02:25:06Z",
-  "last_observation_utc": "2026-11-20T17:15:00Z",
+  "last_attempt_utc": "2026-11-21T11:16:53Z",
+  "last_success_utc": "2026-11-21T11:16:53Z",
+  "last_observation_utc": "2026-11-21T06:01:00Z",
   "query_days": 2,
   "filters": "VIIRS confidence n/h; dia e noite separados; geometria IBGE",
   "sensors": {
@@ -29,19 +29,27 @@
       "status": "ok",
       "response_state": "ok",
       "summary": {
-        "detections": 1,
+        "detections": 2,
         "diurnal": 1,
-        "nocturnal": 0,
-        "latest_observation_utc": "2026-11-20T17:15:00Z"
+        "nocturnal": 1,
+        "latest_observation_utc": "2026-11-21T06:01:00Z"
       },
       "exclusions": {
-        "outside_amazonas": 52,
+        "outside_amazonas": 74,
         "low_confidence": 0,
         "invalid": 0
       }
     }
   },
   "detections": [
+    {
+      "latitude": -9.02525,
+      "longitude": -68.50729,
+      "observed_at_utc": "2026-11-21T06:01:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
     {
       "latitude": -8.84972,
       "longitude": -67.13727,
@@ -108,6 +116,6 @@
     -56.0954,
     2.2185
   ],
-  "count": 7,
+  "count": 8,
   "snapshot_age_hours": 0.0
 }
