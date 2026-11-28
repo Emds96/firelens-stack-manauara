@@ -4,9 +4,9 @@
   "source": "NASA FIRMS Area API",
   "source_url": "https://firms.modaps.eosdis.nasa.gov/api/area/",
   "status": "ok",
-  "last_attempt_utc": "2026-11-28T02:44:52Z",
-  "last_success_utc": "2026-11-28T02:44:52Z",
-  "last_observation_utc": "2026-11-27T18:28:00Z",
+  "last_attempt_utc": "2026-11-28T11:55:43Z",
+  "last_success_utc": "2026-11-28T11:55:43Z",
+  "last_observation_utc": "2026-11-28T05:29:00Z",
   "query_days": 2,
   "filters": "VIIRS confidence n/h; dia e noite separados; geometria IBGE",
   "sensors": {
@@ -29,19 +29,59 @@
       "status": "ok",
       "response_state": "ok",
       "summary": {
-        "detections": 65,
+        "detections": 70,
         "diurnal": 41,
-        "nocturnal": 24,
-        "latest_observation_utc": "2026-11-27T18:28:00Z"
+        "nocturnal": 29,
+        "latest_observation_utc": "2026-11-28T05:29:00Z"
       },
       "exclusions": {
-        "outside_amazonas": 27,
+        "outside_amazonas": 56,
         "low_confidence": 1,
         "invalid": 0
       }
     }
   },
   "detections": [
+    {
+      "latitude": -2.49428,
+      "longitude": -57.0015,
+      "observed_at_utc": "2026-11-28T05:29:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.49116,
+      "longitude": -56.99606,
+      "observed_at_utc": "2026-11-28T05:29:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.49041,
+      "longitude": -57.00089,
+      "observed_at_utc": "2026-11-28T05:29:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.48729,
+      "longitude": -56.99545,
+      "observed_at_utc": "2026-11-28T05:29:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
+    {
+      "latitude": -2.48341,
+      "longitude": -56.99484,
+      "observed_at_utc": "2026-11-28T05:29:00Z",
+      "confidence": "n",
+      "daynight": "N",
+      "sensor": "NOAA21"
+    },
     {
       "latitude": -2.91818,
       "longitude": -65.40786,
@@ -1780,6 +1820,6 @@
     -56.0954,
     2.2185
   ],
-  "count": 216,
+  "count": 221,
   "snapshot_age_hours": 0.0
 }
