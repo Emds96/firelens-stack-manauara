@@ -4,8 +4,8 @@
   "source": "NASA FIRMS Area API",
   "source_url": "https://firms.modaps.eosdis.nasa.gov/api/area/",
   "status": "ok",
-  "last_attempt_utc": "2026-11-28T11:55:43Z",
-  "last_success_utc": "2026-11-28T11:55:43Z",
+  "last_attempt_utc": "2026-11-28T20:13:55Z",
+  "last_success_utc": "2026-11-28T20:13:55Z",
   "last_observation_utc": "2026-11-28T05:29:00Z",
   "query_days": 2,
   "filters": "VIIRS confidence n/h; dia e noite separados; geometria IBGE",
@@ -35,7 +35,7 @@
         "latest_observation_utc": "2026-11-28T05:29:00Z"
       },
       "exclusions": {
-        "outside_amazonas": 56,
+        "outside_amazonas": 59,
         "low_confidence": 1,
         "invalid": 0
       }
